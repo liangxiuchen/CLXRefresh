@@ -22,7 +22,7 @@ pod 'CLXRefresh'
 
 ## Author
 
-liangxiuchen, carroll.chen@zoom.us
+liangxiuchen, liangxiu.chen.cn@gmail.com
 
 ## License
 

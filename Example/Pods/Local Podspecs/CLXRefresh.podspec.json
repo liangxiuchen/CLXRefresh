@@ -1,0 +1,22 @@
+{
+  "name": "CLXRefresh",
+  "version": "0.1.0",
+  "summary": "A short description of CLXRefresh.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/liangxiuchen/CLXRefresh",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "liangxiuchen": "carroll.chen@zoom.us"
+  },
+  "source": {
+    "git": "https://github.com/liangxiuchen/CLXRefresh.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "CLXRefresh/Classes/**/*"
+}
