@@ -19,6 +19,6 @@
     "ios": "8.0"
   },
   "source_files": "CLXRefresh/Classes/**/*",
-  "public_header_files": "CLXRefresh/Headers/Public/*.h",
-  "private_header_files": "CLXRefresh/Headers/Private/*.h"
+  "public_header_files": "CLXRefresh/Classes/Headers/Public/*.h",
+  "private_header_files": "CLXRefresh/Classes/Headers/Private/*.h"
 }

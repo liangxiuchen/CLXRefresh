@@ -36,8 +36,8 @@ TODO: Add long description of the pod here.
   #   'CLXRefresh' => ['CLXRefresh/Assets/*.png']
   # }
 
-  s.public_header_files = 'CLXRefresh/Headers/Public/*.h'
-  s.private_header_files = 'CLXRefresh/Headers/Private/*.h'
+  s.public_header_files = 'CLXRefresh/Classes/Headers/Public/*.h'
+  s.private_header_files = 'CLXRefresh/Classes/Headers/Private/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

@@ -8,7 +8,7 @@
 
 #import "LXRefreshBaseView.h"
 #import "UIScrollView+LXRefresh.h"
-#import "../Headers/Private/LXRefreshView+Internal.h"
+#import "LXRefreshView+Internal.h"
 
 #define LXRFMethodDebug do {\
     if (self.isDebug) {\

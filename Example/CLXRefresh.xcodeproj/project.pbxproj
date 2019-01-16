@@ -261,6 +261,9 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = liangxiuchen;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 63S6NEKCLA;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -510,6 +513,7 @@
 			baseConfigurationReference = 04F5BC7D0AF3C37512AB1137 /* Pods-CLXRefresh_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 63S6NEKCLA;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CLXRefresh/CLXRefresh-Prefix.pch";
 				INFOPLIST_FILE = "CLXRefresh/CLXRefresh-Info.plist";
@@ -525,6 +529,7 @@
 			baseConfigurationReference = 51F5109D75DFA978BF9B8DE9 /* Pods-CLXRefresh_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 63S6NEKCLA;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CLXRefresh/CLXRefresh-Prefix.pch";
 				INFOPLIST_FILE = "CLXRefresh/CLXRefresh-Info.plist";
