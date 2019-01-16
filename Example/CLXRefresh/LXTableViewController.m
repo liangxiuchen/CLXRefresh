@@ -6,12 +6,12 @@
 //  Copyright (c) 2019 liangxiuchen. All rights reserved.
 //
 
-#import "LXViewController.h"
+#import "LXTableViewController.h"
 #import "LXRefreshPlainView.h"
 #import "LXRefreshGifView.h"
 #import <CLXRefresh/UIScrollView+LXRefresh.h>
 
-@interface LXViewController ()<UITableViewDelegate>
+@interface LXTableViewController ()<UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet LXRefreshGifView *header;
 @property (strong, nonatomic) IBOutlet LXRefreshPlainView *footer;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation LXViewController
+@implementation LXTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

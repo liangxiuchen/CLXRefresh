@@ -13,7 +13,7 @@
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* LXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* LXAppDelegate.m */; };
-		6003F5A7195388D20070C39A /* LXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* LXViewController.m */; };
+		6003F5A7195388D20070C39A /* LXTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* LXTableViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -25,6 +25,7 @@
 		C62DF1BDD641C1305D50B2D5 /* libPods-CLXRefresh_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C581D9805454520B462199 /* libPods-CLXRefresh_Example.a */; };
 		DFA4D3F9FEE970C6E992228B /* libPods-CLXRefresh_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6159FB22EE0B34D5F3A00E7 /* libPods-CLXRefresh_Tests.a */; };
 		FA02C59521EED8A70045FB35 /* LXRefreshPlainView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02C59421EED8A70045FB35 /* LXRefreshPlainView.m */; };
+		FA02C59821EF275C0045FB35 /* LXCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02C59721EF275C0045FB35 /* LXCollectionViewController.m */; };
 		FA1C2FAF21EED86800EA31B3 /* LXRefreshGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1C2FAE21EED86800EA31B3 /* LXRefreshGifView.m */; };
 /* End PBXBuildFile section */
 
@@ -53,8 +54,8 @@
 		6003F59B195388D20070C39A /* CLXRefresh-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLXRefresh-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* LXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* LXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXAppDelegate.m; sourceTree = "<group>"; };
-		6003F5A5195388D20070C39A /* LXViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXViewController.h; sourceTree = "<group>"; };
-		6003F5A6195388D20070C39A /* LXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXViewController.m; sourceTree = "<group>"; };
+		6003F5A5195388D20070C39A /* LXTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXTableViewController.h; sourceTree = "<group>"; };
+		6003F5A6195388D20070C39A /* LXTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXTableViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* CLXRefresh_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CLXRefresh_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -71,6 +72,8 @@
 		F4F8FD99D2BD065C2D5B5649 /* CLXRefresh.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CLXRefresh.podspec; path = ../CLXRefresh.podspec; sourceTree = "<group>"; };
 		FA02C59321EED8A70045FB35 /* LXRefreshPlainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXRefreshPlainView.h; sourceTree = "<group>"; };
 		FA02C59421EED8A70045FB35 /* LXRefreshPlainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXRefreshPlainView.m; sourceTree = "<group>"; };
+		FA02C59621EF275C0045FB35 /* LXCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXCollectionViewController.h; sourceTree = "<group>"; };
+		FA02C59721EF275C0045FB35 /* LXCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXCollectionViewController.m; sourceTree = "<group>"; };
 		FA1C2FAD21EED86800EA31B3 /* LXRefreshGifView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXRefreshGifView.h; sourceTree = "<group>"; };
 		FA1C2FAE21EED86800EA31B3 /* LXRefreshGifView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXRefreshGifView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,15 +144,17 @@
 				6003F59C195388D20070C39A /* LXAppDelegate.h */,
 				6003F59D195388D20070C39A /* LXAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* LXViewController.h */,
-				6003F5A6195388D20070C39A /* LXViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
-				6003F5A8195388D20070C39A /* Images.xcassets */,
-				6003F594195388D20070C39A /* Supporting Files */,
+				6003F5A5195388D20070C39A /* LXTableViewController.h */,
+				6003F5A6195388D20070C39A /* LXTableViewController.m */,
+				FA02C59621EF275C0045FB35 /* LXCollectionViewController.h */,
+				FA02C59721EF275C0045FB35 /* LXCollectionViewController.m */,
 				FA1C2FAD21EED86800EA31B3 /* LXRefreshGifView.h */,
 				FA1C2FAE21EED86800EA31B3 /* LXRefreshGifView.m */,
 				FA02C59321EED8A70045FB35 /* LXRefreshPlainView.h */,
 				FA02C59421EED8A70045FB35 /* LXRefreshPlainView.m */,
+				6003F5A8195388D20070C39A /* Images.xcassets */,
+				6003F594195388D20070C39A /* Supporting Files */,
 			);
 			name = "Example for CLXRefresh";
 			path = CLXRefresh;
@@ -348,7 +353,8 @@
 			files = (
 				6003F59E195388D20070C39A /* LXAppDelegate.m in Sources */,
 				FA1C2FAF21EED86800EA31B3 /* LXRefreshGifView.m in Sources */,
-				6003F5A7195388D20070C39A /* LXViewController.m in Sources */,
+				FA02C59821EF275C0045FB35 /* LXCollectionViewController.m in Sources */,
+				6003F5A7195388D20070C39A /* LXTableViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				FA02C59521EED8A70045FB35 /* LXRefreshPlainView.m in Sources */,
 			);

@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LXRefreshBaseView()<UIScrollViewDelegate>
 
 @property (nonatomic, assign) LXRefreshLogicStatus logicStatus;
-@property (nonatomic, unsafe_unretained) UIScrollView *scrollView;
+@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, assign) BOOL scrollViewIsTracking;
 @property (nonatomic, assign) BOOL isExtendContentInsetsForHeaderHover;
 @property (nonatomic, assign) BOOL isExtendContentInsetsForFooterHover;
