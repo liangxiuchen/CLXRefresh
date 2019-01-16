@@ -8,7 +8,7 @@
 
 #import "LXRefreshBaseView.h"
 #import "UIScrollView+LXRefresh.h"
-#import "LXRefreshView+Internal.h"
+#import "../Headers/Private/LXRefreshView+Internal.h"
 
 #define LXRFMethodDebug do {\
     if (self.isDebug) {\
@@ -248,7 +248,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 - (void)relayoutFooter {
     if (self.isFooter && self.isAutoPosition) {
         LXRFMethodDebug
-        self.hidden = self.scrollView.contentSize.height < self.scrollView.bounds.size.height;
+        self.hidden = self.scrollView.contentSize.height < (self.scrollView.bounds.size.height - self.systemInsets.top - self.userAdditionalInsets.top);
         if (self.hidden) {
             return;
         }

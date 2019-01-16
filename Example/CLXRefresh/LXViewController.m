@@ -9,12 +9,13 @@
 #import "LXViewController.h"
 #import "LXRefreshPlainView.h"
 #import "LXRefreshGifView.h"
-@import CLXRefresh;
+#import <CLXRefresh/UIScrollView+LXRefresh.h>
 
 @interface LXViewController ()<UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet LXRefreshGifView *header;
 @property (strong, nonatomic) IBOutlet LXRefreshPlainView *footer;
+@property (strong, nonatomic) NSMutableArray *dataSource;
 
 @end
 
@@ -22,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initDataSource];
     if (@available (iOS 11, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
     } else {
@@ -34,6 +36,7 @@
             return;
         }
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self loadMoreData];
             [footer endRefreshing];
             [self.tableView reloadData];
         });
@@ -59,8 +62,21 @@
     self.tableView.lx_refreshFooterView = self.footer;
     self.tableView.lx_refreshFooterView.isDebug = NO;
     
+    self.tableView.tableFooterView = [UIView new];
 }
 
+- (void)initDataSource {
+    self.dataSource = [NSMutableArray array];
+    for (NSInteger i = 0; i < 15; i++) {
+        [self.dataSource addObject:[NSObject new]];
+    }
+}
+
+- (void)loadMoreData {
+    for (NSInteger i = 0; i < 10; i++) {
+        [self.dataSource addObject:[NSObject new]];
+    }
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -68,7 +84,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 60.f;
+    return self.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -76,7 +92,5 @@
     cell.textLabel.text = @"1232";
     return cell;
 }
-
-
 
 @end

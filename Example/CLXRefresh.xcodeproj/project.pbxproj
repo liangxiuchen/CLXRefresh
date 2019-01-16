@@ -22,8 +22,8 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		C096CA5719227029F1BBB229 /* Pods_CLXRefresh_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2084C4DD2986B1590A6A3800 /* Pods_CLXRefresh_Tests.framework */; };
-		EE595A301130AB6372566AF4 /* Pods_CLXRefresh_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE4ED77C0BA658023A39A67 /* Pods_CLXRefresh_Example.framework */; };
+		C62DF1BDD641C1305D50B2D5 /* libPods-CLXRefresh_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C581D9805454520B462199 /* libPods-CLXRefresh_Example.a */; };
+		DFA4D3F9FEE970C6E992228B /* libPods-CLXRefresh_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6159FB22EE0B34D5F3A00E7 /* libPods-CLXRefresh_Tests.a */; };
 		FA02C59521EED8A70045FB35 /* LXRefreshPlainView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02C59421EED8A70045FB35 /* LXRefreshPlainView.m */; };
 		FA1C2FAF21EED86800EA31B3 /* LXRefreshGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1C2FAE21EED86800EA31B3 /* LXRefreshGifView.m */; };
 /* End PBXBuildFile section */
@@ -40,8 +40,8 @@
 
 /* Begin PBXFileReference section */
 		04F5BC7D0AF3C37512AB1137 /* Pods-CLXRefresh_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLXRefresh_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CLXRefresh_Example/Pods-CLXRefresh_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		2084C4DD2986B1590A6A3800 /* Pods_CLXRefresh_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CLXRefresh_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		250A8F4776993B75B45D595D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		38C581D9805454520B462199 /* libPods-CLXRefresh_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CLXRefresh_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51F5109D75DFA978BF9B8DE9 /* Pods-CLXRefresh_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLXRefresh_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-CLXRefresh_Example/Pods-CLXRefresh_Example.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* CLXRefresh_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CLXRefresh_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -67,12 +67,12 @@
 		BA4BEEEC0BDC8C60C4717461 /* Pods-CLXRefresh_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLXRefresh_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CLXRefresh_Tests/Pods-CLXRefresh_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BD68DD1060F95387AAFADAC5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		CF6E6E95BEE20F3271059BFD /* Pods-CLXRefresh_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLXRefresh_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CLXRefresh_Tests/Pods-CLXRefresh_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		D6159FB22EE0B34D5F3A00E7 /* libPods-CLXRefresh_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CLXRefresh_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4F8FD99D2BD065C2D5B5649 /* CLXRefresh.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CLXRefresh.podspec; path = ../CLXRefresh.podspec; sourceTree = "<group>"; };
 		FA02C59321EED8A70045FB35 /* LXRefreshPlainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXRefreshPlainView.h; sourceTree = "<group>"; };
 		FA02C59421EED8A70045FB35 /* LXRefreshPlainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXRefreshPlainView.m; sourceTree = "<group>"; };
 		FA1C2FAD21EED86800EA31B3 /* LXRefreshGifView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXRefreshGifView.h; sourceTree = "<group>"; };
 		FA1C2FAE21EED86800EA31B3 /* LXRefreshGifView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXRefreshGifView.m; sourceTree = "<group>"; };
-		FAE4ED77C0BA658023A39A67 /* Pods_CLXRefresh_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CLXRefresh_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +83,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				EE595A301130AB6372566AF4 /* Pods_CLXRefresh_Example.framework in Frameworks */,
+				C62DF1BDD641C1305D50B2D5 /* libPods-CLXRefresh_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +94,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				C096CA5719227029F1BBB229 /* Pods_CLXRefresh_Tests.framework in Frameworks */,
+				DFA4D3F9FEE970C6E992228B /* libPods-CLXRefresh_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,8 +129,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				FAE4ED77C0BA658023A39A67 /* Pods_CLXRefresh_Example.framework */,
-				2084C4DD2986B1590A6A3800 /* Pods_CLXRefresh_Tests.framework */,
+				38C581D9805454520B462199 /* libPods-CLXRefresh_Example.a */,
+				D6159FB22EE0B34D5F3A00E7 /* libPods-CLXRefresh_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -217,7 +217,6 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				EA7A7BC6EF3FB5A70F77568B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -338,24 +337,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EA7A7BC6EF3FB5A70F77568B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CLXRefresh_Example/Pods-CLXRefresh_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CLXRefresh/CLXRefresh.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CLXRefresh.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CLXRefresh_Example/Pods-CLXRefresh_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

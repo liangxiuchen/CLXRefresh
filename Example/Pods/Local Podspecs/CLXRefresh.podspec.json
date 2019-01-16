@@ -9,7 +9,7 @@
     "file": "LICENSE"
   },
   "authors": {
-    "liangxiuchen": "carroll.chen@zoom.us"
+    "liangxiuchen": "liangxiu.chen.cn@gmail.com"
   },
   "source": {
     "git": "https://github.com/liangxiuchen/CLXRefresh.git",
@@ -18,5 +18,7 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "CLXRefresh/Classes/**/*"
+  "source_files": "CLXRefresh/Classes/**/*",
+  "public_header_files": "CLXRefresh/Headers/Public/*.h",
+  "private_header_files": "CLXRefresh/Headers/Private/*.h"
 }

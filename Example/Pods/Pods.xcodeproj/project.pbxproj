@@ -7,278 +7,235 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00D26D24BF19CA3C81272ECA8A216451 /* LXRefreshBaseView.h in Headers */ = {isa = PBXBuildFile; fileRef = 28AF8600A487B59538877483C1A7B8DF /* LXRefreshBaseView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		021A059063C763387BFD5AE110159768 /* LXRefreshView+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F4188FDF0FF010FDC6E95D05AD2675D /* LXRefreshView+Internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		12DE199528F1B0A715708E66BEAC4BAC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
-		1A89C376268B7413316CDD652C2A821A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
-		4C382BC2CDF2DF03EE29AFDCFA6A9979 /* Pods-CLXRefresh_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0A1223E84AAC62F9FB950604CFC75E /* Pods-CLXRefresh_Example-dummy.m */; };
-		5E836219AB34CB1909EECB3572432674 /* CLXRefresh-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C5DDE4121244B7F4F18F402D793F3A3 /* CLXRefresh-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9622FD934D57C11D9AC73DBBCBDCC587 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
-		9874A0C6BF21FB9864856EBF54EB084E /* CLXRefresh-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3937121E9F4BF5DFED0E09A7D3591E9E /* CLXRefresh-dummy.m */; };
-		9E537FB9415EC4F34140D94A59541776 /* Pods-CLXRefresh_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 880EA970E78A743EB15BDD5009D85A73 /* Pods-CLXRefresh_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9EC17D98761156C164BC1908043B8E22 /* UIScrollView+LXRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 428CF7353648BBC68E0FE3D9A4FF6691 /* UIScrollView+LXRefresh.m */; };
-		CC3300140C7C3A405BFD81402D5C52C0 /* UIScrollView+LXRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 0171F521468713C33867EDB00C4DC9BE /* UIScrollView+LXRefresh.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D955B5E9EC8808BD920746CA61E3F792 /* Pods-CLXRefresh_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E8DCDDD233080100183AE94D0164CA7 /* Pods-CLXRefresh_Tests-dummy.m */; };
-		E7AE117E57B81458041C25570FB141F8 /* LXRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5059A2F333DB88C4CB4B919E8FFDE17D /* LXRefreshBaseView.m */; };
-		F409FCA4E6030126DAFF8D5400C3B72D /* Pods-CLXRefresh_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DF9931130F6508FAFA066C337F08974 /* Pods-CLXRefresh_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1203109BED79623E2C4B481AB4DDB074 /* Pods-CLXRefresh_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 573962E88CBFB420C8059F0AC8F56072 /* Pods-CLXRefresh_Example-dummy.m */; };
+		4502FD3A9850918CCA42DEBD76F391B0 /* UIScrollView+LXRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = A98C62DD08A2BC088FE2686F1B52C1D6 /* UIScrollView+LXRefresh.m */; };
+		67C086D755E1F5AA0C7ED96FA406C993 /* LXRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBAF7EB83DC0953F126AE35AE951090 /* LXRefreshBaseView.m */; };
+		CCDA208683F9CCFD34850CB573B93939 /* Pods-CLXRefresh_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9348B573B2F7D859AC4C1438A2D4D0AA /* Pods-CLXRefresh_Tests-dummy.m */; };
+		FBA3260672237795120345E1AE129506 /* CLXRefresh-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A5200CBC9B3D4D48AF3A1E0661E36C /* CLXRefresh-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4A6089275A9EF6E314992CD704A9A328 /* PBXContainerItemProxy */ = {
+		42A7CC7F9909DD9C609BF21AB62DEA7E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AFF6FBF27DD4DB971D2B7858529F7A9D;
-			remoteInfo = "Pods-CLXRefresh_Example";
-		};
-		BF947291A0F5CF336C54B18440F6A896 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 48A05D2162AF465C5A899A5CDC28072D;
+			remoteGlobalIDString = 510386AD9F0ECCA21101838635A41656;
 			remoteInfo = CLXRefresh;
+		};
+		9A8109EC0A82EF0FA165F1B0F3AEB663 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0538E238365850ABAC7B86181B381C12;
+			remoteInfo = "Pods-CLXRefresh_Example";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0171F521468713C33867EDB00C4DC9BE /* UIScrollView+LXRefresh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+LXRefresh.h"; path = "CLXRefresh/Classes/UIScrollView+LXRefresh.h"; sourceTree = "<group>"; };
-		06EC5A91BEA32CCFB12B3CBC6EF8CE56 /* Pods-CLXRefresh_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CLXRefresh_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		0B367DF613650448F6E19F8155DF6B95 /* CLXRefresh.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CLXRefresh.modulemap; sourceTree = "<group>"; };
-		0E33794FB21CF2D1AE2624DEBD413505 /* Pods-CLXRefresh_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CLXRefresh_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		0F4188FDF0FF010FDC6E95D05AD2675D /* LXRefreshView+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "LXRefreshView+Internal.h"; path = "CLXRefresh/Classes/LXRefreshView+Internal.h"; sourceTree = "<group>"; };
-		10B427867109548E116E122048E186DE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		1C0A1223E84AAC62F9FB950604CFC75E /* Pods-CLXRefresh_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CLXRefresh_Example-dummy.m"; sourceTree = "<group>"; };
-		1DF9931130F6508FAFA066C337F08974 /* Pods-CLXRefresh_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CLXRefresh_Example-umbrella.h"; sourceTree = "<group>"; };
-		1E8DCDDD233080100183AE94D0164CA7 /* Pods-CLXRefresh_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CLXRefresh_Tests-dummy.m"; sourceTree = "<group>"; };
-		28AF8600A487B59538877483C1A7B8DF /* LXRefreshBaseView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LXRefreshBaseView.h; path = CLXRefresh/Classes/LXRefreshBaseView.h; sourceTree = "<group>"; };
-		2FD1997E582970F8BFD4559F787FC589 /* Pods-CLXRefresh_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Example-frameworks.sh"; sourceTree = "<group>"; };
-		32F41600AC16AA1915D5A4A3F00D6AC3 /* Pods-CLXRefresh_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		3937121E9F4BF5DFED0E09A7D3591E9E /* CLXRefresh-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CLXRefresh-dummy.m"; sourceTree = "<group>"; };
-		3E0B5D7333B217891003E2A40594F154 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		428CF7353648BBC68E0FE3D9A4FF6691 /* UIScrollView+LXRefresh.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+LXRefresh.m"; path = "CLXRefresh/Classes/UIScrollView+LXRefresh.m"; sourceTree = "<group>"; };
-		465844130286C2EB755FE1DE55B9154F /* CLXRefresh.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = CLXRefresh.podspec; sourceTree = "<group>"; };
-		4B42DBA725440A586E41AB7095A0C6F5 /* Pods_CLXRefresh_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CLXRefresh_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C5FA5CF5FE731A63CEFF12A199BD083 /* Pods-CLXRefresh_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		5059A2F333DB88C4CB4B919E8FFDE17D /* LXRefreshBaseView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LXRefreshBaseView.m; path = CLXRefresh/Classes/LXRefreshBaseView.m; sourceTree = "<group>"; };
-		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		5C5DDE4121244B7F4F18F402D793F3A3 /* CLXRefresh-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CLXRefresh-umbrella.h"; sourceTree = "<group>"; };
-		66D24DC3413D517B5E97AB49226901FA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		73CE9BACED827C1901D9495CD6259907 /* Pods_CLXRefresh_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CLXRefresh_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		751E45B3968C71D4C208A982487694EB /* Pods-CLXRefresh_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		7D81981F890E130DB6E244F61EABC113 /* Pods-CLXRefresh_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Example.release.xcconfig"; sourceTree = "<group>"; };
-		7E95633CFED529495FA6A91C64F4C8A4 /* Pods-CLXRefresh_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CLXRefresh_Example.modulemap"; sourceTree = "<group>"; };
-		87D5AFF2C563A2DB6E792A3428420A98 /* Pods-CLXRefresh_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		880EA970E78A743EB15BDD5009D85A73 /* Pods-CLXRefresh_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CLXRefresh_Tests-umbrella.h"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		94942E74EAD715894F7093FD34C812DC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		A7E161C00249CA3F8FF011218F236D75 /* Pods-CLXRefresh_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CLXRefresh_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		B81F08D3DCABCD7A1AE5DF9C0797D89F /* Pods-CLXRefresh_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CLXRefresh_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		BD5032B2AECF36A3A202B6B2FE0D70E1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BDBAED967204335B44A0CCBA406A1801 /* CLXRefresh-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CLXRefresh-prefix.pch"; sourceTree = "<group>"; };
-		C45C0565340B38189682667D1974405C /* CLXRefresh.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CLXRefresh.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0AD58FCA02E371A4156EDB592D6A291 /* CLXRefresh.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CLXRefresh.xcconfig; sourceTree = "<group>"; };
-		E3026EA6D92384480242124469FA98C3 /* Pods-CLXRefresh_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Example-resources.sh"; sourceTree = "<group>"; };
-		E8649B3028ECE412EBD07638EF5FAC2E /* Pods-CLXRefresh_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CLXRefresh_Tests.modulemap"; sourceTree = "<group>"; };
-		F4505CC7A084FEF95CB96CB1C6961B5F /* Pods-CLXRefresh_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Tests-resources.sh"; sourceTree = "<group>"; };
+		22575A9C6073D8ACC198FB8BDAAD7C8F /* Pods-CLXRefresh_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CLXRefresh_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		45C5BB517B38826D660D22CB2480C205 /* Pods-CLXRefresh_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Example-resources.sh"; sourceTree = "<group>"; };
+		4759C1D6ADA5A22E320F19CD7B464E50 /* Pods-CLXRefresh_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		4D4CDF837514C6D971C58F8BC4DB3538 /* Pods-CLXRefresh_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		550ACF7C20A5AF66094BA6B5FF277E05 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		573962E88CBFB420C8059F0AC8F56072 /* Pods-CLXRefresh_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CLXRefresh_Example-dummy.m"; sourceTree = "<group>"; };
+		72FD505AB3CAECE34DA4A25F132415CF /* Pods-CLXRefresh_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CLXRefresh_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		760A98344ADB054A67C7EB21FF99C15F /* Pods-CLXRefresh_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CLXRefresh_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		83BACF92F40BCA140CF5BF46E8C25FCB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		8ADB9BA52A9667EAB8E9FEC83171CA60 /* libPods-CLXRefresh_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-CLXRefresh_Example.a"; path = "libPods-CLXRefresh_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9348B573B2F7D859AC4C1438A2D4D0AA /* Pods-CLXRefresh_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CLXRefresh_Tests-dummy.m"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A1A5200CBC9B3D4D48AF3A1E0661E36C /* CLXRefresh-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CLXRefresh-dummy.m"; sourceTree = "<group>"; };
+		A98C62DD08A2BC088FE2686F1B52C1D6 /* UIScrollView+LXRefresh.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+LXRefresh.m"; path = "CLXRefresh/Classes/UIScrollView+LXRefresh.m"; sourceTree = "<group>"; };
+		AB8D80B3A1F3053807B49EFDF6C4EFEA /* Pods-CLXRefresh_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Tests-resources.sh"; sourceTree = "<group>"; };
+		B4F5AC4C3097EF7C9CDA05CFFDFD3220 /* Pods-CLXRefresh_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		BC84A042130AF8B1591428EDE055BCB4 /* libCLXRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libCLXRefresh.a; path = libCLXRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5087BEF563C0022B1927CE9F607144C /* Pods-CLXRefresh_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		CB068DF9AFB0901730A4B5D1D21D37E9 /* libPods-CLXRefresh_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-CLXRefresh_Tests.a"; path = "libPods-CLXRefresh_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6A36C234AF542A130F86A728142F838 /* Pods-CLXRefresh_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Example-frameworks.sh"; sourceTree = "<group>"; };
+		E42E26C27FB0779A934904ABDE0CDD4C /* CLXRefresh.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = CLXRefresh.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E7AD1B683E3938E8E34279BBC2E4BC61 /* CLXRefresh.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CLXRefresh.xcconfig; sourceTree = "<group>"; };
+		EBBAF7EB83DC0953F126AE35AE951090 /* LXRefreshBaseView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LXRefreshBaseView.m; path = CLXRefresh/Classes/LXRefreshBaseView.m; sourceTree = "<group>"; };
+		EC9F9CF0B9DBC1B8C37EA9E830099EB2 /* CLXRefresh-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CLXRefresh-prefix.pch"; sourceTree = "<group>"; };
+		EE37EFCEC7D2079E1064657594252983 /* Pods-CLXRefresh_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CLXRefresh_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		F3CC8AE3B34E29BAD63D30B2F1346438 /* Pods-CLXRefresh_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		254650615C0A383168DDB8C84178B1BE /* Frameworks */ = {
+		1FB67B171BF6F2E79C62BE8F1EC2F2C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12DE199528F1B0A715708E66BEAC4BAC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E4DBB5A0DA770A1C32EABF08AA0047C1 /* Frameworks */ = {
+		75A24370AA3B1CCA8E1B56B6BECD5A24 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A89C376268B7413316CDD652C2A821A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F3DCE3F4CDA37FFFA5563DAF99EC9BE9 /* Frameworks */ = {
+		91ADBB4347EDC117BB932B9A9C0783FF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9622FD934D57C11D9AC73DBBCBDCC587 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		015F8E5E164862330C8EEDAE4DC28D2E /* CLXRefresh */ = {
+		0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				28AF8600A487B59538877483C1A7B8DF /* LXRefreshBaseView.h */,
-				5059A2F333DB88C4CB4B919E8FFDE17D /* LXRefreshBaseView.m */,
-				0F4188FDF0FF010FDC6E95D05AD2675D /* LXRefreshView+Internal.h */,
-				0171F521468713C33867EDB00C4DC9BE /* UIScrollView+LXRefresh.h */,
-				428CF7353648BBC68E0FE3D9A4FF6691 /* UIScrollView+LXRefresh.m */,
-				C13194CDFCF827422898A9A73898B769 /* Pod */,
-				450679825ACF1007BCAB0E8204C30D9E /* Support Files */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3923284A946406D6043D77A2EFF54B08 /* CLXRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				EBBAF7EB83DC0953F126AE35AE951090 /* LXRefreshBaseView.m */,
+				A98C62DD08A2BC088FE2686F1B52C1D6 /* UIScrollView+LXRefresh.m */,
+				A2B4801CADBB4C415CB9CCE6926B9AFD /* Pod */,
+				DFDFC5DAB6C0B1E7C435A09D94208671 /* Support Files */,
 			);
 			name = CLXRefresh;
 			path = ../..;
 			sourceTree = "<group>";
 		};
-		1AB286AE7675E3BA5E33ABD712171136 /* Products */ = {
+		487167CA757E52904A27F018CC67EE28 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C45C0565340B38189682667D1974405C /* CLXRefresh.framework */,
-				4B42DBA725440A586E41AB7095A0C6F5 /* Pods_CLXRefresh_Example.framework */,
-				73CE9BACED827C1901D9495CD6259907 /* Pods_CLXRefresh_Tests.framework */,
+				BC84A042130AF8B1591428EDE055BCB4 /* libCLXRefresh.a */,
+				8ADB9BA52A9667EAB8E9FEC83171CA60 /* libPods-CLXRefresh_Example.a */,
+				CB068DF9AFB0901730A4B5D1D21D37E9 /* libPods-CLXRefresh_Tests.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		450679825ACF1007BCAB0E8204C30D9E /* Support Files */ = {
+		4C72ACC1B69B918CBBDACC9C22D2B470 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				0B367DF613650448F6E19F8155DF6B95 /* CLXRefresh.modulemap */,
-				E0AD58FCA02E371A4156EDB592D6A291 /* CLXRefresh.xcconfig */,
-				3937121E9F4BF5DFED0E09A7D3591E9E /* CLXRefresh-dummy.m */,
-				BDBAED967204335B44A0CCBA406A1801 /* CLXRefresh-prefix.pch */,
-				5C5DDE4121244B7F4F18F402D793F3A3 /* CLXRefresh-umbrella.h */,
-				66D24DC3413D517B5E97AB49226901FA /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/CLXRefresh";
-			sourceTree = "<group>";
-		};
-		5557E2BB338431F046FB25DD73CC233D /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				D4EB1FD9CC62B5D1FB5933D2BF5FCB75 /* Pods-CLXRefresh_Example */,
-				D6956EC6560880E98236FFD0C30443D2 /* Pods-CLXRefresh_Tests */,
+				B20F11B6368F82D998923EB2A44E8895 /* Pods-CLXRefresh_Example */,
+				F699AA41012042CDDD458BE02EB7A6D7 /* Pods-CLXRefresh_Tests */,
 			);
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		5E0D919E635D23B70123790B8308F8EF /* iOS */ = {
+		71A7D6B2A48DBEF54E91B0E3EE514158 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */,
+				3923284A946406D6043D77A2EFF54B08 /* CLXRefresh */,
 			);
-			name = iOS;
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				E007D9628C8EB59718C9865CA169C7F6 /* Development Pods */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				1AB286AE7675E3BA5E33ABD712171136 /* Products */,
-				5557E2BB338431F046FB25DD73CC233D /* Targets Support Files */,
+				71A7D6B2A48DBEF54E91B0E3EE514158 /* Development Pods */,
+				0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */,
+				487167CA757E52904A27F018CC67EE28 /* Products */,
+				4C72ACC1B69B918CBBDACC9C22D2B470 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+		A2B4801CADBB4C415CB9CCE6926B9AFD /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				5E0D919E635D23B70123790B8308F8EF /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C13194CDFCF827422898A9A73898B769 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				465844130286C2EB755FE1DE55B9154F /* CLXRefresh.podspec */,
-				10B427867109548E116E122048E186DE /* LICENSE */,
-				94942E74EAD715894F7093FD34C812DC /* README.md */,
+				E42E26C27FB0779A934904ABDE0CDD4C /* CLXRefresh.podspec */,
+				550ACF7C20A5AF66094BA6B5FF277E05 /* LICENSE */,
+				83BACF92F40BCA140CF5BF46E8C25FCB /* README.md */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
 		};
-		D4EB1FD9CC62B5D1FB5933D2BF5FCB75 /* Pods-CLXRefresh_Example */ = {
+		B20F11B6368F82D998923EB2A44E8895 /* Pods-CLXRefresh_Example */ = {
 			isa = PBXGroup;
 			children = (
-				BD5032B2AECF36A3A202B6B2FE0D70E1 /* Info.plist */,
-				7E95633CFED529495FA6A91C64F4C8A4 /* Pods-CLXRefresh_Example.modulemap */,
-				0E33794FB21CF2D1AE2624DEBD413505 /* Pods-CLXRefresh_Example-acknowledgements.markdown */,
-				A7E161C00249CA3F8FF011218F236D75 /* Pods-CLXRefresh_Example-acknowledgements.plist */,
-				1C0A1223E84AAC62F9FB950604CFC75E /* Pods-CLXRefresh_Example-dummy.m */,
-				2FD1997E582970F8BFD4559F787FC589 /* Pods-CLXRefresh_Example-frameworks.sh */,
-				E3026EA6D92384480242124469FA98C3 /* Pods-CLXRefresh_Example-resources.sh */,
-				1DF9931130F6508FAFA066C337F08974 /* Pods-CLXRefresh_Example-umbrella.h */,
-				87D5AFF2C563A2DB6E792A3428420A98 /* Pods-CLXRefresh_Example.debug.xcconfig */,
-				7D81981F890E130DB6E244F61EABC113 /* Pods-CLXRefresh_Example.release.xcconfig */,
+				760A98344ADB054A67C7EB21FF99C15F /* Pods-CLXRefresh_Example-acknowledgements.markdown */,
+				EE37EFCEC7D2079E1064657594252983 /* Pods-CLXRefresh_Example-acknowledgements.plist */,
+				573962E88CBFB420C8059F0AC8F56072 /* Pods-CLXRefresh_Example-dummy.m */,
+				D6A36C234AF542A130F86A728142F838 /* Pods-CLXRefresh_Example-frameworks.sh */,
+				45C5BB517B38826D660D22CB2480C205 /* Pods-CLXRefresh_Example-resources.sh */,
+				4759C1D6ADA5A22E320F19CD7B464E50 /* Pods-CLXRefresh_Example.debug.xcconfig */,
+				F3CC8AE3B34E29BAD63D30B2F1346438 /* Pods-CLXRefresh_Example.release.xcconfig */,
 			);
 			name = "Pods-CLXRefresh_Example";
 			path = "Target Support Files/Pods-CLXRefresh_Example";
 			sourceTree = "<group>";
 		};
-		D6956EC6560880E98236FFD0C30443D2 /* Pods-CLXRefresh_Tests */ = {
+		DFDFC5DAB6C0B1E7C435A09D94208671 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				3E0B5D7333B217891003E2A40594F154 /* Info.plist */,
-				E8649B3028ECE412EBD07638EF5FAC2E /* Pods-CLXRefresh_Tests.modulemap */,
-				B81F08D3DCABCD7A1AE5DF9C0797D89F /* Pods-CLXRefresh_Tests-acknowledgements.markdown */,
-				06EC5A91BEA32CCFB12B3CBC6EF8CE56 /* Pods-CLXRefresh_Tests-acknowledgements.plist */,
-				1E8DCDDD233080100183AE94D0164CA7 /* Pods-CLXRefresh_Tests-dummy.m */,
-				751E45B3968C71D4C208A982487694EB /* Pods-CLXRefresh_Tests-frameworks.sh */,
-				F4505CC7A084FEF95CB96CB1C6961B5F /* Pods-CLXRefresh_Tests-resources.sh */,
-				880EA970E78A743EB15BDD5009D85A73 /* Pods-CLXRefresh_Tests-umbrella.h */,
-				32F41600AC16AA1915D5A4A3F00D6AC3 /* Pods-CLXRefresh_Tests.debug.xcconfig */,
-				4C5FA5CF5FE731A63CEFF12A199BD083 /* Pods-CLXRefresh_Tests.release.xcconfig */,
+				E7AD1B683E3938E8E34279BBC2E4BC61 /* CLXRefresh.xcconfig */,
+				A1A5200CBC9B3D4D48AF3A1E0661E36C /* CLXRefresh-dummy.m */,
+				EC9F9CF0B9DBC1B8C37EA9E830099EB2 /* CLXRefresh-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/CLXRefresh";
+			sourceTree = "<group>";
+		};
+		F699AA41012042CDDD458BE02EB7A6D7 /* Pods-CLXRefresh_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				72FD505AB3CAECE34DA4A25F132415CF /* Pods-CLXRefresh_Tests-acknowledgements.markdown */,
+				22575A9C6073D8ACC198FB8BDAAD7C8F /* Pods-CLXRefresh_Tests-acknowledgements.plist */,
+				9348B573B2F7D859AC4C1438A2D4D0AA /* Pods-CLXRefresh_Tests-dummy.m */,
+				4D4CDF837514C6D971C58F8BC4DB3538 /* Pods-CLXRefresh_Tests-frameworks.sh */,
+				AB8D80B3A1F3053807B49EFDF6C4EFEA /* Pods-CLXRefresh_Tests-resources.sh */,
+				B4F5AC4C3097EF7C9CDA05CFFDFD3220 /* Pods-CLXRefresh_Tests.debug.xcconfig */,
+				C5087BEF563C0022B1927CE9F607144C /* Pods-CLXRefresh_Tests.release.xcconfig */,
 			);
 			name = "Pods-CLXRefresh_Tests";
 			path = "Target Support Files/Pods-CLXRefresh_Tests";
 			sourceTree = "<group>";
 		};
-		E007D9628C8EB59718C9865CA169C7F6 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				015F8E5E164862330C8EEDAE4DC28D2E /* CLXRefresh */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		1AC4D20B2DF4F785439CF4BF4A3B34CD /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F409FCA4E6030126DAFF8D5400C3B72D /* Pods-CLXRefresh_Example-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		25183860639D02D12AB54EB98D11869E /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5E836219AB34CB1909EECB3572432674 /* CLXRefresh-umbrella.h in Headers */,
-				00D26D24BF19CA3C81272ECA8A216451 /* LXRefreshBaseView.h in Headers */,
-				021A059063C763387BFD5AE110159768 /* LXRefreshView+Internal.h in Headers */,
-				CC3300140C7C3A405BFD81402D5C52C0 /* UIScrollView+LXRefresh.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5DDD31B02151640511373A29534E996D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9E537FB9415EC4F34140D94A59541776 /* Pods-CLXRefresh_Tests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		48A05D2162AF465C5A899A5CDC28072D /* CLXRefresh */ = {
+		0538E238365850ABAC7B86181B381C12 /* Pods-CLXRefresh_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 56DE0B6764A6F1FD5ED2142B1BDF35A1 /* Build configuration list for PBXNativeTarget "CLXRefresh" */;
+			buildConfigurationList = 2FFA1115EDC2275D03EFAF15B3EF9B69 /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Example" */;
 			buildPhases = (
-				39BA2875CB4CD8535FAA3771CFDA9B62 /* Sources */,
-				E4DBB5A0DA770A1C32EABF08AA0047C1 /* Frameworks */,
-				25183860639D02D12AB54EB98D11869E /* Headers */,
+				A5F8462260C223736C79E100664AA957 /* Sources */,
+				91ADBB4347EDC117BB932B9A9C0783FF /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CDB599106E702E9B186254C99EA0C848 /* PBXTargetDependency */,
+			);
+			name = "Pods-CLXRefresh_Example";
+			productName = "Pods-CLXRefresh_Example";
+			productReference = 8ADB9BA52A9667EAB8E9FEC83171CA60 /* libPods-CLXRefresh_Example.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		27F94C1E687B6EBAC20B3AB796ADC759 /* Pods-CLXRefresh_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34B5E020242D0EFF65CB5694B7F57590 /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Tests" */;
+			buildPhases = (
+				4E0A921292744044BF1A7F26AB8C28F2 /* Sources */,
+				1FB67B171BF6F2E79C62BE8F1EC2F2C8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8B6EF83F21410F1FBBC72443786C0BDA /* PBXTargetDependency */,
+			);
+			name = "Pods-CLXRefresh_Tests";
+			productName = "Pods-CLXRefresh_Tests";
+			productReference = CB068DF9AFB0901730A4B5D1D21D37E9 /* libPods-CLXRefresh_Tests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		510386AD9F0ECCA21101838635A41656 /* CLXRefresh */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C9ADBB043C5A525C1CDD986D04C7BE9 /* Build configuration list for PBXNativeTarget "CLXRefresh" */;
+			buildPhases = (
+				C13E89FCC4DF87DCD29F603467066209 /* Sources */,
+				75A24370AA3B1CCA8E1B56B6BECD5A24 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -286,44 +243,8 @@
 			);
 			name = CLXRefresh;
 			productName = CLXRefresh;
-			productReference = C45C0565340B38189682667D1974405C /* CLXRefresh.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		AFF6FBF27DD4DB971D2B7858529F7A9D /* Pods-CLXRefresh_Example */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 42B298FB02C349EA3947D59062AA628F /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Example" */;
-			buildPhases = (
-				DA55171DDC7605EF617EC2C18FAADE63 /* Sources */,
-				254650615C0A383168DDB8C84178B1BE /* Frameworks */,
-				1AC4D20B2DF4F785439CF4BF4A3B34CD /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7D9A2A9F744BC06B3FED810826D0E41D /* PBXTargetDependency */,
-			);
-			name = "Pods-CLXRefresh_Example";
-			productName = "Pods-CLXRefresh_Example";
-			productReference = 4B42DBA725440A586E41AB7095A0C6F5 /* Pods_CLXRefresh_Example.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		E0590CA8AB7A7949B1F6722A30A77F72 /* Pods-CLXRefresh_Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 06F86BDE2D1E99576485E4F8C968CB04 /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Tests" */;
-			buildPhases = (
-				3758B4232E823CA24A0C66E827C470E3 /* Sources */,
-				F3DCE3F4CDA37FFFA5563DAF99EC9BE9 /* Frameworks */,
-				5DDD31B02151640511373A29534E996D /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D35517CA2833F2D6DB1C97C373449453 /* PBXTargetDependency */,
-			);
-			name = "Pods-CLXRefresh_Tests";
-			productName = "Pods-CLXRefresh_Tests";
-			productReference = 73CE9BACED827C1901D9495CD6259907 /* Pods_CLXRefresh_Tests.framework */;
-			productType = "com.apple.product-type.framework";
+			productReference = BC84A042130AF8B1591428EDE055BCB4 /* libCLXRefresh.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -342,62 +263,84 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 1AB286AE7675E3BA5E33ABD712171136 /* Products */;
+			productRefGroup = 487167CA757E52904A27F018CC67EE28 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				48A05D2162AF465C5A899A5CDC28072D /* CLXRefresh */,
-				AFF6FBF27DD4DB971D2B7858529F7A9D /* Pods-CLXRefresh_Example */,
-				E0590CA8AB7A7949B1F6722A30A77F72 /* Pods-CLXRefresh_Tests */,
+				510386AD9F0ECCA21101838635A41656 /* CLXRefresh */,
+				0538E238365850ABAC7B86181B381C12 /* Pods-CLXRefresh_Example */,
+				27F94C1E687B6EBAC20B3AB796ADC759 /* Pods-CLXRefresh_Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3758B4232E823CA24A0C66E827C470E3 /* Sources */ = {
+		4E0A921292744044BF1A7F26AB8C28F2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D955B5E9EC8808BD920746CA61E3F792 /* Pods-CLXRefresh_Tests-dummy.m in Sources */,
+				CCDA208683F9CCFD34850CB573B93939 /* Pods-CLXRefresh_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		39BA2875CB4CD8535FAA3771CFDA9B62 /* Sources */ = {
+		A5F8462260C223736C79E100664AA957 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9874A0C6BF21FB9864856EBF54EB084E /* CLXRefresh-dummy.m in Sources */,
-				E7AE117E57B81458041C25570FB141F8 /* LXRefreshBaseView.m in Sources */,
-				9EC17D98761156C164BC1908043B8E22 /* UIScrollView+LXRefresh.m in Sources */,
+				1203109BED79623E2C4B481AB4DDB074 /* Pods-CLXRefresh_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA55171DDC7605EF617EC2C18FAADE63 /* Sources */ = {
+		C13E89FCC4DF87DCD29F603467066209 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C382BC2CDF2DF03EE29AFDCFA6A9979 /* Pods-CLXRefresh_Example-dummy.m in Sources */,
+				FBA3260672237795120345E1AE129506 /* CLXRefresh-dummy.m in Sources */,
+				67C086D755E1F5AA0C7ED96FA406C993 /* LXRefreshBaseView.m in Sources */,
+				4502FD3A9850918CCA42DEBD76F391B0 /* UIScrollView+LXRefresh.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7D9A2A9F744BC06B3FED810826D0E41D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CLXRefresh;
-			target = 48A05D2162AF465C5A899A5CDC28072D /* CLXRefresh */;
-			targetProxy = BF947291A0F5CF336C54B18440F6A896 /* PBXContainerItemProxy */;
-		};
-		D35517CA2833F2D6DB1C97C373449453 /* PBXTargetDependency */ = {
+		8B6EF83F21410F1FBBC72443786C0BDA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-CLXRefresh_Example";
-			target = AFF6FBF27DD4DB971D2B7858529F7A9D /* Pods-CLXRefresh_Example */;
-			targetProxy = 4A6089275A9EF6E314992CD704A9A328 /* PBXContainerItemProxy */;
+			target = 0538E238365850ABAC7B86181B381C12 /* Pods-CLXRefresh_Example */;
+			targetProxy = 9A8109EC0A82EF0FA165F1B0F3AEB663 /* PBXContainerItemProxy */;
+		};
+		CDB599106E702E9B186254C99EA0C848 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CLXRefresh;
+			target = 510386AD9F0ECCA21101838635A41656 /* CLXRefresh */;
+			targetProxy = 42A7CC7F9909DD9C609BF21AB62DEA7E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		1DE88790DDB5E4B3E996D36A00107175 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3CC8AE3B34E29BAD63D30B2F1346438 /* Pods-CLXRefresh_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		1EE19F5DD95931924296F637BF18BD8F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -461,170 +404,116 @@
 			};
 			name = Debug;
 		};
-		795BF0A997A29ADCB538DADCC9628D24 /* Debug */ = {
+		3797E372E7DBF5AC016C94A3AC7B2ADE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 87D5AFF2C563A2DB6E792A3428420A98 /* Pods-CLXRefresh_Example.debug.xcconfig */;
+			baseConfigurationReference = 4759C1D6ADA5A22E320F19CD7B464E50 /* Pods-CLXRefresh_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-CLXRefresh_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CLXRefresh_Example/Pods-CLXRefresh_Example.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		840D9168BFB80568D765D23F1BA936D7 /* Debug */ = {
+		5999A155EFABE45724CF6D7DE9A65F4D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32F41600AC16AA1915D5A4A3F00D6AC3 /* Pods-CLXRefresh_Tests.debug.xcconfig */;
+			baseConfigurationReference = E7AD1B683E3938E8E34279BBC2E4BC61 /* CLXRefresh.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-CLXRefresh_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CLXRefresh_Tests/Pods-CLXRefresh_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		BC46017771C9654851CD23C6AEE8E959 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C5FA5CF5FE731A63CEFF12A199BD083 /* Pods-CLXRefresh_Tests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-CLXRefresh_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CLXRefresh_Tests/Pods-CLXRefresh_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		BCB4397E650C62F6C1C6BD9C82711604 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D81981F890E130DB6E244F61EABC113 /* Pods-CLXRefresh_Example.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-CLXRefresh_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CLXRefresh_Example/Pods-CLXRefresh_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		E8BD9D4D28199193DC47DDC8DFB2D332 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0AD58FCA02E371A4156EDB592D6A291 /* CLXRefresh.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREFIX_HEADER = "Target Support Files/CLXRefresh/CLXRefresh-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CLXRefresh/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CLXRefresh/CLXRefresh.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
 				PRODUCT_MODULE_NAME = CLXRefresh;
 				PRODUCT_NAME = CLXRefresh;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		9B0E0A8C02D76A8C26A58516C9F2D8DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5087BEF563C0022B1927CE9F607144C /* Pods-CLXRefresh_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A3423FE35073AFE91F9379E4036ADDD5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7AD1B683E3938E8E34279BBC2E4BC61 /* CLXRefresh.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/CLXRefresh/CLXRefresh-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = CLXRefresh;
+				PRODUCT_NAME = CLXRefresh;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D6815674CADA4787F8711E0C797E7E79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4F5AC4C3097EF7C9CDA05CFFDFD3220 /* Pods-CLXRefresh_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
 		};
 		F4568DEE257655D290C2B9CEAB37C934 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -684,48 +573,9 @@
 			};
 			name = Release;
 		};
-		F64DFDEC3528FD6C770C945F8B024054 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0AD58FCA02E371A4156EDB592D6A291 /* CLXRefresh.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/CLXRefresh/CLXRefresh-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CLXRefresh/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CLXRefresh/CLXRefresh.modulemap";
-				PRODUCT_MODULE_NAME = CLXRefresh;
-				PRODUCT_NAME = CLXRefresh;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		06F86BDE2D1E99576485E4F8C968CB04 /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				840D9168BFB80568D765D23F1BA936D7 /* Debug */,
-				BC46017771C9654851CD23C6AEE8E959 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -735,20 +585,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		42B298FB02C349EA3947D59062AA628F /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Example" */ = {
+		2FFA1115EDC2275D03EFAF15B3EF9B69 /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				795BF0A997A29ADCB538DADCC9628D24 /* Debug */,
-				BCB4397E650C62F6C1C6BD9C82711604 /* Release */,
+				3797E372E7DBF5AC016C94A3AC7B2ADE /* Debug */,
+				1DE88790DDB5E4B3E996D36A00107175 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		56DE0B6764A6F1FD5ED2142B1BDF35A1 /* Build configuration list for PBXNativeTarget "CLXRefresh" */ = {
+		34B5E020242D0EFF65CB5694B7F57590 /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F64DFDEC3528FD6C770C945F8B024054 /* Debug */,
-				E8BD9D4D28199193DC47DDC8DFB2D332 /* Release */,
+				D6815674CADA4787F8711E0C797E7E79 /* Debug */,
+				9B0E0A8C02D76A8C26A58516C9F2D8DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C9ADBB043C5A525C1CDD986D04C7BE9 /* Build configuration list for PBXNativeTarget "CLXRefresh" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3423FE35073AFE91F9379E4036ADDD5 /* Debug */,
+				5999A155EFABE45724CF6D7DE9A65F4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

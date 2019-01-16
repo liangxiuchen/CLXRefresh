@@ -7,7 +7,7 @@
 //
 
 #import "UIScrollView+LXRefresh.h"
-#import "LXRefreshView+Internal.h"
+#import "../Headers/Private/LXRefreshView+Internal.h"
 #import <objc/runtime.h>
 
 void *footerKey = &footerKey, *headerKey = &headerKey;
