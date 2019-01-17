@@ -40,7 +40,6 @@
 }
 
 - (void)onPullingToRefreshing:(CGFloat)percent {
-    NSLog(@"------------%f", percent);
     [self.refreshGIF stopAnimating];
     NSInteger index = ceilf(59 * percent);
     if (index < self.progressImages.count) {
