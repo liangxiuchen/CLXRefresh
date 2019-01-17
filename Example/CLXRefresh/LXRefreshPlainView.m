@@ -38,6 +38,7 @@
 }
 
 - (void)onPullingToRefreshing:(CGFloat)percent {
+    NSLog(@"------------%f", percent);
     if (percent >= 1.f) {
         self.tipLabel.text = @"relase to refresh";
     } else {
@@ -51,7 +52,6 @@
 }
 
 - (void)onBecomingToRefreshing:(CGFloat)percent {
-    NSLog(@"------------%f", percent);
 }
 
 @end

@@ -132,21 +132,21 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         } else if (offset_y < self.statusMetric.startMetric) {
             CGFloat pullDelta = self.statusMetric.startMetric - offset_y;
             [self super_onPullingToRefreshing:(pullDelta / total)];
-        } else {
-            [self super_onPullingToRefreshing:0.f];
         }
     }
     
     if (self.isFooter && self.scrollViewIsTracking) {
-        offset_y += self.scrollView.bounds.size.height;
+        if (self.isFullScreen) {
+            offset_y += self.scrollView.bounds.size.height;
+        } else {
+            offset_y += self.scrollView.contentSize.height;
+        }
         CGFloat total = self.statusMetric.refreshMetric - self.statusMetric.startMetric;
         if (offset_y >= self.statusMetric.refreshMetric) {
             [self super_onPullingToRefreshing:1.f];
         } else if (offset_y > self.statusMetric.startMetric) {
             CGFloat pullDelta = offset_y - self.statusMetric.startMetric;
             [self super_onPullingToRefreshing:(pullDelta / total)];
-        } else {
-            [self super_onPullingToRefreshing:0.f];
         }
     }
 }
@@ -331,11 +331,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (self.viewStatus != LXRefreshStatusPullingToRefresh) {
         LXRFMethodDebug
     }
-    if (percent == 0.f) {
-        self.viewStatus = LXRefreshStatusIdle;
-    } else {
-        self.viewStatus = LXRefreshStatusPullingToRefresh;
-    }
+    self.viewStatus = LXRefreshStatusPullingToRefresh;
     if ([self respondsToSelector:@selector(onPullingToRefreshing:)]) {
         id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
         [subclass onPullingToRefreshing:percent];
