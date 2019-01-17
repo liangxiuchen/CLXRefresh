@@ -426,6 +426,8 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             self.pendingRefreshes += 1;
             self.logicStatus = LXRefreshLogicStatusRefreshing;
             self.refreshHandler(self);
+        }  else if (self.pendingRefreshes > 0) {
+            self.logicStatus = LXRefreshLogicStatusRefreshing;
         } else {
             if (self.logicStatus == LXRefreshLogicStatusNormal) {
                 self.logicStatus = LXRefreshLogicStatusRefreshing;
@@ -558,6 +560,15 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     dispatch_block_t task = ^{
         LXRFMethodDebug
         if (self.isAlwaysTriggerRefreshHandler) {
+            self.pendingRefreshes -= 1;
+            self.pendingRefreshes = self.pendingRefreshes < 0 ? 0 : self.pendingRefreshes;
+            if (self.pendingRefreshes <= 0) {
+                self.logicStatus = LXRefreshLogicStatusRefreshFinished;
+                [self endUIRefreshing];
+            } else {
+                self.logicStatus = LXRefreshLogicStatusRefreshing;
+            }
+        } else if (self.pendingRefreshes > 0) {
             self.pendingRefreshes -= 1;
             self.pendingRefreshes = self.pendingRefreshes < 0 ? 0 : self.pendingRefreshes;
             if (self.pendingRefreshes <= 0) {
