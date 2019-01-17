@@ -61,14 +61,13 @@
     
     self.tableView.lx_refreshFooterView = self.footer;
     self.tableView.lx_refreshFooterView.isDebug = YES;
-    self.tableView.lx_refreshFooterView.isAlwaysTriggerRefreshHandler = YES;
     
     self.tableView.tableFooterView = [UIView new];
 }
 
 - (void)initDataSource {
     self.dataSource = [NSMutableArray array];
-    for (NSInteger i = 0; i < 1; i++) {
+    for (NSInteger i = 0; i < 8; i++) {
         [self.dataSource addObject:[NSObject new]];
     }
 }

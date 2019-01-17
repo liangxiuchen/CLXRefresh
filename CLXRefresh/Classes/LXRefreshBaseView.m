@@ -485,32 +485,23 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)endUIRefreshing {
+    LXRFMethodDebug
     if (self.isHeader) {
         //is a header refresh view
-        if (self.scrollView.contentOffset.y >= self.statusMetric.startMetric ) {
-            [self shrinkExtendedTopInsetsWithCompletion:^(BOOL finished) {
-                [self super_onViewStatusIdle];
-            }];
-        } else if (self.scrollViewIsTracking) {
+        if (self.scrollViewIsTracking) {
             return;
-        } else {
-            [self shrinkExtendedTopInsetsWithCompletion:^(BOOL finished) {
-                [self super_onViewStatusIdle];
-            }];
         }
+        [self shrinkExtendedTopInsetsWithCompletion:^(BOOL finished) {
+            [self super_onViewStatusIdle];
+        }];
         
     } else if (self.isFooter) {
-        if ((self.scrollView.contentOffset.y + self.scrollView.bounds.size.height) <= self.statusMetric.startMetric) {
-            [self shrinkExtendedBottomInsetsWithCompletion:^(BOOL finished) {
-                [self super_onViewStatusIdle];
-            }];
-        } else if (self.scrollViewIsTracking) {
+        if (self.scrollViewIsTracking) {
             return;
-        } else {
-            [self shrinkExtendedBottomInsetsWithCompletion:^(BOOL finished) {
-                [self super_onViewStatusIdle];
-            }];
         }
+        [self shrinkExtendedBottomInsetsWithCompletion:^(BOOL finished) {
+            [self super_onViewStatusIdle];
+        }];
     }
 }
 
@@ -692,23 +683,25 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 - (void)didEndScrolling {
     LXRFMethodDebug
-    if (self.isHeader && self.viewStatus != LXRefreshStatusIdle) {
+    if (self.isHeader) {
         CGFloat contentOffset = self.scrollView.contentOffset.y;
+        BOOL shouldReset = contentOffset < self.statusMetric.startMetric && contentOffset > self.statusMetric.refreshMetric;
         if (contentOffset == self.statusMetric.refreshMetric) {
             [self super_onViewStatusRefreshing];
-        } else {
+        } else if (shouldReset) {
             [self endUIRefreshing];
         }
-    } else if (self.isFooter && self.viewStatus != LXRefreshStatusIdle) {
+    } else if (self.isFooter) {
         CGFloat contentOffset = 0.f;
         if (self.isFullScreen) {
             contentOffset = self.scrollView.contentOffset.y + self.scrollView.bounds.size.height;
         } else {
             contentOffset = self.scrollView.contentOffset.y + self.scrollView.contentSize.height;
         }
+        BOOL shouldReset = contentOffset > self.statusMetric.startMetric && contentOffset < self.statusMetric.refreshMetric;
         if (contentOffset == self.statusMetric.refreshMetric) {
             [self super_onViewStatusRefreshing];
-        } else {
+        } else if (shouldReset) {
             [self endUIRefreshing];
         }
     }
