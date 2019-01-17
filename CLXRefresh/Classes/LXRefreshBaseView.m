@@ -124,6 +124,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)detectPullingToRefreshing:(NSValue *)newValue {
+    LXRFMethodDebug
     CGFloat offset_y = newValue.CGPointValue.y;
     if (self.isHeader && self.scrollViewIsTracking) {
         CGFloat total = self.statusMetric.startMetric - self.statusMetric.refreshMetric;
@@ -152,6 +153,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)detectBecomingToRefreshingOrIdle:(NSValue *)newValue {
+    LXRFMethodDebug
     if (self.scrollViewIsTracking == NO && self.scrollView.isDecelerating) {
         CGFloat offset_y = newValue.CGPointValue.y;
         static CGFloat total;
@@ -163,8 +165,6 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                 } else if (offset_y <= self.statusMetric.startMetric) {
                     total = self.statusMetric.startMetric - offset_y;
                     [self super_onViewStatusBecomingToIdle:total];
-                } else {
-                    [self super_onViewStatusIdle];
                 }
             }
             if (self.viewStatus == LXRefreshStatusBecomingToRefreshing) {
@@ -187,8 +187,6 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                 } else if (offset_y >= self.statusMetric.startMetric) {
                     total = offset_y - self.statusMetric.startMetric;
                     [self super_onViewStatusBecomingToIdle:total];
-                } else {
-                    [self super_onViewStatusIdle];
                 }
             }
             if (self.viewStatus == LXRefreshStatusBecomingToRefreshing) {

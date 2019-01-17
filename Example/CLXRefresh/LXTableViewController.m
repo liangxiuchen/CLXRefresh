@@ -57,10 +57,10 @@
     self.header.extendInsets = (UIEdgeInsets){extendTop,0.f,0.f,0.f};
     
     self.tableView.lx_refreshHeaderView = self.header;
-    self.tableView.lx_refreshHeaderView.isDebug = NO;
+    self.tableView.lx_refreshHeaderView.isDebug = YES;
     
     self.tableView.lx_refreshFooterView = self.footer;
-    self.tableView.lx_refreshFooterView.isDebug = NO;
+    self.tableView.lx_refreshFooterView.isDebug = YES;
     self.tableView.lx_refreshFooterView.isAlwaysTriggerRefreshHandler = YES;
     
     self.tableView.tableFooterView = [UIView new];
