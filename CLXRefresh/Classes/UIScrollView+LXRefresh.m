@@ -10,7 +10,7 @@
 #import "LXRefreshView+Internal.h"
 #import <objc/runtime.h>
 
-void *footerKey = &footerKey, *headerKey = &headerKey;
+static const void *const footerKey = &footerKey, *const headerKey = &headerKey;
 
 @implementation UIScrollView (CLXRefresh)
 
@@ -27,7 +27,7 @@ void *footerKey = &footerKey, *headerKey = &headerKey;
     [self removePreviousRefreshHeaderView];
     objc_setAssociatedObject(self, headerKey, LX_refreshHeaderView, OBJC_ASSOCIATION_ASSIGN);
     [self addRefreshHeaderView:LX_refreshHeaderView];
-    [self addKVO:LX_refreshHeaderView withContext:[LXRefreshBaseView headerKVOContext]];
+    [self addKVO:LX_refreshHeaderView withContext:LXRefreshBaseView.headerKVOContext];
 }
 
 - (LXRefreshBaseView *)lx_refreshFooterView {
@@ -41,14 +41,14 @@ void *footerKey = &footerKey, *headerKey = &headerKey;
     [self removePreviousRefreshFooterView];
     objc_setAssociatedObject(self, footerKey, LX_refreshFooterView, OBJC_ASSOCIATION_ASSIGN);
     [self addRefreshFooterView:LX_refreshFooterView];
-    [self addKVO:LX_refreshFooterView withContext:[LXRefreshBaseView footerKVOContext]];
+    [self addKVO:LX_refreshFooterView withContext:LXRefreshBaseView.footerKVOContext];
 }
 
 #pragma mark -
 #pragma mark - utility
 
 - (void)addKVO:(LXRefreshBaseView * _Nonnull)observer withContext:(void *)context {
-    //removed into LXRefreshView's dealloc method
+    //will be removed at LXRefreshView's dealloc method
     [self addObserver:observer forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionOld context:context];
     [self addObserver:observer forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial context:context];
     [self.panGestureRecognizer addObserver:observer forKeyPath:@"state" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial context:context];
@@ -121,16 +121,16 @@ void *footerKey = &footerKey, *headerKey = &headerKey;
 #pragma mark - swizzling methods
 
 void swizzle(Class class, SEL target, SEL beSwizzled) {
-#if DEBUG
-    NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    NSLog(@"swizzle class:%@ from:%@ to:%@ by LXRefresh",NSStringFromClass(class), NSStringFromSelector(target), NSStringFromSelector(beSwizzled));
-#endif
     Method target_Method = class_getInstanceMethod(class, target);
     Method beSwizzled_Method = class_getInstanceMethod(class, beSwizzled);
     if (target_Method == NULL || beSwizzled_Method == NULL) {
         return;
     }
     method_exchangeImplementations(target_Method, beSwizzled_Method);
+#if DEBUG
+    NSLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    NSLog(@"swizzle class:%@ from:%@ to:%@ by LXRefresh",NSStringFromClass(class), NSStringFromSelector(target), NSStringFromSelector(beSwizzled));
+#endif
 }
 
 + (void)load {
