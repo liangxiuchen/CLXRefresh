@@ -57,7 +57,7 @@
     self.header.extendInsets = (UIEdgeInsets){extendTop,0.f,0.f,0.f};
     
     self.tableView.lx_refreshHeaderView = self.header;
-    self.tableView.lx_refreshHeaderView.isDebug = YES;
+    self.tableView.lx_refreshHeaderView.isDebug = NO;
     
     self.tableView.lx_refreshFooterView = self.footer;
     self.tableView.lx_refreshFooterView.isDebug = NO;
@@ -68,7 +68,7 @@
 
 - (void)initDataSource {
     self.dataSource = [NSMutableArray array];
-    for (NSInteger i = 0; i < 15; i++) {
+    for (NSInteger i = 0; i < 1; i++) {
         [self.dataSource addObject:[NSObject new]];
     }
 }

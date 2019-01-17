@@ -48,6 +48,7 @@
 }
 
 - (void)onBecomingToRefreshing:(CGFloat)percent {
+    NSLog(@"------------%f", percent);
     if (percent == 0.f) {
         self.refreshGIF.animationImages = self.refreshingImages;
         self.refreshGIF.animationDuration = 0.5f;
