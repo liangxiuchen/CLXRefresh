@@ -39,6 +39,10 @@
     [self.refreshGIF stopAnimating];
 }
 
+- (void)onViewStatusRefreshing:(LXRefreshViewStatus)oldStatus {
+    [self startRefreshingGif];
+}
+
 - (void)onPullingToRefreshing:(CGFloat)percent {
     [self.refreshGIF stopAnimating];
     NSInteger index = ceilf(59 * percent);
@@ -48,11 +52,16 @@
 }
 
 - (void)onBecomingToRefreshing:(CGFloat)percent {
-    if (percent == 0.f) {
-        self.refreshGIF.animationImages = self.refreshingImages;
-        self.refreshGIF.animationDuration = 0.5f;
-        [self.refreshGIF startAnimating];
+    [self startRefreshingGif];
+}
+
+- (void)startRefreshingGif {
+    if (self.refreshGIF.isAnimating) {
+        return;
     }
+    self.refreshGIF.animationImages = self.refreshingImages;
+    self.refreshGIF.animationDuration = 0.5f;
+    [self.refreshGIF startAnimating];
 }
 
 @end
