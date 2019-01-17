@@ -66,7 +66,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 - (BOOL)commonInit {
     _isAutoPosition = YES;
+    _pendingRefreshes = 0;
     _isDebug = NO;
+    _isAlwaysTriggerRefreshHandler = NO;
     _extendInsets = (UIEdgeInsets){0};
     _viewStatus = LXRefreshStatusInit;
     _logicStatus = LXRefreshLogicStatusNormal;
@@ -420,11 +422,17 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         LXRFMethodDebug
         LXRefreshViewStatus previous = self.viewStatus;
         self.viewStatus = LXRefreshStatusRefreshing;
-        if (self.logicStatus == LXRefreshLogicStatusNormal) {
+        if (self.isAlwaysTriggerRefreshHandler) {
+            self.pendingRefreshes += 1;
             self.logicStatus = LXRefreshLogicStatusRefreshing;
             self.refreshHandler(self);
-        } else if (self.logicStatus == LXRefreshLogicStatusRefreshFinished) {
-            [self endRefreshing];
+        } else {
+            if (self.logicStatus == LXRefreshLogicStatusNormal) {
+                self.logicStatus = LXRefreshLogicStatusRefreshing;
+                self.refreshHandler(self);
+            } else if (self.logicStatus == LXRefreshLogicStatusRefreshFinished) {
+                [self endRefreshing];
+            }
         }
         if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
             id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
@@ -548,9 +556,20 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 - (void)endRefreshing {
     dispatch_block_t task = ^{
-        self.logicStatus = LXRefreshLogicStatusRefreshFinished;
         LXRFMethodDebug
-        [self endUIRefreshing];
+        if (self.isAlwaysTriggerRefreshHandler) {
+            self.pendingRefreshes -= 1;
+            self.pendingRefreshes = self.pendingRefreshes < 0 ? 0 : self.pendingRefreshes;
+            if (self.pendingRefreshes <= 0) {
+                self.logicStatus = LXRefreshLogicStatusRefreshFinished;
+                [self endUIRefreshing];
+            } else {
+                self.logicStatus = LXRefreshLogicStatusRefreshing;
+            }
+        } else {
+            self.logicStatus = LXRefreshLogicStatusRefreshFinished;
+            [self endUIRefreshing];
+        }
     };
     if (NSThread.isMainThread) {
         task();

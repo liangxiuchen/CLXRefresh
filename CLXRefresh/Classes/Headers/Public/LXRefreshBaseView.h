@@ -33,6 +33,7 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 
 @property (nonatomic, assign) LXRefreshViewStatus viewStatus;
 @property (nonatomic, assign) BOOL isDebug;
+@property (nonatomic, assign) BOOL isAlwaysTriggerRefreshHandler;
 @property (nonatomic, assign) BOOL isAutoPosition;//default is YES you just specify view's bouds, horizontally center
 @property (nonatomic, readonly) BOOL isRefreshing;//YES when business logic is refreshing && UI also in refreshing, otherwise NO
 @property (nonatomic, readonly) BOOL isHeader;

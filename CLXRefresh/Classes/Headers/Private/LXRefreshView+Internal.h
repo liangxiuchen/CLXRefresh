@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) LXRefreshLogicStatus logicStatus;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, assign) BOOL scrollViewIsTracking;
+@property (nonatomic, assign) NSInteger pendingRefreshes;
 @property (nonatomic, assign) BOOL isExtendContentInsetsForHeaderHover;
 @property (nonatomic, assign) BOOL isExtendContentInsetsForFooterHover;
 @property (nonatomic, readonly, class) void *headerKVOContext;
