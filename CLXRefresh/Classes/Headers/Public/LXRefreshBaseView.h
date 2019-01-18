@@ -20,6 +20,12 @@ typedef NS_ENUM(NSUInteger, LXRefreshViewStatus) {
     LXRefreshStatusRefreshing //is refreshing, refreshHanlder called at this moment
 };
 
+typedef NS_ENUM(NSUInteger, LXRefreshLogicStatus) {
+    LXRefreshLogicStatusNormal,
+    LXRefreshLogicStatusRefreshing,
+    LXRefreshLogicStatusRefreshFinished,
+};
+
 //this metric is used to detect when can refresh
 typedef struct {
     CGFloat startMetric;//this metric in scrollView visible rect, means refresh view will appear
@@ -31,11 +37,12 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 
 @interface LXRefreshBaseView : UIView
 
-@property (nonatomic, assign) LXRefreshViewStatus viewStatus;
+@property (nonatomic, readonly) LXRefreshViewStatus viewStatus;
+@property (nonatomic, readonly) LXRefreshLogicStatus logicStatus;
 @property (nonatomic, assign) BOOL isDebug;
 @property (nonatomic, assign) BOOL isAlwaysTriggerRefreshHandler;
 @property (nonatomic, assign) BOOL isAutoPosition;//default is YES you just specify view's bouds, horizontally center
-@property (nonatomic, readonly) BOOL isRefreshing;//YES when business logic is refreshing && UI also in refreshing, otherwise NO
+@property (nonatomic, readonly) BOOL isRefreshing;//YES when business logic is refreshing or UI also in refreshing, otherwise NO
 @property (nonatomic, readonly) BOOL isHeader;
 @property (nonatomic, readonly) BOOL isFooter;
 @property (nonatomic, assign) UIEdgeInsets userAdditionalInsets;

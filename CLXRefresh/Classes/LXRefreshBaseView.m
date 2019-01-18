@@ -333,7 +333,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (BOOL)isRefreshing {
-    return _viewStatus == LXRefreshStatusRefreshing && _logicStatus == LXRefreshLogicStatusRefreshing;
+    return _viewStatus == LXRefreshStatusRefreshing || _logicStatus == LXRefreshLogicStatusRefreshing;
 }
 
 - (void)setIsAutoPosition:(BOOL)isAutoPosition {

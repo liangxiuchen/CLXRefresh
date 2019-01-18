@@ -39,7 +39,11 @@
 }
 
 - (void)onPullingToRefreshing:(CGFloat)percent {
-    self.alpha = percent;
+    if (self.isRefreshing) {
+        self.alpha = 1.f;
+    } else {
+        self.alpha = percent;
+    }
     if (percent >= 1.f) {
         self.tipLabel.text = @"relase to refresh";
     } else {

@@ -8,14 +8,10 @@
 
 #import "LXRefreshBaseView.h"
 //framework internal header, do not expose to user
-typedef NS_ENUM(NSUInteger, LXRefreshLogicStatus) {
-    LXRefreshLogicStatusNormal,
-    LXRefreshLogicStatusRefreshing,
-    LXRefreshLogicStatusRefreshFinished,
-};
 NS_ASSUME_NONNULL_BEGIN
 @interface LXRefreshBaseView()<UIScrollViewDelegate>
 
+@property (nonatomic, assign) LXRefreshViewStatus viewStatus;
 @property (nonatomic, assign) LXRefreshLogicStatus logicStatus;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, assign) NSInteger pendingRefreshes;
