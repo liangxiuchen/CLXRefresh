@@ -117,8 +117,8 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     self.scrollViewIsTracking = isTracking_new;
     BOOL isFingerUp = isTracking_old == YES && isTracking_new == NO;
     if (isFingerUp) {
-        [self extendInsetsForHeaderHoverWithCompletion];
-        [self extendInsetsForFooterHoverWithCompletion];
+        [self extendInsetsForHeaderHover];
+        [self extendInsetsForFooterHover];
     }
     [self super_onIsTrackingChanged:isTracking_new oldIsTracking:isTracking_old];
 }
@@ -139,8 +139,8 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (self.viewStatus == LXRefreshStatusInit) {
         [self super_onViewStatusIdle];
     }
-    [self detectBecomingToRefreshingOrIdle:newValue];
     [self detectPullingToRefreshing:newValue];
+    [self detectBecomingToRefreshingOrIdle:newValue];
     [self super_onContentOffsetChanged:(newValue ? newValue.CGPointValue : CGPointZero)
                              oldOffset:(oldValue ? oldValue.CGPointValue : CGPointZero)];
 }
@@ -155,6 +155,10 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
     __unused CGSize contentSize = newValue.CGSizeValue;
     [self relayoutFooter];
+    if (!self.isFullScreen) {
+        [self shrinkExtendedBottomInsets];
+        
+    }
 }
 
 - (void)onContentInsetsChanged {
@@ -357,12 +361,12 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     CGFloat extendedBottom = self.isExtendContentInsetsForFooterHover ? self.extendInsets.bottom : 0.f;
     if (@available(iOS 11, *)) {
         insets.top = self.scrollView.adjustedContentInset.top - self.userAdditionalInsets.top - extendedTop;
-        insets.bottom = self.scrollView.adjustedContentInset.bottom - self.userAdditionalInsets.bottom - extendedBottom - self.paddingToFullScreen;
+        insets.bottom = self.scrollView.adjustedContentInset.bottom - self.userAdditionalInsets.bottom - extendedBottom;
         insets.left = self.scrollView.adjustedContentInset.left - self.userAdditionalInsets.left;
         insets.right = self.scrollView.adjustedContentInset.right - self.userAdditionalInsets.right;
     } else {
         insets.top = self.scrollView.contentInset.top - self.userAdditionalInsets.top - extendedTop;
-        insets.bottom = self.scrollView.contentInset.bottom - self.userAdditionalInsets.bottom - extendedBottom - self.paddingToFullScreen;;
+        insets.bottom = self.scrollView.contentInset.bottom - self.userAdditionalInsets.bottom - extendedBottom;
         insets.left = self.scrollView.contentInset.left - self.userAdditionalInsets.left;
         insets.right = self.scrollView.contentInset.right - self.userAdditionalInsets.right;
     }
@@ -499,13 +503,12 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         if (self.scrollViewIsTracking) {
             return;
         }
-        [self shrinkExtendedBottomInsetsWithCompletion:^(BOOL finished) {
-            [self super_onViewStatusIdle];
-        }];
+        [self shrinkExtendedBottomInsets];
+        [self super_onViewStatusIdle];
     }
 }
 
-- (void)extendInsetsForHeaderHoverWithCompletion {
+- (void)extendInsetsForHeaderHover {
     if (!self.isHeader) {
         return;
     }
@@ -546,18 +549,13 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
 }
 
-- (void)extendInsetsForFooterHoverWithCompletion {
+- (void)extendInsetsForFooterHover {
     if (!self.isFooter) {
-        return;
-    }
-    if (self.scrollViewIsTracking) {
         return;
     }
     BOOL shouldExtend = NO;
     if (self.isFullScreen) {
         shouldExtend = (self.scrollView.contentOffset.y + self.scrollView.bounds.size.height) >= self.statusMetric.refreshMetric;
-    } else {
-        shouldExtend = (self.scrollView.contentOffset.y + self.scrollView.contentSize.height) >= self.statusMetric.refreshMetric;
     }
     if (!shouldExtend) {
         return;
@@ -566,41 +564,29 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         LXRFMethodDebug
         self.isExtendContentInsetsForFooterHover = YES;//ensure call before self.scrollView.contentInset = insets;
         UIEdgeInsets insets = self.scrollView.contentInset;
-        if (self.isFullScreen) {
-            insets.bottom += self.extendInsets.bottom;
-        } else {
-            self.paddingToFullScreen = (self.scrollView.bounds.size.height - self.systemInsets.top - self.userAdditionalInsets.top) - self.scrollView.contentSize.height;
-            insets.bottom += self.extendInsets.bottom + self.paddingToFullScreen;
-        }
+        insets.bottom += self.extendInsets.bottom;
         CGPoint contentOffset = self.scrollView.contentOffset;
         self.scrollView.contentInset = insets;
         self.scrollView.contentOffset = contentOffset;
     }
 }
 
-- (void)shrinkExtendedBottomInsetsWithCompletion:(void(^)(BOOL finished))handler {
-    if (self.isFooter == NO) {
+- (void)shrinkExtendedBottomInsets {
+    if (self.isFooter == NO || !self.isFullScreen) {
         return;
     }
     if (self.isExtendContentInsetsForFooterHover) {
         LXRFMethodDebug
         self.isExtendContentInsetsForFooterHover = NO;
         UIEdgeInsets insets = self.scrollView.contentInset;
-        CGFloat padding = self.paddingToFullScreen;
-        self.paddingToFullScreen = 0.f;
-        insets.bottom -= self.extendInsets.bottom + padding;
-        //animation
-        [UIView animateWithDuration:kShrinkAnimationDuration animations:^{
-            self.scrollView.contentInset = insets;
-            self.scrollView.contentOffset = self.scrollView.contentOffset;
-        } completion:handler];
-    } else {
-        handler ? handler(YES) : (void)0;
+        insets.bottom -= self.extendInsets.bottom ;
+        CGPoint contentOffset = self.scrollView.contentOffset;
+        self.scrollView.contentInset = insets;
+        self.scrollView.contentOffset = contentOffset;
     }
 }
 
 - (void)detectPullingToRefreshing:(NSValue *)newValue {
-    LXRFMethodDebug
     CGFloat offset_y = newValue.CGPointValue.y;
     if (self.isHeader && self.scrollViewIsTracking) {
         CGFloat total = self.statusMetric.startMetric - self.statusMetric.refreshMetric;
@@ -629,7 +615,6 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)detectBecomingToRefreshingOrIdle:(NSValue *)newValue {
-    LXRFMethodDebug
     if (self.scrollViewIsTracking == NO && self.scrollView.isDecelerating) {
         CGFloat offset_y = newValue.CGPointValue.y;
         static CGFloat total;
@@ -650,26 +635,17 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                 [self super_onViewStatusBecomingToIdle:total];
             }
         }
-        if (self.isFooter) {
-            if (self.isFullScreen) {
-                offset_y += self.scrollView.bounds.size.height;
-            } else {
-                offset_y += self.scrollView.contentSize.height;
-            }
-            if (self.viewStatus == LXRefreshStatusPullingToRefresh) {
-                if (offset_y >= self.statusMetric.refreshMetric) {
-                    total = offset_y - self.statusMetric.refreshMetric;
-                    [self super_onViewStatusBecomingToRefreshing:total OffsetY:offset_y];
-                } else if (offset_y >= self.statusMetric.startMetric) {
-                    total = offset_y - self.statusMetric.startMetric;
-                    [self super_onViewStatusBecomingToIdle:total];
-                }
-            }
-            if (self.viewStatus == LXRefreshStatusBecomingToRefreshing) {
-                [self super_onViewStatusBecomingToRefreshing:total OffsetY:offset_y];
-            }
-            if (self.viewStatus == LXRefreshStatusBecomingToIdle) {
-                [self super_onViewStatusBecomingToIdle:total];
+    }
+    if (self.isFooter && self.scrollViewIsTracking == NO) {
+        CGFloat offset_y = newValue.CGPointValue.y;
+        if (self.isFullScreen) {
+            offset_y += self.scrollView.bounds.size.height;
+        } else {
+            offset_y += self.scrollView.contentSize.height;
+        }
+        if (self.viewStatus == LXRefreshStatusPullingToRefresh) {
+            if (offset_y >= self.statusMetric.refreshMetric) {
+                [self super_onViewStatusRefreshing];
             }
         }
     }
@@ -685,25 +661,13 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     LXRFMethodDebug
     if (self.isHeader) {
         CGFloat contentOffset = self.scrollView.contentOffset.y;
-        BOOL shouldReset = contentOffset < self.statusMetric.startMetric && contentOffset > self.statusMetric.refreshMetric;
         if (contentOffset == self.statusMetric.refreshMetric) {
             [self super_onViewStatusRefreshing];
-        } else if (shouldReset) {
+        } else if (self.viewStatus != LXRefreshStatusIdle) {
             [self endUIRefreshing];
         }
-    } else if (self.isFooter) {
-        CGFloat contentOffset = 0.f;
-        if (self.isFullScreen) {
-            contentOffset = self.scrollView.contentOffset.y + self.scrollView.bounds.size.height;
-        } else {
-            contentOffset = self.scrollView.contentOffset.y + self.scrollView.contentSize.height;
-        }
-        BOOL shouldReset = contentOffset > self.statusMetric.startMetric && contentOffset < self.statusMetric.refreshMetric;
-        if (contentOffset == self.statusMetric.refreshMetric) {
-            [self super_onViewStatusRefreshing];
-        } else if (shouldReset) {
-            [self endUIRefreshing];
-        }
+    } else if (self.isFooter && self.viewStatus != LXRefreshStatusRefreshing) {
+        [self endUIRefreshing];
     }
 }
 

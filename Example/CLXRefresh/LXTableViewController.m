@@ -73,7 +73,7 @@
 }
 
 - (void)loadMoreData {
-    for (NSInteger i = 0; i < 10; i++) {
+    for (NSInteger i = 0; i < 3; i++) {
         [self.dataSource addObject:[NSObject new]];
     }
 }

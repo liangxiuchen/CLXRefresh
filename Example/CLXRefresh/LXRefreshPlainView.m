@@ -28,6 +28,7 @@
 }
 
 - (void)onViewStatusIdle:(LXRefreshViewStatus)oldStatus {
+    self.alpha = 0.f;
     if (self.isHeader) {
         self.tipLabel.text = @"pull down to refresh";
     }
@@ -38,6 +39,7 @@
 }
 
 - (void)onPullingToRefreshing:(CGFloat)percent {
+    self.alpha = percent;
     if (percent >= 1.f) {
         self.tipLabel.text = @"relase to refresh";
     } else {

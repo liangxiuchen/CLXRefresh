@@ -31,17 +31,6 @@ static NSString * const reuseIdentifier = @"Cell";
         self.automaticallyAdjustsScrollViewInsets = YES;
     }
     __weak __typeof(self) wself = self;
-    self.footer.refreshHandler = ^(LXRefreshBaseView * _Nonnull footer) {
-        __strong __typeof(self) self = wself;
-        if (self == nil) {
-            return;
-        }
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self loadMoreData];
-            [footer endRefreshing];
-            [self.collectionView reloadData];
-        });
-    };
     self.header.refreshHandler = ^(LXRefreshBaseView * _Nonnull header) {
         __strong __typeof(self) self = wself;
         if (self == nil) {
@@ -50,6 +39,18 @@ static NSString * const reuseIdentifier = @"Cell";
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [header endRefreshing];
             [self.collectionView reloadData];
+        });
+    };
+    
+    self.footer.refreshHandler = ^(LXRefreshBaseView * _Nonnull footer) {
+        __strong __typeof(self) self = wself;
+        if (self == nil) {
+            return;
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self loadMoreData];
+            [self.collectionView reloadData];
+            [footer endRefreshing];
         });
     };
     
