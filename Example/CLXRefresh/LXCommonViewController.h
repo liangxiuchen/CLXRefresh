@@ -1,5 +1,5 @@
 //
-//  KPCommonViewController.h
+//  LXCommonViewController.h
 //  rfreshTest
 //
 //  Created by kunpo on 2019/1/21.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KPCommonViewController : UIViewController
+@interface LXCommonViewController : UIViewController
 
 @end
 

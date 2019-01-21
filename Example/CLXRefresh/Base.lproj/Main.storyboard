@@ -313,7 +313,7 @@
         <!--commonView-->
         <scene sceneID="onb-FR-6zW">
             <objects>
-                <viewController storyboardIdentifier="KPCommonViewController" title="commonView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GC2-NV-brF" customClass="KPCommonViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LXCommonViewController" title="commonView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GC2-NV-brF" customClass="LXCommonViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t10-5c-1kE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

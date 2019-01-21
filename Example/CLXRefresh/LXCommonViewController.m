@@ -6,18 +6,18 @@
 //  Copyright © 2019 kunpo. All rights reserved.
 //
 
-#import "KPCommonViewController.h"
+#import "LXCommonViewController.h"
 #import <CLXRefresh/UIScrollView+LXRefresh.h>
-#import "KPCommonRefreshView.h"
+#import "LXCommonRefreshView.h"
 
-@interface KPCommonViewController () <UITableViewDataSource>
+@interface LXCommonViewController () <UITableViewDataSource>
 
 @property (nonatomic, assign) int rowCount;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
-@implementation KPCommonViewController
+@implementation LXCommonViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,7 +36,7 @@
 }
 
 - (void)configRefreshHeader {
-    KPCommonRefreshView *refreshHeader = [[KPCommonRefreshView alloc] init];
+    LXCommonRefreshView *refreshHeader = [[LXCommonRefreshView alloc] init];
     __weak __typeof(self) wself = self;
     refreshHeader.refreshHandler = ^(LXRefreshBaseView * _Nonnull header) {
         __strong __typeof(self) self = wself;
@@ -53,7 +53,7 @@
 }
 
 - (void)configRefreshFooter {
-    KPCommonRefreshView *refreshFooter = [[KPCommonRefreshView alloc] init];
+    LXCommonRefreshView *refreshFooter = [[LXCommonRefreshView alloc] init];
     __weak __typeof(self) wself = self;
     refreshFooter.refreshHandler = ^ (LXRefreshBaseView * _Nonnull footer) {
         __strong __typeof(self) self = wself;

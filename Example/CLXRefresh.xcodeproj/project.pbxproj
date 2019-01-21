@@ -23,8 +23,8 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		C62DF1BDD641C1305D50B2D5 /* libPods-CLXRefresh_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38C581D9805454520B462199 /* libPods-CLXRefresh_Example.a */; };
-		DB3330B321F5D8A600A7ECB7 /* KPCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3330AF21F5D8A500A7ECB7 /* KPCommonViewController.m */; };
-		DB3330B421F5D8A600A7ECB7 /* KPCommonRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3330B121F5D8A600A7ECB7 /* KPCommonRefreshView.m */; };
+		DB3330B321F5D8A600A7ECB7 /* LXCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3330AF21F5D8A500A7ECB7 /* LXCommonViewController.m */; };
+		DB3330B421F5D8A600A7ECB7 /* LXCommonRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3330B121F5D8A600A7ECB7 /* LXCommonRefreshView.m */; };
 		DFA4D3F9FEE970C6E992228B /* libPods-CLXRefresh_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6159FB22EE0B34D5F3A00E7 /* libPods-CLXRefresh_Tests.a */; };
 		FA02C59521EED8A70045FB35 /* LXRefreshPlainView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02C59421EED8A70045FB35 /* LXRefreshPlainView.m */; };
 		FA02C59821EF275C0045FB35 /* LXCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA02C59721EF275C0045FB35 /* LXCollectionViewController.m */; };
@@ -71,10 +71,10 @@
 		BD68DD1060F95387AAFADAC5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		CF6E6E95BEE20F3271059BFD /* Pods-CLXRefresh_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLXRefresh_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CLXRefresh_Tests/Pods-CLXRefresh_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D6159FB22EE0B34D5F3A00E7 /* libPods-CLXRefresh_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CLXRefresh_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB3330AF21F5D8A500A7ECB7 /* KPCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPCommonViewController.m; sourceTree = "<group>"; };
-		DB3330B021F5D8A500A7ECB7 /* KPCommonRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPCommonRefreshView.h; sourceTree = "<group>"; };
-		DB3330B121F5D8A600A7ECB7 /* KPCommonRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPCommonRefreshView.m; sourceTree = "<group>"; };
-		DB3330B221F5D8A600A7ECB7 /* KPCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPCommonViewController.h; sourceTree = "<group>"; };
+		DB3330AF21F5D8A500A7ECB7 /* LXCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCommonViewController.m; sourceTree = "<group>"; };
+		DB3330B021F5D8A500A7ECB7 /* LXCommonRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCommonRefreshView.h; sourceTree = "<group>"; };
+		DB3330B121F5D8A600A7ECB7 /* LXCommonRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXCommonRefreshView.m; sourceTree = "<group>"; };
+		DB3330B221F5D8A600A7ECB7 /* LXCommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXCommonViewController.h; sourceTree = "<group>"; };
 		F4F8FD99D2BD065C2D5B5649 /* CLXRefresh.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CLXRefresh.podspec; path = ../CLXRefresh.podspec; sourceTree = "<group>"; };
 		FA02C59321EED8A70045FB35 /* LXRefreshPlainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXRefreshPlainView.h; sourceTree = "<group>"; };
 		FA02C59421EED8A70045FB35 /* LXRefreshPlainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LXRefreshPlainView.m; sourceTree = "<group>"; };
@@ -159,10 +159,10 @@
 				FA1C2FAE21EED86800EA31B3 /* LXRefreshGifView.m */,
 				FA02C59321EED8A70045FB35 /* LXRefreshPlainView.h */,
 				FA02C59421EED8A70045FB35 /* LXRefreshPlainView.m */,
-				DB3330B021F5D8A500A7ECB7 /* KPCommonRefreshView.h */,
-				DB3330B121F5D8A600A7ECB7 /* KPCommonRefreshView.m */,
-				DB3330B221F5D8A600A7ECB7 /* KPCommonViewController.h */,
-				DB3330AF21F5D8A500A7ECB7 /* KPCommonViewController.m */,
+				DB3330B021F5D8A500A7ECB7 /* LXCommonRefreshView.h */,
+				DB3330B121F5D8A600A7ECB7 /* LXCommonRefreshView.m */,
+				DB3330B221F5D8A600A7ECB7 /* LXCommonViewController.h */,
+				DB3330AF21F5D8A500A7ECB7 /* LXCommonViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -369,8 +369,8 @@
 				FA02C59821EF275C0045FB35 /* LXCollectionViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* LXTableViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
-				DB3330B321F5D8A600A7ECB7 /* KPCommonViewController.m in Sources */,
-				DB3330B421F5D8A600A7ECB7 /* KPCommonRefreshView.m in Sources */,
+				DB3330B321F5D8A600A7ECB7 /* LXCommonViewController.m in Sources */,
+				DB3330B421F5D8A600A7ECB7 /* LXCommonRefreshView.m in Sources */,
 				FA02C59521EED8A70045FB35 /* LXRefreshPlainView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,21 +1,21 @@
 //
-//  KPCommonRefreshHeader.m
+//  LXCommonRefreshHeader.m
 //  rfreshTest
 //
 //  Created by kunpo on 2019/1/21.
 //  Copyright © 2019 kunpo. All rights reserved.
 //
 
-#import "KPCommonRefreshView.h"
+#import "LXCommonRefreshView.h"
 
-@interface KPCommonRefreshView()
+@interface LXCommonRefreshView()
 
 @property (nonatomic, strong) UILabel *title;
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
 
 @end
 
-@implementation KPCommonRefreshView
+@implementation LXCommonRefreshView
 
 - (instancetype)init
 {

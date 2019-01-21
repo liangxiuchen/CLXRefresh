@@ -1,5 +1,5 @@
 //
-//  KPCommonRefreshHeader.h
+//  LXCommonRefreshHeader.h
 //  rfreshTest
 //
 //  Created by kunpo on 2019/1/21.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KPCommonRefreshView : LXRefreshBaseView <LXRefreshViewSubclassProtocol>
+@interface LXCommonRefreshView : LXRefreshBaseView <LXRefreshViewSubclassProtocol>
 
 @property (nonatomic, copy) NSString *loadingDescription;
 @property (nonatomic, copy) NSString *headerPullToRefreshDescription;
