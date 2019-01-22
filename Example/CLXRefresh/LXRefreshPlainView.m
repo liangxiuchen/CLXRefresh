@@ -31,6 +31,8 @@
     self.alpha = 0.f;
     if (self.isNoMoreData) {
         return;
+    } else {
+        self.indicator.hidden = NO;
     }
     if (self.isHeader) {
         self.tipLabel.text = @"pull down to refresh";

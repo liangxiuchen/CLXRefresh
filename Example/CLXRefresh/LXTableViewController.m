@@ -38,6 +38,7 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if (self.dataSource.count > 10) {
                 [footer footerHasNoMoreData];
+                [footer endRefreshing];
             } else {
                [self loadMoreData];
                 [footer endRefreshing];
@@ -65,6 +66,7 @@
     
     self.tableView.lx_refreshFooterView = self.footer;
     self.tableView.lx_refreshFooterView.isDebug = YES;
+    self.tableView.lx_refreshFooterView.resetNoMoreDataAfterEndRefreshing = NO;
 
     self.tableView.tableFooterView = [UIView new];
 }
