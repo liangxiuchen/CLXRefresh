@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger, LXRefreshLogicStatus) {
     LXRefreshLogicStatusNormal,
     LXRefreshLogicStatusRefreshing,
     LXRefreshLogicStatusRefreshFinished,
+    LXRefreshLogicStatusNoMoreData
 };
 
 //this metric is used to detect when can refresh
@@ -55,6 +56,7 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 - (instancetype)initWithFrame:(CGRect)frame RefreshHandler:(LXRefreshHandler)handler;
 - (void)endRefreshing;
 - (void)beginHeaderRefresh;
+- (void)endRefreshingWithNoMoreData;
 
 @end
 
@@ -82,6 +84,9 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 - (void)onBecomingToRefreshing:(CGFloat)percent;
 //released to idle
 - (void)onBecomingToIdle:(CGFloat)percent;
+
+@optional
+- (void)onNoMoreData;
 
 @end
 

@@ -75,6 +75,16 @@ static const void *const footerKey = &footerKey, *const headerKey = &headerKey;
 }
 
 - (void)addRefreshHeaderView:(LXRefreshBaseView * _Nonnull)lx_refreshHeaderView {
+    [self addSubview:lx_refreshHeaderView];
+    lx_refreshHeaderView.scrollView = self;
+    self.delegate = lx_refreshHeaderView;
+    
+    UIEdgeInsets insets = lx_refreshHeaderView.extendInsets;
+    if (insets.top == 0.f) {
+        insets.top = lx_refreshHeaderView.bounds.size.height;
+        lx_refreshHeaderView.extendInsets = insets;
+    }
+    
     if (lx_refreshHeaderView.isAutoPosition) {
         CGRect headerFrame = lx_refreshHeaderView.frame;
         CGSize size = headerFrame.size;
@@ -83,25 +93,13 @@ static const void *const footerKey = &footerKey, *const headerKey = &headerKey;
         lx_refreshHeaderView.frame = headerFrame;
         [lx_refreshHeaderView updateStatusMetric];
     }
-    
-    UIEdgeInsets insets = lx_refreshHeaderView.extendInsets;
-    if (insets.top == 0.f) {
-        insets.top = lx_refreshHeaderView.bounds.size.height;
-        lx_refreshHeaderView.extendInsets = insets;
-    }
-    
-    [self addSubview:lx_refreshHeaderView];
-    lx_refreshHeaderView.scrollView = self;
-    self.delegate = lx_refreshHeaderView;
 }
 
 - (void)addRefreshFooterView:(LXRefreshBaseView * _Nonnull)lx_refreshFooterView {
-    if (lx_refreshFooterView.isAutoPosition) {
-        CGRect footerFrame = lx_refreshFooterView.frame;
-        footerFrame.origin.x = (self.bounds.size.width - footerFrame.size.width) / 2.f;
-        footerFrame.origin.y = self.contentSize.height;
-        lx_refreshFooterView.frame = footerFrame;
-        [lx_refreshFooterView updateStatusMetric];
+    [self addSubview:lx_refreshFooterView];
+    lx_refreshFooterView.scrollView = self;
+    if (self.lx_refreshHeaderView == nil) {
+        self.delegate = lx_refreshFooterView;
     }
     
     UIEdgeInsets insets = lx_refreshFooterView.extendInsets;
@@ -110,10 +108,12 @@ static const void *const footerKey = &footerKey, *const headerKey = &headerKey;
         lx_refreshFooterView.extendInsets = insets;
     }
     
-    [self addSubview:lx_refreshFooterView];
-    lx_refreshFooterView.scrollView = self;
-    if (self.lx_refreshHeaderView == nil) {
-        self.delegate = lx_refreshFooterView;
+    if (lx_refreshFooterView.isAutoPosition) {
+        CGRect footerFrame = lx_refreshFooterView.frame;
+        footerFrame.origin.x = (self.bounds.size.width - footerFrame.size.width) / 2.f;
+        footerFrame.origin.y = self.contentSize.height;
+        lx_refreshFooterView.frame = footerFrame;
+        [lx_refreshFooterView updateStatusMetric];
     }
 }
 
