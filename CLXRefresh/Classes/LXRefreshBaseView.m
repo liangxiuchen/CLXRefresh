@@ -277,20 +277,20 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         LXRFMethodDebug
         LXRefreshViewStatus previous = self.viewStatus;
         self.viewStatus = LXRefreshStatusRefreshing;
-        if (self.logicStatus == LXRefreshLogicStatusNoMoreData) {
-            [self endRefreshing];
-            return;
-        }
         if (self.isAlwaysTriggerRefreshHandler) {
             self.pendingRefreshes += 1;
-            self.logicStatus = LXRefreshLogicStatusRefreshing;
+            if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
+                self.logicStatus = LXRefreshLogicStatusRefreshing;
+            }
             if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
                 id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
                 [subclass onViewStatusRefreshing:previous];
             }
             self.refreshHandler(self);
         }  else if (self.pendingRefreshes > 0) {
-            self.logicStatus = LXRefreshLogicStatusRefreshing;
+            if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
+                self.logicStatus = LXRefreshLogicStatusRefreshing;
+            }
         } else {
             if (self.logicStatus == LXRefreshLogicStatusNormal) {
                 self.logicStatus = LXRefreshLogicStatusRefreshing;
@@ -299,6 +299,8 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                     [subclass onViewStatusRefreshing:previous];
                 }
                 self.refreshHandler(self);
+            } else if (self.logicStatus == LXRefreshLogicStatusNoMoreData) {
+                [self super_onNoMoreData];
             } else if (self.logicStatus == LXRefreshLogicStatusRefreshFinished) {
                 [self endRefreshing];
             }
@@ -329,6 +331,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)super_onNoMoreData {
+    LXRFMethodDebug
     if ([self respondsToSelector:@selector(onNoMoreData)]) {
         id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
         [subclass onNoMoreData];
@@ -348,6 +351,10 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 - (BOOL)isRefreshing {
     return _viewStatus == LXRefreshStatusRefreshing || _logicStatus == LXRefreshLogicStatusRefreshing;
+}
+
+- (BOOL)isNoMoreData {
+    return _logicStatus == LXRefreshLogicStatusNoMoreData;
 }
 
 - (void)setIsAutoPosition:(BOOL)isAutoPosition {
@@ -502,9 +509,8 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
 }
 
-- (void)endRefreshingWithNoMoreData {
+- (void)footerHasNoMoreData {
     dispatch_block_t task = ^{
-        [self endRefreshing];
         self.logicStatus = LXRefreshLogicStatusNoMoreData;
         [self super_onNoMoreData];
     };

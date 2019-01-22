@@ -29,6 +29,9 @@
 
 - (void)onViewStatusIdle:(LXRefreshViewStatus)oldStatus {
     self.alpha = 0.f;
+    if (self.isNoMoreData) {
+        return;
+    }
     if (self.isHeader) {
         self.tipLabel.text = @"pull down to refresh";
     }
@@ -44,7 +47,9 @@
     } else {
         self.alpha = percent;
     }
-    if (percent >= 1.f) {
+    if (self.isNoMoreData) {
+        return;
+    } else if (percent >= 1.f) {
         self.tipLabel.text = @"relase to refresh";
     } else {
         if (self.isHeader) {
@@ -56,7 +61,13 @@
     }
 }
 
+- (void)onNoMoreData {
+    self.tipLabel.text = @"No more data";
+    self.indicator.hidden = YES;
+}
+
 - (void)onBecomingToRefreshing:(CGFloat)percent {
+    
 }
 
 @end
