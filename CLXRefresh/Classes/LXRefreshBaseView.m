@@ -284,21 +284,21 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         if (self.isAlwaysTriggerRefreshHandler) {
             self.pendingRefreshes += 1;
             self.logicStatus = LXRefreshLogicStatusRefreshing;
-            self.refreshHandler(self);
             if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
                 id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
                 [subclass onViewStatusRefreshing:previous];
             }
+            self.refreshHandler(self);
         }  else if (self.pendingRefreshes > 0) {
             self.logicStatus = LXRefreshLogicStatusRefreshing;
         } else {
             if (self.logicStatus == LXRefreshLogicStatusNormal) {
                 self.logicStatus = LXRefreshLogicStatusRefreshing;
-                self.refreshHandler(self);
                 if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
                     id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
                     [subclass onViewStatusRefreshing:previous];
                 }
+                self.refreshHandler(self);
             } else if (self.logicStatus == LXRefreshLogicStatusRefreshFinished) {
                 [self endRefreshing];
             }
