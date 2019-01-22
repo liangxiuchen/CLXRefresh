@@ -36,9 +36,13 @@
             return;
         }
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self loadMoreData];
-            [footer endRefreshing];
-            [self.tableView reloadData];
+            if (self.dataSource.count > 10) {
+                [footer footerHasNoMoreData];
+            } else {
+               [self loadMoreData];
+                [footer endRefreshing];
+                [self.tableView reloadData];
+            }
         });
     };
     self.header.refreshHandler = ^(LXRefreshBaseView * _Nonnull header) {
