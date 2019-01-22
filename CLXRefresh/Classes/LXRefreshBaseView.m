@@ -74,6 +74,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     _extendInsets = (UIEdgeInsets){0};
     _viewStatus = LXRefreshStatusInit;
     _logicStatus = LXRefreshLogicStatusNormal;
+    _resetNoMoreDataAfterEndRefreshing = YES;
     BOOL conformed = [self conformsToProtocol:@protocol(LXRefreshViewSubclassProtocol)];
     NSAssert(conformed, @"LXRefreshView's subclass must be conform LXRefreshViewSubclassProtocol");
     if (conformed == NO) {
@@ -494,8 +495,12 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                 }
             }
         } else {
-            if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
+            if (self.resetNoMoreDataAfterEndRefreshing) {
                 self.logicStatus = LXRefreshLogicStatusRefreshFinished;
+            } else {
+                if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
+                    self.logicStatus = LXRefreshLogicStatusRefreshFinished;
+                }
             }
             [self endUIRefreshing];
         }
