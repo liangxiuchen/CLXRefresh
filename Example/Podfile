@@ -7,7 +7,6 @@ target 'CLXRefresh_Example' do
 
   target 'CLXRefresh_Tests' do
     inherit! :search_paths
-
     
   end
 end
