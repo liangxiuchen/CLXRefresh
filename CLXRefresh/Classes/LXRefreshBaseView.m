@@ -300,6 +300,11 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                     [subclass onViewStatusRefreshing:previous];
                 }
                 self.refreshHandler(self);
+            } else if (self.logicStatus == LXRefreshLogicStatusRefreshing) {
+                if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
+                    id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
+                    [subclass onViewStatusRefreshing:previous];
+                }
             } else if (self.logicStatus == LXRefreshLogicStatusNoMoreData) {
                 [self super_onNoMoreData];
             } else if (self.logicStatus == LXRefreshLogicStatusRefreshFinished) {
