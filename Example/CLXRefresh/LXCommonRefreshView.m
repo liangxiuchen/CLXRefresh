@@ -46,16 +46,6 @@
     [self addSubview:self.indicator];
 }
 
-- (void)endRefreshingWithNoMoreData {
-    self.resetNoMoreDataAfterEndRefreshing = NO;
-    [self footerHasNoMoreData];
-    [self endRefreshing];
-}
-- (void)resetNoMoreData {
-    self.resetNoMoreDataAfterEndRefreshing = YES;
-    [self endRefreshing];
-}
-
 //MARK: LXRefreshViewSubclassProtocol
 
 - (void)onViewStatusRefreshing:(LXRefreshViewStatus)oldStatus {

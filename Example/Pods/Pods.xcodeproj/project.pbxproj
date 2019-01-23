@@ -14,6 +14,8 @@
 		6CEDE0D9DDC775F2E3AF14A37495B24D /* CLXRefresh-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD508D00C98B9ACCAEC34D185843902 /* CLXRefresh-dummy.m */; };
 		B9DD173CCF63816A7823FBC483B23784 /* LXRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA612E772F483D2801FA89BAC045828 /* LXRefreshBaseView.m */; };
 		CCDA208683F9CCFD34850CB573B93939 /* Pods-CLXRefresh_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9348B573B2F7D859AC4C1438A2D4D0AA /* Pods-CLXRefresh_Tests-dummy.m */; };
+		DB36B69C21F8469800B38841 /* LXRefreshBaseView+footer.h in Headers */ = {isa = PBXBuildFile; fileRef = DB36B69B21F8469800B38841 /* LXRefreshBaseView+footer.h */; };
+		DB36B69E21F846A900B38841 /* LXRefreshBaseView+footer.m in Sources */ = {isa = PBXBuildFile; fileRef = DB36B69D21F846A800B38841 /* LXRefreshBaseView+footer.m */; };
 		DDCCA32A87074BF65A4C1E1928EE799A /* LXRefreshBaseView.h in Headers */ = {isa = PBXBuildFile; fileRef = CD404C27AEB082BB600CACB861984D59 /* LXRefreshBaseView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 /* End PBXBuildFile section */
 
@@ -46,22 +48,24 @@
 		573962E88CBFB420C8059F0AC8F56072 /* Pods-CLXRefresh_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CLXRefresh_Example-dummy.m"; sourceTree = "<group>"; };
 		72FD505AB3CAECE34DA4A25F132415CF /* Pods-CLXRefresh_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CLXRefresh_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		760A98344ADB054A67C7EB21FF99C15F /* Pods-CLXRefresh_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CLXRefresh_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		8ADB9BA52A9667EAB8E9FEC83171CA60 /* libPods-CLXRefresh_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-CLXRefresh_Example.a"; path = "libPods-CLXRefresh_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8ADB9BA52A9667EAB8E9FEC83171CA60 /* libPods-CLXRefresh_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CLXRefresh_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9348B573B2F7D859AC4C1438A2D4D0AA /* Pods-CLXRefresh_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CLXRefresh_Tests-dummy.m"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9E46C7BB20D3EED956AA51D5AFFCAB11 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E46C7BB20D3EED956AA51D5AFFCAB11 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A241D72B5B900F9355D24ED1F34DC9D0 /* LXRefreshView+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LXRefreshView+Internal.h"; sourceTree = "<group>"; };
 		AB8D80B3A1F3053807B49EFDF6C4EFEA /* Pods-CLXRefresh_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Tests-resources.sh"; sourceTree = "<group>"; };
 		B4F5AC4C3097EF7C9CDA05CFFDFD3220 /* Pods-CLXRefresh_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		BBD508D00C98B9ACCAEC34D185843902 /* CLXRefresh-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CLXRefresh-dummy.m"; sourceTree = "<group>"; };
 		BC52529530F16DB28974230544F2D4CE /* UIScrollView+LXRefresh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LXRefresh.h"; sourceTree = "<group>"; };
-		BC84A042130AF8B1591428EDE055BCB4 /* libCLXRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libCLXRefresh.a; path = libCLXRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC84A042130AF8B1591428EDE055BCB4 /* libCLXRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCLXRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5087BEF563C0022B1927CE9F607144C /* Pods-CLXRefresh_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		CB068DF9AFB0901730A4B5D1D21D37E9 /* libPods-CLXRefresh_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-CLXRefresh_Tests.a"; path = "libPods-CLXRefresh_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC39164C9AF25035ED123A755712770B /* CLXRefresh.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = CLXRefresh.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		CB068DF9AFB0901730A4B5D1D21D37E9 /* libPods-CLXRefresh_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CLXRefresh_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC39164C9AF25035ED123A755712770B /* CLXRefresh.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = CLXRefresh.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		CD404C27AEB082BB600CACB861984D59 /* LXRefreshBaseView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LXRefreshBaseView.h; sourceTree = "<group>"; };
 		D6A36C234AF542A130F86A728142F838 /* Pods-CLXRefresh_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Example-frameworks.sh"; sourceTree = "<group>"; };
-		D761F45E7B4FA2C9419760BF5DE7A9B1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		D761F45E7B4FA2C9419760BF5DE7A9B1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		DB36B69B21F8469800B38841 /* LXRefreshBaseView+footer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LXRefreshBaseView+footer.h"; sourceTree = "<group>"; };
+		DB36B69D21F846A800B38841 /* LXRefreshBaseView+footer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "LXRefreshBaseView+footer.m"; path = "CLXRefresh/Classes/LXRefreshBaseView+footer.m"; sourceTree = "<group>"; };
 		EE37EFCEC7D2079E1064657594252983 /* Pods-CLXRefresh_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CLXRefresh_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		F3CC8AE3B34E29BAD63D30B2F1346438 /* Pods-CLXRefresh_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +115,7 @@
 			children = (
 				1DA612E772F483D2801FA89BAC045828 /* LXRefreshBaseView.m */,
 				180D62C9210A8FCC1A7C3AC0804F1FF6 /* UIScrollView+LXRefresh.m */,
+				DB36B69D21F846A800B38841 /* LXRefreshBaseView+footer.m */,
 				4B54B574910C5CF16F487428DC48AB39 /* Headers */,
 				AA747BCFDD811875FF18A6DB9A8C1590 /* Pod */,
 				B9EB91380A040AFF2F30B889BB8004B5 /* Support Files */,
@@ -124,8 +129,8 @@
 			children = (
 				CD404C27AEB082BB600CACB861984D59 /* LXRefreshBaseView.h */,
 				BC52529530F16DB28974230544F2D4CE /* UIScrollView+LXRefresh.h */,
+				DB36B69B21F8469800B38841 /* LXRefreshBaseView+footer.h */,
 			);
-			name = Public;
 			path = Public;
 			sourceTree = "<group>";
 		};
@@ -163,7 +168,6 @@
 			children = (
 				A241D72B5B900F9355D24ED1F34DC9D0 /* LXRefreshView+Internal.h */,
 			);
-			name = Private;
 			path = Private;
 			sourceTree = "<group>";
 		};
@@ -239,6 +243,7 @@
 				DDCCA32A87074BF65A4C1E1928EE799A /* LXRefreshBaseView.h in Headers */,
 				3BCAE24130DC85582BFFF69C6E75C3D0 /* LXRefreshView+Internal.h in Headers */,
 				18C2F59C2D30183CB125D34DD2734791 /* UIScrollView+LXRefresh.h in Headers */,
+				DB36B69C21F8469800B38841 /* LXRefreshBaseView+footer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB36B69E21F846A900B38841 /* LXRefreshBaseView+footer.m in Sources */,
 				6CEDE0D9DDC775F2E3AF14A37495B24D /* CLXRefresh-dummy.m in Sources */,
 				B9DD173CCF63816A7823FBC483B23784 /* LXRefreshBaseView.m in Sources */,
 				19D3F17E67CEADE43EEC1A7FCA7331C1 /* UIScrollView+LXRefresh.m in Sources */,

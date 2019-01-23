@@ -63,8 +63,7 @@
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if (self.rowCount >= 20) {
-                LXCommonRefreshView *f = (LXCommonRefreshView *)footer;
-                [f endRefreshingWithNoMoreData];
+                [footer endRefreshingWithNoMoreData];
             } else {
                 [self loadMore];
                 [footer endRefreshing];
@@ -77,8 +76,7 @@
 
 - (void)refresh {
     self.rowCount = 10;
-    LXCommonRefreshView *f = (LXCommonRefreshView *)(self.tableView.lx_refreshFooterView);
-    [f resetNoMoreData];
+    [self.tableView.lx_refreshFooterView resetNoMoreData];
 }
 
 - (void)loadMore {
