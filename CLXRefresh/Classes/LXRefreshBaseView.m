@@ -482,12 +482,15 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         if (self.pendingRefreshes > 0) {
             self.pendingRefreshes -= 1;
             self.pendingRefreshes = self.pendingRefreshes < 0 ? 0 : self.pendingRefreshes;
-            if (self.pendingRefreshes <= 0) {
-                if (self.logicStatus == LXRefreshLogicStatusNoMoreData) {
-                    [self endUIRefreshing];
-                } else {
+            if (self.pendingRefreshes == 0) {
+                if (self.resetNoMoreDataAfterEndRefreshing) {
                     self.logicStatus = LXRefreshLogicStatusRefreshFinished;
                     [self endUIRefreshing];
+                } else {
+                    if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
+                        self.logicStatus = LXRefreshLogicStatusRefreshFinished;
+                        [self endUIRefreshing];
+                    }
                 }
             } else {
                 if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
@@ -497,12 +500,13 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         } else {
             if (self.resetNoMoreDataAfterEndRefreshing) {
                 self.logicStatus = LXRefreshLogicStatusRefreshFinished;
+                [self endUIRefreshing];
             } else {
                 if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
                     self.logicStatus = LXRefreshLogicStatusRefreshFinished;
+                    [self endUIRefreshing];
                 }
             }
-            [self endUIRefreshing];
         }
     };
     if (NSThread.isMainThread) {
