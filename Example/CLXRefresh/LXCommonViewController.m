@@ -60,10 +60,16 @@
         if (self == nil) {
             return;
         }
-        [self loadMore];
+        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [footer endRefreshing];
-            [self.tableView reloadData];
+            if (self.rowCount >= 20) {
+                LXCommonRefreshView *f = (LXCommonRefreshView *)footer;
+                [f endRefreshingWithNoMoreData];
+            } else {
+                [self loadMore];
+                [footer endRefreshing];
+                [self.tableView reloadData];
+            }
         });
     };
     self.tableView.lx_refreshFooterView = refreshFooter;
@@ -71,6 +77,8 @@
 
 - (void)refresh {
     self.rowCount = 10;
+    LXCommonRefreshView *f = (LXCommonRefreshView *)(self.tableView.lx_refreshFooterView);
+    [f resetNoMoreData];
 }
 
 - (void)loadMore {

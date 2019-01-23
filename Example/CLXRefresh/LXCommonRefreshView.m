@@ -46,6 +46,16 @@
     [self addSubview:self.indicator];
 }
 
+- (void)endRefreshingWithNoMoreData {
+    self.resetNoMoreDataAfterEndRefreshing = NO;
+    [self footerHasNoMoreData];
+    [self endRefreshing];
+}
+- (void)resetNoMoreData {
+    self.resetNoMoreDataAfterEndRefreshing = YES;
+    [self endRefreshing];
+}
+
 //MARK: LXRefreshViewSubclassProtocol
 
 - (void)onViewStatusRefreshing:(LXRefreshViewStatus)oldStatus {
@@ -59,7 +69,10 @@
 }
 
 - (void)onPullingToRefreshing:(CGFloat)percent {
-    if (self.isRefreshing) {
+    if (self.isNoMoreData) {
+        self.alpha = 1.f;
+        return;
+    } else if (self.isRefreshing) {
         self.alpha = 1.f;
     } else {
         self.alpha = percent;
@@ -76,6 +89,11 @@
     } else {
         self.title.text = pullToRefreshDescription;
     }
+}
+
+- (void)onNoMoreData {
+    self.title.text = self.footerNomoreDataDescription;
+    self.indicator.hidden = YES;
 }
 
 @end
