@@ -43,8 +43,8 @@
         if (self == nil) {
             return;
         }
-        [self refresh];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self refresh];
             [header endRefreshing];
             [self.tableView reloadData];
         });

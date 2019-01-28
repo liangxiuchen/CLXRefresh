@@ -10,7 +10,6 @@
 
 @interface LXCommonRefreshView()
 
-@property (nonatomic, strong) UILabel *title;
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
 
 @end

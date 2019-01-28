@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXCommonRefreshView : LXRefreshBaseView <LXRefreshViewSubclassProtocol>
 
+@property (nonatomic, strong, readonly) UILabel *title;
+
 @property (nonatomic, copy) NSString *loadingDescription;
 @property (nonatomic, copy) NSString *headerPullToRefreshDescription;
 @property (nonatomic, copy) NSString *footerPullToRefreshDescription;
