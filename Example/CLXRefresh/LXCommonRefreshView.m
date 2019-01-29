@@ -21,12 +21,7 @@
     self = [super initWithFrame:CGRectZero];
     if (self) {
         [self config];
-        self.loadingDescription = @"正在获取数据...";
-        self.headerPullToRefreshDescription = @"下拉刷新数据";
-        self.footerPullToRefreshDescription = @"上拉加载更多";
-        self.headerReleaseToRefreshDescription = @"松开刷新数据";
-        self.footerReleaseToRefreshDescription = @"松开加载更多";
-        self.footerNomoreDataDescription = @"没有更多数据";
+        [self configDescription];
     }
     return self;
 }
@@ -43,6 +38,25 @@
     self.indicator.frame = frame;
     self.indicator.hidesWhenStopped = YES;
     [self addSubview:self.indicator];
+}
+
+- (void)configDescription {
+    self.loadingDescription = @"正在获取数据...";
+    self.headerPullToRefreshDescription = @"下拉刷新数据";
+    self.footerPullToRefreshDescription = @"上拉加载更多";
+    self.headerReleaseToRefreshDescription = @"松开刷新数据";
+    self.footerReleaseToRefreshDescription = @"松开加载更多";
+    self.footerNomoreDataDescription = @"没有更多数据";
+}
+
+- (instancetype)initWithFrame:(CGRect)frame RefreshHandler:(LXRefreshHandler)handler {
+    self = [super initWithFrame:CGRectZero];
+    if (self) {
+        [self config];
+        [self configDescription];
+        self.refreshHandler = handler;
+    }
+    return self;
 }
 
 //MARK: LXRefreshViewSubclassProtocol
