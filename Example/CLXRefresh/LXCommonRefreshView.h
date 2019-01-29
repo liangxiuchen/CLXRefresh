@@ -16,11 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) UILabel *title;
 
 @property (nonatomic, copy) NSString *loadingDescription;
-@property (nonatomic, copy) NSString *headerPullToRefreshDescription;
-@property (nonatomic, copy) NSString *footerPullToRefreshDescription;
-@property (nonatomic, copy) NSString *headerReleaseToRefreshDescription;
-@property (nonatomic, copy) NSString *footerReleaseToRefreshDescription;
-@property (nonatomic, copy) NSString *footerNomoreDataDescription;
+@property (nonatomic, copy) NSString *pullToRefreshDescription;
+@property (nonatomic, copy) NSString *releaseToRefreshDescription;
+@property (nonatomic, copy) NSString *nomoreDataDescription;
 
 @end
 

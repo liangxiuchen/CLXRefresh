@@ -12,6 +12,12 @@
 
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
 
+@property (nonatomic, copy) NSString *headerPullToRefreshDescription;
+@property (nonatomic, copy) NSString *footerPullToRefreshDescription;
+@property (nonatomic, copy) NSString *headerReleaseToRefreshDescription;
+@property (nonatomic, copy) NSString *footerReleaseToRefreshDescription;
+@property (nonatomic, copy) NSString *footerNomoreDataDescription;
+
 @end
 
 @implementation LXCommonRefreshView
@@ -20,6 +26,7 @@
 {
     self = [super initWithFrame:CGRectZero];
     if (self) {
+        _title = [[UILabel alloc] init];
         [self config];
         [self configDescription];
     }
@@ -29,7 +36,7 @@
 - (void)config {
     CGFloat width = UIScreen.mainScreen.bounds.size.width;
     self.frame = CGRectMake(0, 0, width, 50.0);
-    self.title = [[UILabel alloc] initWithFrame:CGRectMake(0, 25.0, width, 25.0)];
+    self.title.frame = CGRectMake(0, 25.0, width, 25.0);
     self.title.textAlignment = NSTextAlignmentCenter;
     self.title.textColor = [UIColor lightGrayColor];
     [self addSubview:self.title];
@@ -50,11 +57,23 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame RefreshHandler:(LXRefreshHandler)handler {
-    self = [super initWithFrame:CGRectZero];
+    self = [self init];
     if (self) {
+        self.refreshHandler = handler;
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    return [self init];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        _title = [[UILabel alloc] init];
         [self config];
         [self configDescription];
-        self.refreshHandler = handler;
     }
     return self;
 }
@@ -81,11 +100,25 @@
         self.alpha = percent;
     }
     
-    NSString *pullToRefreshDescription = self.headerPullToRefreshDescription;
-    NSString *releaseToRefreshDescription = self.headerReleaseToRefreshDescription;
-    if (self.isFooter) {
-        pullToRefreshDescription = self.footerPullToRefreshDescription;
-        releaseToRefreshDescription = self.footerReleaseToRefreshDescription;
+    NSString *pullToRefreshDescription = nil;
+    NSString *releaseToRefreshDescription = nil;
+    if (self.pullToRefreshDescription) {
+        pullToRefreshDescription = self.pullToRefreshDescription;
+    } else {
+        if (self.isFooter) {
+            pullToRefreshDescription = self.footerPullToRefreshDescription;
+        } else {
+            pullToRefreshDescription = self.headerPullToRefreshDescription;
+        }
+    }
+    if (self.releaseToRefreshDescription) {
+        releaseToRefreshDescription = self.releaseToRefreshDescription;
+    } else {
+        if (self.isFooter) {
+            releaseToRefreshDescription = self.footerReleaseToRefreshDescription;
+        } else {
+            releaseToRefreshDescription = self.headerReleaseToRefreshDescription;
+        }
     }
     if (percent >= 1.f) {
         self.title.text = releaseToRefreshDescription;
@@ -95,7 +128,7 @@
 }
 
 - (void)onNoMoreData {
-    self.title.text = self.footerNomoreDataDescription;
+    self.title.text = self.nomoreDataDescription != nil ? self.nomoreDataDescription :  self.footerNomoreDataDescription;
     self.indicator.hidden = YES;
 }
 

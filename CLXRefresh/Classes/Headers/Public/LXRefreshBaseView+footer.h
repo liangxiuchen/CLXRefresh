@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LXRefreshBaseView (footer)
 
-/**停止刷新且没有更多数据*/
+/**停止刷新且没有更多数据(再修改状态之前上拉不会再调用block)*/
 - (void)endRefreshingWithNoMoreData;
 /**重置没有更多的数据（消除没有更多数据的状态）*/
 - (void)resetNoMoreData;
