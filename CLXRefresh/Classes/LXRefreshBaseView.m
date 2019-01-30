@@ -645,7 +645,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 - (void)detectPullingToRefreshing:(NSValue *)newValue {
     CGFloat offset_y = newValue.CGPointValue.y;
-    if (self.isHeader && self.scrollViewIsTracking) {
+    if (self.isHeader && self.scrollView.isDragging) {
         CGFloat total = self.statusMetric.startMetric - self.statusMetric.refreshMetric;
         if (offset_y <= self.statusMetric.refreshMetric) {
             [self super_onPullingToRefreshing:1.f];
@@ -655,7 +655,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         }
     }
     
-    if (self.isFooter && self.scrollViewIsTracking) {
+    if (self.isFooter && self.scrollView.isDragging) {
         if (self.isFullScreen) {
             offset_y += self.scrollView.bounds.size.height;
         } else {
