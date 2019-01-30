@@ -84,6 +84,14 @@
     return self;
 }
 
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    CGRect titleFrame = self.title.frame;
+    titleFrame.size.width = frame.size.width;
+    titleFrame.size.height = frame.size.height - 25.0;
+    self.title.frame = titleFrame;
+}
+
 //MARK: LXRefreshViewSubclassProtocol
 
 - (void)onViewStatusRefreshing:(LXRefreshViewStatus)oldStatus {
