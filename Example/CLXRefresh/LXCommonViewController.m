@@ -36,8 +36,6 @@
 }
 
 - (void)configRefreshHeader {
-    [self anotherConfigRefreshHeader];
-    return;
 //    LXCommonRefreshView *refreshHeader = [[LXCommonRefreshView alloc] initWithFrame:CGRectMake(0, 0, 320, 90)];
     LXCommonRefreshView *refreshHeader = [[LXCommonRefreshView alloc] init];
     __weak __typeof(self) wself = self;
