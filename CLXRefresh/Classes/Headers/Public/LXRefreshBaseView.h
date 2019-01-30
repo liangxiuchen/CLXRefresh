@@ -74,7 +74,9 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 #pragma mark -
 @protocol LXRefreshHeaderProtocol<LXRefreshBaseProtocol>
 
-//for extend
+@optional
+//released to idle
+- (void)onBecomingToIdle:(CGFloat)percent;
 
 @end
 #pragma mark -
@@ -104,8 +106,6 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 - (void)onPullingToRefreshing:(CGFloat)percent;
 //released to refreshing
 - (void)onBecomingToRefreshing:(CGFloat)percent;
-//released to idle
-- (void)onBecomingToIdle:(CGFloat)percent;
 
 @end
 
