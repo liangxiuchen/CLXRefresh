@@ -98,6 +98,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)onPanGestureStateChanged:(NSDictionary<NSKeyValueChangeKey,id> * _Nullable)change keyPath:(NSString * _Nullable)keyPath kvoContext:(void *)context {
+    if (context != LXRefreshHeaderViewKVOContext && context != LXRefreshFooterViewKVOContext) {
+        return;
+    }
     if (![keyPath isEqualToString:@"state"]) {
         return;
     }
