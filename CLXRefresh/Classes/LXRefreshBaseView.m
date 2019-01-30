@@ -282,7 +282,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         }
     }
     if ([self respondsToSelector:@selector(onBecomingToIdle:)]) {
-        id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
+        id<LXRefreshHeaderProtocol> subclass = (id<LXRefreshHeaderProtocol>)self;
         [subclass onBecomingToIdle:percent];
     }
 }
