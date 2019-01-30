@@ -550,7 +550,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         if (self.isExtendContentInsetsForHeaderHover) {
             LXRFMethodDebug
         }
-        [self shrinkExtendedTopInsets];
+        [self shrinkExtendedTopInsetsWith:^(BOOL finished) {
+            [self super_onViewStatusIdle];
+        }];
     } else if (self.isFooter) {
         if (self.scrollViewIsTracking  && self.scrollView.isDragging) {
             return;
@@ -585,7 +587,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
 }
 
-- (void)shrinkExtendedTopInsets {
+- (void)shrinkExtendedTopInsetsWith:(void(^)(BOOL finished))completion {
     if (self.isHeader == NO) {
         return;
     }
@@ -601,7 +603,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             self.scrollView.contentInset = insets;
             CGPoint toOffset = self.scrollView.contentOffset;
             self.scrollView.contentOffset = originalOffset;
-            [self.scrollView setContentOffset:toOffset animated:YES];
+            [UIView animateWithDuration:CATransaction.animationDuration animations:^{
+                self.scrollView.contentOffset = toOffset;
+            } completion:completion];
         }
     });
 }
@@ -821,9 +825,6 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 // called when setContentOffset/scrollRectVisible:animated: finishes. not called if not animating
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    if (self.statusMetric.startMetric <= scrollView.contentOffset.y && self.isHeader) {
-        [self super_onViewStatusIdle];
-    }
     [self dispatchSelector:@selector(scrollViewDidEndScrollingAnimation:) execute:^(id<UIScrollViewDelegate> delegate) {
         [delegate scrollViewDidEndScrollingAnimation:scrollView];
     }];
