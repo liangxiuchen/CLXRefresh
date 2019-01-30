@@ -23,11 +23,22 @@
 @implementation LXCommonRefreshView
 
 - (void)config {
-    CGFloat width = UIScreen.mainScreen.bounds.size.width;
-    self.frame = CGRectMake(0, 0, width, 50.0);
-    self.title.frame = CGRectMake(0, 25.0, width, 25.0);
+    CGFloat heigth = 0.0;
+    CGFloat width = 0.0;
+    if (self.frame.size.width <= 20.0) {
+        self.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 50.0);
+    }
+    if (self.frame.size.height >= 50.0) {
+        heigth = self.frame.size.height;
+    } else {
+        CGRect frame = self.frame;
+        frame.size.height = 50.0;
+    }
+    width = self.frame.size.width;
+    self.title.frame = CGRectMake(0, 25.0, width, heigth - 25.0);
     self.title.textAlignment = NSTextAlignmentCenter;
     self.title.textColor = [UIColor lightGrayColor];
+    self.title.numberOfLines = 0;
     [self addSubview:self.title];
     self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     CGRect frame = CGRectMake((width - 20.0) / 2.0, 5.0, 20.0, 20.0);
@@ -51,6 +62,14 @@
         _title = [[UILabel alloc] init];
         [self config];
         [self configDescription];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame RefreshHandler:(LXRefreshHandler)handler {
+    self = [self initWithFrame:frame];
+    if (self) {
+        self.refreshHandler = [handler copy];
     }
     return self;
 }

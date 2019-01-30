@@ -36,6 +36,9 @@
 }
 
 - (void)configRefreshHeader {
+    [self anotherConfigRefreshHeader];
+    return;
+//    LXCommonRefreshView *refreshHeader = [[LXCommonRefreshView alloc] initWithFrame:CGRectMake(0, 0, 320, 90)];
     LXCommonRefreshView *refreshHeader = [[LXCommonRefreshView alloc] init];
     __weak __typeof(self) wself = self;
     refreshHeader.refreshHandler = ^(LXRefreshBaseView * _Nonnull header) {
@@ -49,6 +52,23 @@
             [self.tableView reloadData];
         });
     };
+//    refreshHeader.pullToRefreshDescription = @"这里就是需要很多字来天聪的，不填充怎么能够让显示不出来呢，显示不出来了吧应该少时诵诗书所少时诵诗书";
+    self.tableView.lx_refreshHeaderView = refreshHeader;
+}
+
+- (void)anotherConfigRefreshHeader {
+    __weak __typeof(self) wself = self;
+    LXCommonRefreshView *refreshHeader = [[LXCommonRefreshView alloc] initWithFrame:CGRectZero RefreshHandler:^(LXRefreshBaseView * _Nonnull header) {
+        __strong __typeof(self) self = wself;
+        if (self == nil) {
+            return;
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self refresh];
+            [header endRefreshing];
+            [self.tableView reloadData];
+        });
+    }];
     self.tableView.lx_refreshHeaderView = refreshHeader;
 }
 

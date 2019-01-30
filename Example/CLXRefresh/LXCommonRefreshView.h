@@ -20,8 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *releaseToRefreshDescription;
 @property (nonatomic, copy) NSString *nomoreDataDescription;
 
-- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
-- (instancetype)initWithFrame:(CGRect)frame RefreshHandler:(LXRefreshHandler)handler NS_UNAVAILABLE;
+/**宽高分别不能小于20、50*/
+- (instancetype)initWithFrame:(CGRect)frame;
+/**宽高分别不能小于20、50*/
+- (instancetype)initWithFrame:(CGRect)frame RefreshHandler:(LXRefreshHandler)handler;
 
 @end
 
