@@ -77,6 +77,26 @@
                                             <segue destination="xD3-5O-b4j" kind="show" id="2wz-5e-WD4"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="GV6-jU-4OK" style="IBUITableViewCellStyleDefault" id="TiL-iB-jlL">
+                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TiL-iB-jlL" id="Ji3-vi-Ifp">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="commonTableView Demo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GV6-jU-4OK">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="GC2-NV-brF" kind="show" id="gbD-RH-X6K"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -181,7 +201,7 @@
                     </connections>
                 </view>
             </objects>
-            <point key="canvasLocation" x="-164" y="-478"/>
+            <point key="canvasLocation" x="-198" y="-705"/>
         </scene>
         <!--CollectionView Demo-->
         <scene sceneID="fRn-ni-kSO">
@@ -288,7 +308,60 @@
                     </connections>
                 </view>
             </objects>
-            <point key="canvasLocation" x="-164" y="374"/>
+            <point key="canvasLocation" x="-198" y="-9"/>
+        </scene>
+        <!--commonView-->
+        <scene sceneID="onb-FR-6zW">
+            <objects>
+                <viewController storyboardIdentifier="LXCommonViewController" title="commonView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GC2-NV-brF" customClass="LXCommonViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t10-5c-1kE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gg4-zW-fNg">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" textLabel="rtv-kg-teH" style="IBUITableViewCellStyleDefault" id="njB-sq-U8G">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="njB-sq-U8G" id="ogb-Jf-vel">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rtv-kg-teH">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="GC2-NV-brF" id="CHZ-E4-bFa"/>
+                                    <outlet property="delegate" destination="GC2-NV-brF" id="Req-U3-jvs"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Gg4-zW-fNg" firstAttribute="top" secondItem="Tu9-X3-m3D" secondAttribute="top" id="Hc5-dy-5mN"/>
+                            <constraint firstItem="Gg4-zW-fNg" firstAttribute="trailing" secondItem="Tu9-X3-m3D" secondAttribute="trailing" id="W5I-4z-K0d"/>
+                            <constraint firstItem="Gg4-zW-fNg" firstAttribute="bottom" secondItem="Tu9-X3-m3D" secondAttribute="bottom" id="YRX-mt-C8N"/>
+                            <constraint firstItem="Gg4-zW-fNg" firstAttribute="leading" secondItem="Tu9-X3-m3D" secondAttribute="leading" id="YZ4-C0-Szc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Tu9-X3-m3D"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Gg4-zW-fNg" id="9uN-QJ-FdM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eCx-qa-hRA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-199" y="655"/>
         </scene>
     </scenes>
     <resources>
