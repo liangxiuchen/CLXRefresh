@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXCommonRefreshView : LXRefreshBaseView <LXRefreshViewSubclassProtocol>
+@interface LXCommonRefreshView : LXRefreshBaseView <LXRefreshViewProtocol>
 
 @property (nonatomic, strong, readonly) UILabel *title;
 
@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *pullToRefreshDescription;
 @property (nonatomic, copy) NSString *releaseToRefreshDescription;
 @property (nonatomic, copy) NSString *nomoreDataDescription;
+
+- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
+- (instancetype)initWithFrame:(CGRect)frame RefreshHandler:(LXRefreshHandler)handler NS_UNAVAILABLE;
 
 @end
 

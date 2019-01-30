@@ -22,17 +22,6 @@
 
 @implementation LXCommonRefreshView
 
-- (instancetype)init
-{
-    self = [super initWithFrame:CGRectZero];
-    if (self) {
-        _title = [[UILabel alloc] init];
-        [self config];
-        [self configDescription];
-    }
-    return self;
-}
-
 - (void)config {
     CGFloat width = UIScreen.mainScreen.bounds.size.width;
     self.frame = CGRectMake(0, 0, width, 50.0);
@@ -43,7 +32,7 @@
     self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     CGRect frame = CGRectMake((width - 20.0) / 2.0, 5.0, 20.0, 20.0);
     self.indicator.frame = frame;
-    self.indicator.hidesWhenStopped = YES;
+    self.indicator.hidesWhenStopped = NO;
     [self addSubview:self.indicator];
 }
 
@@ -56,16 +45,14 @@
     self.footerNomoreDataDescription = @"没有更多数据";
 }
 
-- (instancetype)initWithFrame:(CGRect)frame RefreshHandler:(LXRefreshHandler)handler {
-    self = [self init];
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
-        self.refreshHandler = handler;
+        _title = [[UILabel alloc] init];
+        [self config];
+        [self configDescription];
     }
     return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    return [self init];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {

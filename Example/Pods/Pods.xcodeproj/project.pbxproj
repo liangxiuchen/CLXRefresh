@@ -7,34 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0DD519BFACADA09346C4A4608B41EE7D /* Pods-CLXRefresh_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 573962E88CBFB420C8059F0AC8F56072 /* Pods-CLXRefresh_Example-dummy.m */; };
-		14F67DE9AFD796DD3AA6309CBC2350B9 /* LXRefreshBaseView+footer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA3B110B17CD941B094A0A631FDFE2E /* LXRefreshBaseView+footer.m */; };
-		3253CF730275B2EDE9E3E072B5CE1B26 /* CLXRefresh-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3ACBF05E963EDE4B4EDD515572D8E /* CLXRefresh-dummy.m */; };
-		339D021D7E0F1571F477F6C7D3B57CEF /* UIScrollView+LXRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = F7A67F0BBB8682C9EC4194CF97FB61C7 /* UIScrollView+LXRefresh.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		42A9DE2888E3F125DB1EFA61381EBD35 /* LXRefreshBaseView.h in Headers */ = {isa = PBXBuildFile; fileRef = 603D68C8A1324A8B68B083C3F60D2E83 /* LXRefreshBaseView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		596741A7D88D91E5758270F9E465481F /* LXRefreshView+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = E0821D69B28C14BAC80C8CFD7A123A97 /* LXRefreshView+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A069B8019554AE45F6DA914867C2732A /* UIScrollView+LXRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E26922F98B5E87CB007BCF6EAB401B /* UIScrollView+LXRefresh.m */; };
-		A23E2C6F9FEDA5FE35441C041C73E877 /* LXRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = C695E005CF810E07793F83C4AC1D58B2 /* LXRefreshBaseView.m */; };
-		CD1BB5D05BF981D04FF5A8026ECB0AB8 /* Pods-CLXRefresh_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9348B573B2F7D859AC4C1438A2D4D0AA /* Pods-CLXRefresh_Tests-dummy.m */; };
-		E8529AE481ADE17E3278F3621E67E1BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		EBAB130DE62ED3E06E24BFA87F919797 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		F7140C42E46E85F1AC389E82F512AC73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		FE99FD8E0EC329A1F4336B97DA995DAE /* LXRefreshBaseView+footer.h in Headers */ = {isa = PBXBuildFile; fileRef = EB5ED0A623515884C241253C3154496D /* LXRefreshBaseView+footer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		01327F5768BCEFAE39E1D1BC7BA9EBD9 /* LXRefreshView+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = E0821D69B28C14BAC80C8CFD7A123A97 /* LXRefreshView+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1203109BED79623E2C4B481AB4DDB074 /* Pods-CLXRefresh_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 573962E88CBFB420C8059F0AC8F56072 /* Pods-CLXRefresh_Example-dummy.m */; };
+		26BEE1B5D0EB9F69619EAB91BFD064E1 /* UIScrollView+LXRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = F7A67F0BBB8682C9EC4194CF97FB61C7 /* UIScrollView+LXRefresh.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		32A08E65199999B3BEF436DC20F8254C /* LXRefreshBaseView+footer.h in Headers */ = {isa = PBXBuildFile; fileRef = EB5ED0A623515884C241253C3154496D /* LXRefreshBaseView+footer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		399BC8F8BC191807D1A91DF13D30DF17 /* LXRefreshBaseView.h in Headers */ = {isa = PBXBuildFile; fileRef = 603D68C8A1324A8B68B083C3F60D2E83 /* LXRefreshBaseView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		AC4B856CFED09C6206A66FD42175EADC /* UIScrollView+LXRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E26922F98B5E87CB007BCF6EAB401B /* UIScrollView+LXRefresh.m */; };
+		B4E4D0F810B8FCAA2FAFACF20E26853F /* LXRefreshBaseView+footer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA3B110B17CD941B094A0A631FDFE2E /* LXRefreshBaseView+footer.m */; };
+		CCDA208683F9CCFD34850CB573B93939 /* Pods-CLXRefresh_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9348B573B2F7D859AC4C1438A2D4D0AA /* Pods-CLXRefresh_Tests-dummy.m */; };
+		E9C57C437AD521983C25E0B1599A463F /* LXRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = C695E005CF810E07793F83C4AC1D58B2 /* LXRefreshBaseView.m */; };
+		EB7ECE3FF85469EE592E3E78E7E7AA79 /* CLXRefresh-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3ACBF05E963EDE4B4EDD515572D8E /* CLXRefresh-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		213752B7CFC3D0BE6DE78A300F73A55A /* PBXContainerItemProxy */ = {
+		42A7CC7F9909DD9C609BF21AB62DEA7E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 767B8719D094B2440FBE11F992F62603;
+			remoteGlobalIDString = 9E8EF98CF4C2DD348E35D1B72A5D2900;
 			remoteInfo = CLXRefresh;
 		};
-		BA3D510E6B40637687A64032BF651BC6 /* PBXContainerItemProxy */ = {
+		9A8109EC0A82EF0FA165F1B0F3AEB663 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C77D0970B5723123F437D8191DE0A1A1;
+			remoteGlobalIDString = 0538E238365850ABAC7B86181B381C12;
 			remoteInfo = "Pods-CLXRefresh_Example";
 		};
 /* End PBXContainerItemProxy section */
@@ -48,7 +45,6 @@
 		4D4CDF837514C6D971C58F8BC4DB3538 /* Pods-CLXRefresh_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		573962E88CBFB420C8059F0AC8F56072 /* Pods-CLXRefresh_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CLXRefresh_Example-dummy.m"; sourceTree = "<group>"; };
 		603D68C8A1324A8B68B083C3F60D2E83 /* LXRefreshBaseView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LXRefreshBaseView.h; sourceTree = "<group>"; };
-		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		6A62EA2591C92EDF1D65404A863C00DB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		72FD505AB3CAECE34DA4A25F132415CF /* Pods-CLXRefresh_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CLXRefresh_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		760A98344ADB054A67C7EB21FF99C15F /* Pods-CLXRefresh_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CLXRefresh_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -75,33 +71,37 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7D75A6B6332DDB730BF4A4BCECF541C5 /* Frameworks */ = {
+		1FB67B171BF6F2E79C62BE8F1EC2F2C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7140C42E46E85F1AC389E82F512AC73 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B92BB71B614607D53B190D601742B844 /* Frameworks */ = {
+		2F0001DC3F02704CFBBDE5158D76BF50 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8529AE481ADE17E3278F3621E67E1BF /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D1A91D10A6DC9031C29535EDB0E78C4F /* Frameworks */ = {
+		91ADBB4347EDC117BB932B9A9C0783FF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBAB130DE62ED3E06E24BFA87F919797 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3E6B8207A9A33364E145E95CB5DE0AB8 /* Public */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,7 +169,7 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				6ED0D73C35DB0209A6D13BE6AC40FF80 /* Development Pods */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */,
 				487167CA757E52904A27F018CC67EE28 /* Products */,
 				4C72ACC1B69B918CBBDACC9C22D2B470 /* Targets Support Files */,
 			);
@@ -211,22 +211,6 @@
 			path = "Target Support Files/Pods-CLXRefresh_Example";
 			sourceTree = "<group>";
 		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
 		F699AA41012042CDDD458BE02EB7A6D7 /* Pods-CLXRefresh_Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,27 +238,61 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		5FA22CE001DFFBB95DBB264BD0C71B00 /* Headers */ = {
+		94365DD6D5748014B1FDD50BBC5AC4BD /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE99FD8E0EC329A1F4336B97DA995DAE /* LXRefreshBaseView+footer.h in Headers */,
-				42A9DE2888E3F125DB1EFA61381EBD35 /* LXRefreshBaseView.h in Headers */,
-				596741A7D88D91E5758270F9E465481F /* LXRefreshView+Internal.h in Headers */,
-				339D021D7E0F1571F477F6C7D3B57CEF /* UIScrollView+LXRefresh.h in Headers */,
+				32A08E65199999B3BEF436DC20F8254C /* LXRefreshBaseView+footer.h in Headers */,
+				399BC8F8BC191807D1A91DF13D30DF17 /* LXRefreshBaseView.h in Headers */,
+				01327F5768BCEFAE39E1D1BC7BA9EBD9 /* LXRefreshView+Internal.h in Headers */,
+				26BEE1B5D0EB9F69619EAB91BFD064E1 /* UIScrollView+LXRefresh.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		767B8719D094B2440FBE11F992F62603 /* CLXRefresh */ = {
+		0538E238365850ABAC7B86181B381C12 /* Pods-CLXRefresh_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2E33E5430C12A99DA3FE27DAE6ADD1F9 /* Build configuration list for PBXNativeTarget "CLXRefresh" */;
+			buildConfigurationList = 2FFA1115EDC2275D03EFAF15B3EF9B69 /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Example" */;
 			buildPhases = (
-				FE4E5112DD38FE672D6C7AE41537D62A /* Sources */,
-				7D75A6B6332DDB730BF4A4BCECF541C5 /* Frameworks */,
-				5FA22CE001DFFBB95DBB264BD0C71B00 /* Headers */,
+				A5F8462260C223736C79E100664AA957 /* Sources */,
+				91ADBB4347EDC117BB932B9A9C0783FF /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CDB599106E702E9B186254C99EA0C848 /* PBXTargetDependency */,
+			);
+			name = "Pods-CLXRefresh_Example";
+			productName = "Pods-CLXRefresh_Example";
+			productReference = 8ADB9BA52A9667EAB8E9FEC83171CA60 /* libPods-CLXRefresh_Example.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		27F94C1E687B6EBAC20B3AB796ADC759 /* Pods-CLXRefresh_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34B5E020242D0EFF65CB5694B7F57590 /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Tests" */;
+			buildPhases = (
+				4E0A921292744044BF1A7F26AB8C28F2 /* Sources */,
+				1FB67B171BF6F2E79C62BE8F1EC2F2C8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8B6EF83F21410F1FBBC72443786C0BDA /* PBXTargetDependency */,
+			);
+			name = "Pods-CLXRefresh_Tests";
+			productName = "Pods-CLXRefresh_Tests";
+			productReference = CB068DF9AFB0901730A4B5D1D21D37E9 /* libPods-CLXRefresh_Tests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		9E8EF98CF4C2DD348E35D1B72A5D2900 /* CLXRefresh */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70556D6E3EEE267644D68871EA580526 /* Build configuration list for PBXNativeTarget "CLXRefresh" */;
+			buildPhases = (
+				1F191FDB57BB4DA7CE2D324F1B989330 /* Sources */,
+				2F0001DC3F02704CFBBDE5158D76BF50 /* Frameworks */,
+				94365DD6D5748014B1FDD50BBC5AC4BD /* Headers */,
 			);
 			buildRules = (
 			);
@@ -283,40 +301,6 @@
 			name = CLXRefresh;
 			productName = CLXRefresh;
 			productReference = BC84A042130AF8B1591428EDE055BCB4 /* libCLXRefresh.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		C77D0970B5723123F437D8191DE0A1A1 /* Pods-CLXRefresh_Example */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E0CC4188A6D0D13C21131BD62A47C552 /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Example" */;
-			buildPhases = (
-				F681AC66CE80688EAC91811289011542 /* Sources */,
-				B92BB71B614607D53B190D601742B844 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				740683B606637F4D8D86B27B549A47B9 /* PBXTargetDependency */,
-			);
-			name = "Pods-CLXRefresh_Example";
-			productName = "Pods-CLXRefresh_Example";
-			productReference = 8ADB9BA52A9667EAB8E9FEC83171CA60 /* libPods-CLXRefresh_Example.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		FAB1B57DF8435E02A98F40589D31BBB9 /* Pods-CLXRefresh_Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 277A03E6778F98D6F144FA59CEBC597E /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Tests" */;
-			buildPhases = (
-				3AD3B713DA137EFA028B4AD70D1847E3 /* Sources */,
-				D1A91D10A6DC9031C29535EDB0E78C4F /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9A4E2C21C5DC173B4BF2225DD4E6CAE5 /* PBXTargetDependency */,
-			);
-			name = "Pods-CLXRefresh_Tests";
-			productName = "Pods-CLXRefresh_Tests";
-			productReference = CB068DF9AFB0901730A4B5D1D21D37E9 /* libPods-CLXRefresh_Tests.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -340,59 +324,81 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				767B8719D094B2440FBE11F992F62603 /* CLXRefresh */,
-				C77D0970B5723123F437D8191DE0A1A1 /* Pods-CLXRefresh_Example */,
-				FAB1B57DF8435E02A98F40589D31BBB9 /* Pods-CLXRefresh_Tests */,
+				9E8EF98CF4C2DD348E35D1B72A5D2900 /* CLXRefresh */,
+				0538E238365850ABAC7B86181B381C12 /* Pods-CLXRefresh_Example */,
+				27F94C1E687B6EBAC20B3AB796ADC759 /* Pods-CLXRefresh_Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3AD3B713DA137EFA028B4AD70D1847E3 /* Sources */ = {
+		1F191FDB57BB4DA7CE2D324F1B989330 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD1BB5D05BF981D04FF5A8026ECB0AB8 /* Pods-CLXRefresh_Tests-dummy.m in Sources */,
+				EB7ECE3FF85469EE592E3E78E7E7AA79 /* CLXRefresh-dummy.m in Sources */,
+				B4E4D0F810B8FCAA2FAFACF20E26853F /* LXRefreshBaseView+footer.m in Sources */,
+				E9C57C437AD521983C25E0B1599A463F /* LXRefreshBaseView.m in Sources */,
+				AC4B856CFED09C6206A66FD42175EADC /* UIScrollView+LXRefresh.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F681AC66CE80688EAC91811289011542 /* Sources */ = {
+		4E0A921292744044BF1A7F26AB8C28F2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DD519BFACADA09346C4A4608B41EE7D /* Pods-CLXRefresh_Example-dummy.m in Sources */,
+				CCDA208683F9CCFD34850CB573B93939 /* Pods-CLXRefresh_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FE4E5112DD38FE672D6C7AE41537D62A /* Sources */ = {
+		A5F8462260C223736C79E100664AA957 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3253CF730275B2EDE9E3E072B5CE1B26 /* CLXRefresh-dummy.m in Sources */,
-				14F67DE9AFD796DD3AA6309CBC2350B9 /* LXRefreshBaseView+footer.m in Sources */,
-				A23E2C6F9FEDA5FE35441C041C73E877 /* LXRefreshBaseView.m in Sources */,
-				A069B8019554AE45F6DA914867C2732A /* UIScrollView+LXRefresh.m in Sources */,
+				1203109BED79623E2C4B481AB4DDB074 /* Pods-CLXRefresh_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		740683B606637F4D8D86B27B549A47B9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CLXRefresh;
-			target = 767B8719D094B2440FBE11F992F62603 /* CLXRefresh */;
-			targetProxy = 213752B7CFC3D0BE6DE78A300F73A55A /* PBXContainerItemProxy */;
-		};
-		9A4E2C21C5DC173B4BF2225DD4E6CAE5 /* PBXTargetDependency */ = {
+		8B6EF83F21410F1FBBC72443786C0BDA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-CLXRefresh_Example";
-			target = C77D0970B5723123F437D8191DE0A1A1 /* Pods-CLXRefresh_Example */;
-			targetProxy = BA3D510E6B40637687A64032BF651BC6 /* PBXContainerItemProxy */;
+			target = 0538E238365850ABAC7B86181B381C12 /* Pods-CLXRefresh_Example */;
+			targetProxy = 9A8109EC0A82EF0FA165F1B0F3AEB663 /* PBXContainerItemProxy */;
+		};
+		CDB599106E702E9B186254C99EA0C848 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CLXRefresh;
+			target = 9E8EF98CF4C2DD348E35D1B72A5D2900 /* CLXRefresh */;
+			targetProxy = 42A7CC7F9909DD9C609BF21AB62DEA7E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		1DE88790DDB5E4B3E996D36A00107175 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3CC8AE3B34E29BAD63D30B2F1346438 /* Pods-CLXRefresh_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		1EE19F5DD95931924296F637BF18BD8F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -456,7 +462,75 @@
 			};
 			name = Debug;
 		};
-		23BDF555505DBBD9505C170AC03D8774 /* Release */ = {
+		3797E372E7DBF5AC016C94A3AC7B2ADE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4759C1D6ADA5A22E320F19CD7B464E50 /* Pods-CLXRefresh_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4E3159601A616C2FF31099E106B8567B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 803411B7DDEDD447CC29347840224249 /* CLXRefresh.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/CLXRefresh/CLXRefresh-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = CLXRefresh;
+				PRODUCT_NAME = CLXRefresh;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6B23E72C22D16B0751D68DBC4D5D55D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 803411B7DDEDD447CC29347840224249 /* CLXRefresh.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/CLXRefresh/CLXRefresh-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = CLXRefresh;
+				PRODUCT_NAME = CLXRefresh;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9B0E0A8C02D76A8C26A58516C9F2D8DE /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C5087BEF563C0022B1927CE9F607144C /* Pods-CLXRefresh_Tests.release.xcconfig */;
 			buildSettings = {
@@ -478,9 +552,9 @@
 			};
 			name = Release;
 		};
-		A2F8E910771C5F8AF0BAE999275D1720 /* Release */ = {
+		D6815674CADA4787F8711E0C797E7E79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3CC8AE3B34E29BAD63D30B2F1346438 /* Pods-CLXRefresh_Example.release.xcconfig */;
+			baseConfigurationReference = B4F5AC4C3097EF7C9CDA05CFFDFD3220 /* Pods-CLXRefresh_Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -495,54 +569,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		B653D5B470CEDCFC42FBD284783B9A37 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 803411B7DDEDD447CC29347840224249 /* CLXRefresh.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/CLXRefresh/CLXRefresh-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = CLXRefresh;
-				PRODUCT_NAME = CLXRefresh;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		DB2F9A545574A6D5A969194ACE6DD15B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 803411B7DDEDD447CC29347840224249 /* CLXRefresh.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/CLXRefresh/CLXRefresh-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = CLXRefresh;
-				PRODUCT_NAME = CLXRefresh;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -605,60 +631,9 @@
 			};
 			name = Release;
 		};
-		F755C205844B5ED1CA97815992255A2F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4759C1D6ADA5A22E320F19CD7B464E50 /* Pods-CLXRefresh_Example.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		FDA0523875653DB778ADB13329D391A5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4F5AC4C3097EF7C9CDA05CFFDFD3220 /* Pods-CLXRefresh_Tests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACH_O_TYPE = staticlib;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		277A03E6778F98D6F144FA59CEBC597E /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FDA0523875653DB778ADB13329D391A5 /* Debug */,
-				23BDF555505DBBD9505C170AC03D8774 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -668,20 +643,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2E33E5430C12A99DA3FE27DAE6ADD1F9 /* Build configuration list for PBXNativeTarget "CLXRefresh" */ = {
+		2FFA1115EDC2275D03EFAF15B3EF9B69 /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DB2F9A545574A6D5A969194ACE6DD15B /* Debug */,
-				B653D5B470CEDCFC42FBD284783B9A37 /* Release */,
+				3797E372E7DBF5AC016C94A3AC7B2ADE /* Debug */,
+				1DE88790DDB5E4B3E996D36A00107175 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E0CC4188A6D0D13C21131BD62A47C552 /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Example" */ = {
+		34B5E020242D0EFF65CB5694B7F57590 /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F755C205844B5ED1CA97815992255A2F /* Debug */,
-				A2F8E910771C5F8AF0BAE999275D1720 /* Release */,
+				D6815674CADA4787F8711E0C797E7E79 /* Debug */,
+				9B0E0A8C02D76A8C26A58516C9F2D8DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70556D6E3EEE267644D68871EA580526 /* Build configuration list for PBXNativeTarget "CLXRefresh" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B23E72C22D16B0751D68DBC4D5D55D4 /* Debug */,
+				4E3159601A616C2FF31099E106B8567B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
