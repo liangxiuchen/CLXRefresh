@@ -75,8 +75,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     _viewStatus = LXRefreshStatusInit;
     _logicStatus = LXRefreshLogicStatusNormal;
     _resetNoMoreDataAfterEndRefreshing = YES;
-    BOOL conformed = [self conformsToProtocol:@protocol(LXRefreshViewSubclassProtocol)];
-    NSAssert(conformed, @"LXRefreshView's subclass must be conform LXRefreshViewSubclassProtocol");
+    
+    BOOL conformed = [self conformsToProtocol:@protocol(LXRefreshBaseProtocol)];
+    NSAssert(conformed, @"LXRefreshView's subclass must be conform one of LXRefreshBaseProtocol, LXRefreshHeaderProtocl, LXRefreshFooterProtocol, LXRefreshviewProtocol");
     if (conformed == NO) {
         return NO;
     }
@@ -189,19 +190,29 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             self.logicStatus = LXRefreshLogicStatusNormal;
         }
         if ([self respondsToSelector:@selector(onViewStatusIdle:)]) {
-            id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
+            id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
             [subclass onViewStatusIdle:previous];
         }
     }
 }
 
 - (void)super_onPullingToRefreshing:(CGFloat)percent {
+    CGPoint velocity = [self.scrollView.panGestureRecognizer velocityInView:self.scrollView];
+    if (self.isHeader && velocity.y < 0.f) {
+        return;
+    }
+    if (self.isFooter && velocity.y > 0.f) {
+        return;
+    }
+    if (self.viewStatus == LXRefreshStatusRefreshing) {
+        return;
+    }
     if (self.viewStatus != LXRefreshStatusPullingToRefresh) {
         LXRFMethodDebug
     }
     self.viewStatus = LXRefreshStatusPullingToRefresh;
     if ([self respondsToSelector:@selector(onPullingToRefreshing:)]) {
-        id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
+        id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
         [subclass onPullingToRefreshing:percent];
     }
 }
@@ -236,7 +247,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
     self.viewStatus = LXRefreshStatusBecomingToRefreshing;
     if ([self respondsToSelector:@selector(onBecomingToRefreshing:)]) {
-        id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
+        id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
         [subclass onBecomingToRefreshing:percent];
     }
 }
@@ -271,7 +282,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         }
     }
     if ([self respondsToSelector:@selector(onBecomingToIdle:)]) {
-        id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
+        id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
         [subclass onBecomingToIdle:percent];
     }
 }
@@ -287,7 +298,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                 self.logicStatus = LXRefreshLogicStatusRefreshing;
             }
             if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
-                id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
+                id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
                 [subclass onViewStatusRefreshing:previous];
             }
             self.refreshHandler(self);
@@ -299,13 +310,13 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             if (self.logicStatus == LXRefreshLogicStatusNormal) {
                 self.logicStatus = LXRefreshLogicStatusRefreshing;
                 if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
-                    id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
+                    id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
                     [subclass onViewStatusRefreshing:previous];
                 }
                 self.refreshHandler(self);
             } else if (self.logicStatus == LXRefreshLogicStatusRefreshing) {
                 if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
-                    id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
+                    id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
                     [subclass onViewStatusRefreshing:previous];
                 }
             } else if (self.logicStatus == LXRefreshLogicStatusNoMoreData) {
@@ -319,14 +330,14 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 - (void)super_onContentOffsetChanged:(CGPoint)newValue oldOffset:(CGPoint)oldValue {
     if ([self respondsToSelector:@selector(onContentOffsetChanged:oldOffset:)]) {
-        id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
+        id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
         [subclass onContentOffsetChanged:newValue oldOffset:oldValue];
     }
 }
 
 - (void)super_onIsTrackingChanged:(BOOL)newValue oldIsTracking:(BOOL)oldValue {
     if ([self respondsToSelector:@selector(onIsTrackingChanged:oldIsTracking:)]) {
-        id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
+        id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
         [subclass onIsTrackingChanged:newValue oldIsTracking:oldValue];
     }
 }
@@ -334,7 +345,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 - (void)super_onContentInsetsChanged:(UIEdgeInsets)insets {
     [self onContentInsetsChanged];
     if ([self respondsToSelector:@selector(onContentInsetChanged:)]) {
-        id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
+        id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
         [subclass onContentInsetChanged:insets];
     }
 }
@@ -342,7 +353,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 - (void)super_onNoMoreData {
     LXRFMethodDebug
     if ([self respondsToSelector:@selector(onNoMoreData)]) {
-        id<LXRefreshViewSubclassProtocol> subclass = (id<LXRefreshViewSubclassProtocol>)self;
+        id<LXRefreshFooterProtocol> subclass = (id<LXRefreshFooterProtocol>)self;
         [subclass onNoMoreData];
     }
 }
@@ -554,9 +565,6 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             [self super_onViewStatusIdle];
         }];
     } else if (self.isFooter) {
-        if (self.scrollViewIsTracking  && self.scrollView.isDragging) {
-            return;
-        }
         if (self.isExtendContentInsetsForFooterHover) {
             LXRFMethodDebug
         }

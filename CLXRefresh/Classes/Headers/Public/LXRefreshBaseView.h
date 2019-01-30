@@ -40,19 +40,18 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 
 @property (nonatomic, readonly) LXRefreshViewStatus viewStatus;
 @property (nonatomic, readonly) LXRefreshLogicStatus logicStatus;
-@property (nonatomic, assign) BOOL isDebug;
-@property (nonatomic, assign) BOOL isAlwaysTriggerRefreshHandler;
-@property (nonatomic, assign) BOOL isAutoPosition;//default is YES you just specify view's bouds, horizontally center
 @property (nonatomic, readonly) BOOL isRefreshing;//YES when business logic is refreshing or UI also in refreshing, otherwise NO
 @property (nonatomic, readonly) BOOL isHeader;
 @property (nonatomic, readonly) BOOL isFooter;
 @property (nonatomic, readonly) BOOL isNoMoreData;
+@property (nonatomic, assign) BOOL isDebug;
+@property (nonatomic, assign) BOOL isAlwaysTriggerRefreshHandler;
+@property (nonatomic, assign) BOOL isAutoPosition;//default is YES you just specify view's bouds, horizontally center
 @property (nonatomic, assign) BOOL resetNoMoreDataAfterEndRefreshing;
 @property (nonatomic, assign) UIEdgeInsets userAdditionalInsets;
 @property (nonatomic, assign) UIEdgeInsets extendInsets;//default is view's height, extend space for header or footer hover
 @property (nonatomic, assign) LXRefreshViewMetric statusMetric;//default value header is {CGRectGetMaxY(self.frame), self.frame.origin.y}, footer is {self.frame.origin.y, CGRectGetMaxY(self.frame)}.
 @property (nonatomic, readonly) UIEdgeInsets systemInsets;
-
 @property (nonatomic, nullable, copy) LXRefreshHandler refreshHandler;
 
 - (instancetype)initWithFrame:(CGRect)frame RefreshHandler:(LXRefreshHandler)handler;
@@ -64,7 +63,28 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 
 #pragma mark -
 #pragma mark - subclass protocol
-@protocol LXRefreshViewSubclassProtocol<NSObject>
+
+@protocol LXRefreshBaseProtocol;
+@protocol LXRefreshFooterProtocol<LXRefreshBaseProtocol>
+
+@optional
+- (void)onNoMoreData;
+
+@end
+#pragma mark -
+@protocol LXRefreshHeaderProtocol<LXRefreshBaseProtocol>
+
+//for extend
+
+@end
+#pragma mark -
+@protocol LXRefreshViewProtocol<LXRefreshFooterProtocol, LXRefreshHeaderProtocol>
+
+//convenience protocol for subclass to conformed. the subclass can be as footer or header
+
+@end
+#pragma mark -
+@protocol LXRefreshBaseProtocol <NSObject>
 
 @optional
 - (void)onViewStatusRefreshing:(LXRefreshViewStatus)oldStatus;
@@ -86,9 +106,6 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 - (void)onBecomingToRefreshing:(CGFloat)percent;
 //released to idle
 - (void)onBecomingToIdle:(CGFloat)percent;
-
-@optional
-- (void)onNoMoreData;
 
 @end
 
