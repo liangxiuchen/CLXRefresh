@@ -542,16 +542,21 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)endUIRefreshing {
-    LXRFMethodDebug
     if (self.isHeader) {
         //is a header refresh view
-        if (self.scrollViewIsTracking) {
+        if (self.scrollViewIsTracking && self.scrollView.isDragging) {
             return;
+        }
+        if (self.isExtendContentInsetsForHeaderHover) {
+            LXRFMethodDebug
         }
         [self shrinkExtendedTopInsets];
     } else if (self.isFooter) {
-        if (self.scrollViewIsTracking) {
+        if (self.scrollViewIsTracking  && self.scrollView.isDragging) {
             return;
+        }
+        if (self.isExtendContentInsetsForFooterHover) {
+            LXRFMethodDebug
         }
         [self shrinkExtendedBottomInsets];
         [self super_onViewStatusIdle];
