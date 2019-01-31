@@ -294,42 +294,42 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)super_onViewStatusRefreshing {
-    if (self.viewStatus != LXRefreshStatusRefreshing) {
+    LXRefreshViewStatus previous = self.viewStatus;
+    self.viewStatus = LXRefreshStatusRefreshing;
+    if (self.isAlwaysTriggerRefreshHandler) {
+        self.pendingRefreshes += 1;
+        if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
+            self.logicStatus = LXRefreshLogicStatusRefreshing;
+        }
         LXRFMethodDebug
-        LXRefreshViewStatus previous = self.viewStatus;
-        self.viewStatus = LXRefreshStatusRefreshing;
-        if (self.isAlwaysTriggerRefreshHandler) {
-            self.pendingRefreshes += 1;
-            if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
-                self.logicStatus = LXRefreshLogicStatusRefreshing;
-            }
+        if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
+            id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
+            [subclass onViewStatusRefreshing:previous];
+        }
+        self.refreshHandler(self);
+    }  else if (self.pendingRefreshes > 0) {
+        if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
+            self.logicStatus = LXRefreshLogicStatusRefreshing;
+        }
+    } else {
+        if (self.logicStatus == LXRefreshLogicStatusNormal) {
+            LXRFMethodDebug
+            self.logicStatus = LXRefreshLogicStatusRefreshing;
             if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
                 id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
                 [subclass onViewStatusRefreshing:previous];
             }
             self.refreshHandler(self);
-        }  else if (self.pendingRefreshes > 0) {
-            if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
-                self.logicStatus = LXRefreshLogicStatusRefreshing;
+        } else if (self.logicStatus == LXRefreshLogicStatusRefreshing) {
+            LXRFMethodDebug
+            if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
+                id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
+                [subclass onViewStatusRefreshing:previous];
             }
-        } else {
-            if (self.logicStatus == LXRefreshLogicStatusNormal) {
-                self.logicStatus = LXRefreshLogicStatusRefreshing;
-                if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
-                    id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
-                    [subclass onViewStatusRefreshing:previous];
-                }
-                self.refreshHandler(self);
-            } else if (self.logicStatus == LXRefreshLogicStatusRefreshing) {
-                if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
-                    id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
-                    [subclass onViewStatusRefreshing:previous];
-                }
-            } else if (self.logicStatus == LXRefreshLogicStatusNoMoreData) {
-                [self super_onNoMoreData];
-            } else if (self.logicStatus == LXRefreshLogicStatusRefreshFinished) {
-                [self endRefreshing];
-            }
+        } else if (self.logicStatus == LXRefreshLogicStatusNoMoreData) {
+            [self super_onNoMoreData];
+        } else if (self.logicStatus == LXRefreshLogicStatusRefreshFinished) {
+            [self endRefreshing];
         }
     }
 }
