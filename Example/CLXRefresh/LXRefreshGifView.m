@@ -37,6 +37,7 @@
 
 - (void)onViewStatusIdle:(LXRefreshViewStatus)oldStatus {
     [self.refreshGIF stopAnimating];
+    self.alpha = 0.f;
     self.refreshGIF.image = self.progressImages.firstObject;
 }
 
@@ -47,6 +48,7 @@
 - (void)onPullingToRefreshing:(CGFloat)percent {
     [self.refreshGIF stopAnimating];
     NSInteger index = ceilf(59 * percent);
+    self.alpha = percent;
     if (index < self.progressImages.count) {
         self.refreshGIF.image = self.progressImages[index];
     }
@@ -54,6 +56,10 @@
 
 - (void)onBecomingToRefreshing:(CGFloat)percent {
     [self startRefreshingGif];
+}
+
+- (void)onBecomingToIdle:(CGFloat)percent {
+    self.alpha = 1 - percent;
 }
 
 - (void)startRefreshingGif {

@@ -198,13 +198,6 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)super_onPullingToRefreshing:(CGFloat)percent {
-    CGPoint velocity = [self.scrollView.panGestureRecognizer velocityInView:self.scrollView];
-    if (self.isHeader && velocity.y < 0.f) {
-        return;
-    }
-    if (self.isFooter && velocity.y > 0.f) {
-        return;
-    }
     if (self.viewStatus == LXRefreshStatusRefreshing) {
         return;
     }
@@ -691,28 +684,29 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 - (void)detectBecomingToRefreshingOrIdle:(NSValue *)newValue {
     static CGFloat total;
-    if (self.scrollViewIsTracking == NO && self.scrollView.isDecelerating) {
+    if (self.scrollViewIsTracking == NO     &&
+        self.velocityWhenFingerUp.y >= 0.f  &&
+        self.isHeader) {
         CGFloat offset_y = newValue.CGPointValue.y;
-        if (self.isHeader && self.velocityWhenFingerUp.y > 0.f) {
-            if (self.viewStatus == LXRefreshStatusPullingToRefresh) {
-                if (offset_y <= self.statusMetric.refreshMetric) {
-                    total = self.statusMetric.refreshMetric - offset_y;
-                    [self super_onViewStatusBecomingToRefreshing:total OffsetY:offset_y];
-                } else if (offset_y <= self.statusMetric.startMetric) {
-                    total = self.statusMetric.startMetric - offset_y;
-                    [self super_onViewStatusBecomingToIdle:total];
-                }
-            }
-            if (self.viewStatus == LXRefreshStatusBecomingToRefreshing) {
+        if (self.viewStatus == LXRefreshStatusPullingToRefresh) {
+            if (offset_y <= self.statusMetric.refreshMetric) {
+                total = self.statusMetric.refreshMetric - offset_y;
                 [self super_onViewStatusBecomingToRefreshing:total OffsetY:offset_y];
-            }
-            if (self.viewStatus == LXRefreshStatusBecomingToIdle) {
+            } else if (offset_y <= self.statusMetric.startMetric) {
+                total = self.statusMetric.startMetric - offset_y;
                 [self super_onViewStatusBecomingToIdle:total];
             }
         }
+        if (self.viewStatus == LXRefreshStatusBecomingToRefreshing) {
+            [self super_onViewStatusBecomingToRefreshing:total OffsetY:offset_y];
+        }
+        if (self.viewStatus == LXRefreshStatusBecomingToIdle) {
+            [self super_onViewStatusBecomingToIdle:total];
+        }
     }
-    if (self.isFooter && self.scrollViewIsTracking == NO && self.velocityWhenFingerUp.y
-         < 0.f) {
+    if (self.velocityWhenFingerUp.y <= 0.f  &&
+        self.scrollViewIsTracking == NO     &&
+        self.isFooter) {
         CGFloat offset_y = newValue.CGPointValue.y;
         if (self.isFullScreen) {
             offset_y += self.scrollView.bounds.size.height;
@@ -755,6 +749,8 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             [self super_onViewStatusRefreshing];
         } else if (contentOffset < self.statusMetric.startMetric && contentOffset > self.statusMetric.refreshMetric) {
             [self endUIRefreshing];
+        } else if (contentOffset == self.statusMetric.startMetric) {
+            [self super_onViewStatusIdle];
         }
     } else if (self.isFooter) {
         if (self.isFullScreen) {
@@ -763,6 +759,8 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                 [self super_onViewStatusRefreshing];
             } else if (contentOffset > self.statusMetric.startMetric && contentOffset < self.statusMetric.refreshMetric) {
                 [self endUIRefreshing];
+            } else if (contentOffset == self.statusMetric.startMetric) {
+                [self super_onViewStatusIdle];
             }
         } else if (self.viewStatus == LXRefreshStatusBecomingToIdle) {
             [self endUIRefreshing];
