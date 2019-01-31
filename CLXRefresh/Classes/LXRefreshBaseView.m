@@ -543,7 +543,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
 }
 
-- (void)footerHasNoMoreData {
+- (void)footerWasNoMoreData {
     dispatch_block_t task = ^{
         self.logicStatus = LXRefreshLogicStatusNoMoreData;
         [self super_onNoMoreData];

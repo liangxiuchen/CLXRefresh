@@ -57,7 +57,7 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 - (instancetype)initWithFrame:(CGRect)frame RefreshHandler:(LXRefreshHandler)handler;
 - (void)endRefreshing;
 - (void)beginHeaderRefresh;
-- (void)footerHasNoMoreData;
+- (void)footerWasNoMoreData;
 
 @end
 
