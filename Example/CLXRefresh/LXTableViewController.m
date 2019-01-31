@@ -37,7 +37,7 @@
         }
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if (self.dataSource.count > 10) {
-                [footer footerHasNoMoreData];
+                [footer footerWasNoMoreData];
                 [footer endRefreshing];
             } else {
                [self loadMoreData];

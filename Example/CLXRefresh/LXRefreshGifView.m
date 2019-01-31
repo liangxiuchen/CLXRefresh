@@ -37,6 +37,7 @@
 
 - (void)onViewStatusIdle:(LXRefreshViewStatus)oldStatus {
     [self.refreshGIF stopAnimating];
+    self.refreshGIF.image = self.progressImages.firstObject;
 }
 
 - (void)onViewStatusRefreshing:(LXRefreshViewStatus)oldStatus {
