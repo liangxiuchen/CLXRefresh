@@ -124,6 +124,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (isFingerUp) {
         [self extendInsetsForHeaderHover];
         [self extendInsetsForFooterHover];
+        self.velocityWhenFingerUp = [self.scrollView.panGestureRecognizer velocityInView:self.scrollView];
     }
     [self super_onIsTrackingChanged:isTracking_new oldIsTracking:isTracking_old];
 }
@@ -236,7 +237,12 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         }
     }
     if (self.isFooter) {
-        CGFloat delta = offset_y - self.statusMetric.refreshMetric;
+        CGFloat delta = 0.f;
+        if (self.isFullScreen) {
+            delta = offset_y - self.statusMetric.refreshMetric;
+        } else {
+            delta = offset_y - self.statusMetric.startMetric;
+        }
         if (delta < 0.f) {
             return;
         }
@@ -684,10 +690,10 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)detectBecomingToRefreshingOrIdle:(NSValue *)newValue {
+    static CGFloat total;
     if (self.scrollViewIsTracking == NO && self.scrollView.isDecelerating) {
         CGFloat offset_y = newValue.CGPointValue.y;
-        static CGFloat total;
-        if (self.isHeader) {
+        if (self.isHeader && self.velocityWhenFingerUp.y > 0.f) {
             if (self.viewStatus == LXRefreshStatusPullingToRefresh) {
                 if (offset_y <= self.statusMetric.refreshMetric) {
                     total = self.statusMetric.refreshMetric - offset_y;
@@ -705,7 +711,8 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             }
         }
     }
-    if (self.isFooter && self.scrollViewIsTracking == NO) {
+    if (self.isFooter && self.scrollViewIsTracking == NO && self.velocityWhenFingerUp.y
+         < 0.f) {
         CGFloat offset_y = newValue.CGPointValue.y;
         if (self.isFullScreen) {
             offset_y += self.scrollView.bounds.size.height;
@@ -714,8 +721,22 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         }
         if (self.viewStatus == LXRefreshStatusPullingToRefresh) {
             if (offset_y >= self.statusMetric.refreshMetric) {
-                [self super_onViewStatusRefreshing];
+                if (self.isFullScreen) {
+                    total = offset_y - self.statusMetric.refreshMetric;
+                } else {
+                    total = offset_y - self.statusMetric.startMetric;
+                }
+                [self super_onViewStatusBecomingToRefreshing:total OffsetY:offset_y];
+            } else if (offset_y > self.statusMetric.startMetric) {
+                total = self.statusMetric.startMetric - offset_y;
+                [self super_onViewStatusBecomingToIdle:total];
             }
+        }
+        if (self.viewStatus == LXRefreshStatusBecomingToRefreshing) {
+            [self super_onViewStatusBecomingToRefreshing:total OffsetY:offset_y];
+        }
+        if (self.viewStatus == LXRefreshStatusBecomingToIdle) {
+            [self super_onViewStatusBecomingToIdle:total];
         }
     }
 }
@@ -738,11 +759,15 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     } else if (self.isFooter) {
         if (self.isFullScreen) {
             CGFloat contentOffset = self.scrollView.contentOffset.y + self.scrollView.bounds.size.height;
-            if (contentOffset > self.statusMetric.startMetric && contentOffset < self.statusMetric.refreshMetric) {
+            if (contentOffset == self.statusMetric.refreshMetric) {
+                [self super_onViewStatusRefreshing];
+            } else if (contentOffset > self.statusMetric.startMetric && contentOffset < self.statusMetric.refreshMetric) {
                 [self endUIRefreshing];
             }
-        } else if (self.viewStatus != LXRefreshStatusRefreshing) {
+        } else if (self.viewStatus == LXRefreshStatusBecomingToIdle) {
             [self endUIRefreshing];
+        } else if (self.viewStatus == LXRefreshStatusBecomingToRefreshing) {
+            [self super_onViewStatusRefreshing];
         }
     }
 }

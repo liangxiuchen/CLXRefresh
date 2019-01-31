@@ -68,8 +68,5 @@
     self.indicator.hidden = YES;
 }
 
-- (void)onBecomingToRefreshing:(CGFloat)percent {
-    
-}
 
 @end
