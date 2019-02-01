@@ -50,7 +50,8 @@
         self.alpha = percent;
     }
     if (self.isNoMoreData) {
-        return;
+        self.tipLabel.text = @"No More Data";
+        self.indicator.hidden = YES;
     } else if (percent >= 1.f) {
         self.tipLabel.text = @"relase to refresh";
     } else {
@@ -64,7 +65,7 @@
 }
 
 - (void)onNoMoreData {
-    self.tipLabel.text = @"No more data";
+    self.tipLabel.text = @"No More Data";
     self.indicator.hidden = YES;
 }
 

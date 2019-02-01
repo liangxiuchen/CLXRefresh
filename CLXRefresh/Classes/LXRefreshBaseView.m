@@ -74,7 +74,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     _extendInsets = (UIEdgeInsets){0};
     _viewStatus = LXRefreshStatusInit;
     _logicStatus = LXRefreshLogicStatusNormal;
-    _resetNoMoreDataAfterEndRefreshing = YES;
+    _shouldNoMoreDataAlwaysHover = YES;
     
     BOOL conformed = [self conformsToProtocol:@protocol(LXRefreshBaseProtocol)];
     NSAssert(conformed, @"LXRefreshView's subclass must be conform one of LXRefreshBaseProtocol, LXRefreshHeaderProtocl, LXRefreshFooterProtocol, LXRefreshviewProtocol");
@@ -162,7 +162,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     __unused CGSize contentSize = newValue.CGSizeValue;
     [self relayoutFooter];
     if (!self.isFullScreen) {
-        [self shrinkExtendedBottomInsets];
+        [self shrinkExtendedBottomInsetsWith:nil];
     }
 }
 
@@ -190,6 +190,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         if (self.logicStatus == LXRefreshLogicStatusRefreshFinished) {
             self.logicStatus = LXRefreshLogicStatusNormal;
         }
+//        if (self.logicStatus == LXRefreshLogicStatusNoMoreData && !self.shouldNoMoreDataAlwaysHover) {
+//            self.logicStatus = LXRefreshLogicStatusNormal;
+//        }
         if ([self respondsToSelector:@selector(onViewStatusIdle:)]) {
             id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
             [subclass onViewStatusIdle:previous];
@@ -320,7 +323,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                 [subclass onViewStatusRefreshing:previous];
             }
         } else if (self.logicStatus == LXRefreshLogicStatusNoMoreData) {
-            [self super_onNoMoreData];
+            [self endRefreshing];
         } else if (self.logicStatus == LXRefreshLogicStatusRefreshFinished) {
             [self endRefreshing];
         }
@@ -468,7 +471,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
 }
 
-- (void)beginHeaderRefresh {
+- (void)header_beginRefreshing {
     dispatch_block_t task = ^{
         if (self.isExtendContentInsetsForHeaderHover == NO) {
             LXRFMethodDebug
@@ -501,30 +504,20 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             self.pendingRefreshes -= 1;
             self.pendingRefreshes = self.pendingRefreshes < 0 ? 0 : self.pendingRefreshes;
             if (self.pendingRefreshes == 0) {
-                if (self.resetNoMoreDataAfterEndRefreshing) {
+                if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
                     self.logicStatus = LXRefreshLogicStatusRefreshFinished;
-                    [self endUIRefreshing];
-                } else {
-                    if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
-                        self.logicStatus = LXRefreshLogicStatusRefreshFinished;
-                        [self endUIRefreshing];
-                    }
                 }
+                [self endUIRefreshing];
             } else {
                 if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
                     self.logicStatus = LXRefreshLogicStatusRefreshing;
                 }
             }
         } else {
-            if (self.resetNoMoreDataAfterEndRefreshing) {
+            if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
                 self.logicStatus = LXRefreshLogicStatusRefreshFinished;
-                [self endUIRefreshing];
-            } else {
-                if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
-                    self.logicStatus = LXRefreshLogicStatusRefreshFinished;
-                    [self endUIRefreshing];
-                }
             }
+            [self endUIRefreshing];
         }
     };
     if (NSThread.isMainThread) {
@@ -536,10 +529,12 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
 }
 
-- (void)footerWasNoMoreData {
+- (void)footer_becomeNoMoreData {
     dispatch_block_t task = ^{
         self.logicStatus = LXRefreshLogicStatusNoMoreData;
-        [self super_onNoMoreData];
+        if (self.shouldNoMoreDataAlwaysHover) {
+            [self super_onNoMoreData];
+        }
     };
     if (NSThread.isMainThread) {
         LXRFMethodDebug
@@ -567,8 +562,13 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         if (self.isExtendContentInsetsForFooterHover) {
             LXRFMethodDebug
         }
-        [self shrinkExtendedBottomInsets];
-        [self super_onViewStatusIdle];
+        if ((self.logicStatus == LXRefreshLogicStatusNoMoreData && self.shouldNoMoreDataAlwaysHover) == NO) {
+            [self shrinkExtendedBottomInsetsWith:^(BOOL finished) {
+                [self super_onViewStatusIdle];
+            }];
+        } else {
+            [self super_onNoMoreData];
+        }
     }
 }
 
@@ -639,8 +639,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
 }
 
-- (void)shrinkExtendedBottomInsets {
+- (void)shrinkExtendedBottomInsetsWith:(void(^)(BOOL finished))completion {
     if (self.isFooter == NO || !self.isFullScreen) {
+        completion ? completion(YES) : (void)0;
         return;
     }
     if (self.isExtendContentInsetsForFooterHover) {
@@ -648,9 +649,19 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         self.isExtendContentInsetsForFooterHover = NO;
         UIEdgeInsets insets = self.scrollView.contentInset;
         insets.bottom -= self.extendInsets.bottom ;
-        CGPoint contentOffset = self.scrollView.contentOffset;
+        CGPoint originalOffset = self.scrollView.contentOffset;
         self.scrollView.contentInset = insets;
-        self.scrollView.contentOffset = contentOffset;
+        CGPoint targetOffset = self.scrollView.contentOffset;
+        self.scrollView.contentOffset = originalOffset;
+        //here shouldNoMoreDataAlwaysHover must be NO
+        if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
+            self.scrollView.contentOffset = originalOffset;
+            completion ? completion(YES) : (void)0;
+        } else {
+            [UIView animateWithDuration:CATransaction.animationDuration animations:^{
+                self.scrollView.contentOffset = targetOffset;
+            } completion:completion];
+        }
     }
 }
 
@@ -762,7 +773,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             } else if (contentOffset == self.statusMetric.startMetric) {
                 [self super_onViewStatusIdle];
             }
-        } else if (self.viewStatus == LXRefreshStatusBecomingToIdle) {
+        } else if (self.viewStatus == LXRefreshStatusBecomingToIdle || self.logicStatus == LXRefreshLogicStatusNoMoreData) {
             [self endUIRefreshing];
         } else if (self.viewStatus == LXRefreshStatusBecomingToRefreshing) {
             [self super_onViewStatusRefreshing];

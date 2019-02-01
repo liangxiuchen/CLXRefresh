@@ -36,8 +36,8 @@
             return;
         }
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if (self.dataSource.count > 18) {
-                [footer footerWasNoMoreData];
+            if (self.dataSource.count > 15) {
+                [footer footer_becomeNoMoreData];
                 [footer endRefreshing];
             } else {
                [self loadMoreData];
@@ -66,7 +66,7 @@
     
     self.tableView.lx_refreshFooterView = self.footer;
     self.tableView.lx_refreshFooterView.isDebug = YES;
-    self.tableView.lx_refreshFooterView.resetNoMoreDataAfterEndRefreshing = NO;
+    self.tableView.lx_refreshFooterView.shouldNoMoreDataAlwaysHover = NO;
 
     self.tableView.tableFooterView = [UIView new];
 }
