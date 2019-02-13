@@ -18,8 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL scrollViewIsTracking;
 @property (nonatomic, assign) CGPoint velocityWhenFingerUp;
 @property (nonatomic, readonly) BOOL isFullScreen;
-@property (nonatomic, assign) BOOL isExtendContentInsetsForHeaderHover;
-@property (nonatomic, assign) BOOL isExtendContentInsetsForFooterHover;
+@property (nonatomic, assign) BOOL isExtendedContentInsetsForHeaderHover;
+@property (nonatomic, assign) BOOL isExtendedContentInsetsForFooterHover;
 @property (nonatomic, readonly, class) void *headerKVOContext;
 @property (nonatomic, readonly, class) void *footerKVOContext;
 @property (nonatomic, weak, nullable) id<UIScrollViewDelegate> realDelegate;

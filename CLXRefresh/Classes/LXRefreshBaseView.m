@@ -400,8 +400,8 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 - (UIEdgeInsets)systemInsets {
     UIEdgeInsets insets = {0};
-    CGFloat extendedTop = self.isExtendContentInsetsForHeaderHover ? self.extendInsets.top : 0.f;
-    CGFloat extendedBottom = self.isExtendContentInsetsForFooterHover ? self.extendInsets.bottom : 0.f;
+    CGFloat extendedTop = self.isExtendedContentInsetsForHeaderHover ? self.extendInsets.top : 0.f;
+    CGFloat extendedBottom = self.isExtendedContentInsetsForFooterHover ? self.extendInsets.bottom : 0.f;
     if (@available(iOS 11, *)) {
         insets.top = self.scrollView.adjustedContentInset.top - self.userAdditionalInsets.top - extendedTop;
         insets.bottom = self.scrollView.adjustedContentInset.bottom - self.userAdditionalInsets.bottom - extendedBottom;
@@ -473,9 +473,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 - (void)header_beginRefreshing {
     dispatch_block_t task = ^{
-        if (self.isExtendContentInsetsForHeaderHover == NO) {
+        if (self.isExtendedContentInsetsForHeaderHover == NO) {
             LXRFMethodDebug
-            self.isExtendContentInsetsForHeaderHover = YES; //ensure called before self.scrollView.contentInset = insets;
+            self.isExtendedContentInsetsForHeaderHover = YES; //ensure called before self.scrollView.contentInset = insets;
             UIEdgeInsets insets = self.scrollView.contentInset;
             insets.top += self.extendInsets.top;
             self.scrollView.contentInset = insets;
@@ -552,14 +552,14 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         if (self.scrollViewIsTracking && self.scrollView.isDragging) {
             return;
         }
-        if (self.isExtendContentInsetsForHeaderHover) {
+        if (self.isExtendedContentInsetsForHeaderHover) {
             LXRFMethodDebug
         }
         [self shrinkExtendedTopInsetsWith:^(BOOL finished) {
             [self super_onViewStatusIdle];
         }];
     } else if (self.isFooter) {
-        if (self.isExtendContentInsetsForFooterHover) {
+        if (self.isExtendedContentInsetsForFooterHover) {
             LXRFMethodDebug
         }
         if ((self.logicStatus == LXRefreshLogicStatusNoMoreData && self.shouldNoMoreDataAlwaysHover) == NO) {
@@ -583,9 +583,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (!shouldExtend) {
         return;
     }
-    if (self.isExtendContentInsetsForHeaderHover == NO) {
+    if (self.isExtendedContentInsetsForHeaderHover == NO) {
         LXRFMethodDebug
-        self.isExtendContentInsetsForHeaderHover = YES; //ensure called before self.scrollView.contentInset = insets;
+        self.isExtendedContentInsetsForHeaderHover = YES; //ensure called before self.scrollView.contentInset = insets;
         UIEdgeInsets insets = self.scrollView.contentInset;
         insets.top += self.extendInsets.top;
         CGPoint contentOffset = self.scrollView.contentOffset;
@@ -600,9 +600,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
     //escape a runloop time in order to waiting for contentSize set first
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.isExtendContentInsetsForHeaderHover) {
+        if (self.isExtendedContentInsetsForHeaderHover) {
             LXRFMethodDebug
-            self.isExtendContentInsetsForHeaderHover = NO;
+            self.isExtendedContentInsetsForHeaderHover = NO;
             UIEdgeInsets insets = self.scrollView.contentInset;
             insets.top -= self.extendInsets.top;
             //animation
@@ -628,9 +628,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (!shouldExtend) {
         return;
     }
-    if (self.isExtendContentInsetsForFooterHover == NO) {
+    if (self.isExtendedContentInsetsForFooterHover == NO) {
         LXRFMethodDebug
-        self.isExtendContentInsetsForFooterHover = YES;//ensure call before self.scrollView.contentInset = insets;
+        self.isExtendedContentInsetsForFooterHover = YES;//ensure call before self.scrollView.contentInset = insets;
         UIEdgeInsets insets = self.scrollView.contentInset;
         insets.bottom += self.extendInsets.bottom;
         CGPoint contentOffset = self.scrollView.contentOffset;
@@ -644,9 +644,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         completion ? completion(YES) : (void)0;
         return;
     }
-    if (self.isExtendContentInsetsForFooterHover) {
+    if (self.isExtendedContentInsetsForFooterHover) {
         LXRFMethodDebug
-        self.isExtendContentInsetsForFooterHover = NO;
+        self.isExtendedContentInsetsForFooterHover = NO;
         UIEdgeInsets insets = self.scrollView.contentInset;
         insets.bottom -= self.extendInsets.bottom ;
         CGPoint originalOffset = self.scrollView.contentOffset;
