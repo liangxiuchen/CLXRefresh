@@ -190,9 +190,6 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         if (self.logicStatus == LXRefreshLogicStatusRefreshFinished) {
             self.logicStatus = LXRefreshLogicStatusNormal;
         }
-//        if (self.logicStatus == LXRefreshLogicStatusNoMoreData && !self.shouldNoMoreDataAlwaysHover) {
-//            self.logicStatus = LXRefreshLogicStatusNormal;
-//        }
         if ([self respondsToSelector:@selector(onViewStatusIdle:)]) {
             id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
             [subclass onViewStatusIdle:previous];
@@ -201,13 +198,21 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)super_onPullingToRefreshing:(CGFloat)percent {
-    if (self.viewStatus == LXRefreshStatusRefreshing) {
+    if (self.viewStatus == LXRefreshStatusRefreshing && self.isFullScreen) {
         return;
     }
     if (self.viewStatus != LXRefreshStatusPullingToRefresh) {
         LXRFMethodDebug
     }
-    self.viewStatus = LXRefreshStatusPullingToRefresh;
+    if (self.isFooter && !self.isFullScreen) {
+        if (percent == 1.f) {
+            self.viewStatus = LXRefreshStatusRefreshing;
+        } else {
+            self.viewStatus = LXRefreshStatusPullingToRefresh;
+        }
+    } else {
+        self.viewStatus = LXRefreshStatusPullingToRefresh;
+    }
     if ([self respondsToSelector:@selector(onPullingToRefreshing:)]) {
         id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
         [subclass onPullingToRefreshing:percent];
@@ -598,7 +603,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (self.isHeader == NO) {
         return;
     }
-    //escape a runloop time in order to waiting for contentSize set first
+    //escape a runloop time in order to waiting for contentSize set firstly
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.isExtendedContentInsetsForHeaderHover) {
             LXRFMethodDebug
@@ -773,10 +778,10 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             } else if (contentOffset == self.statusMetric.startMetric) {
                 [self super_onViewStatusIdle];
             }
-        } else if (self.viewStatus == LXRefreshStatusBecomingToIdle || self.logicStatus == LXRefreshLogicStatusNoMoreData) {
-            [self endUIRefreshing];
-        } else if (self.viewStatus == LXRefreshStatusBecomingToRefreshing) {
+        } else if (self.viewStatus == LXRefreshStatusRefreshing) {
             [self super_onViewStatusRefreshing];
+        } else  {
+            [self endUIRefreshing];
         }
     }
 }
@@ -840,11 +845,11 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 // called on finger up if the user dragged. decelerate is true if it will continue moving afterwards
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     //hook code
-    LXRFMethodDebug
     if (decelerate == NO) {
         [self didEndScrolling];
     }
     [self dispatchSelector:@selector(scrollViewDidEndDragging:willDecelerate:) execute:^(id<UIScrollViewDelegate> delegate) {
+        LXRFMethodDebug
         [delegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
     }];
 }
@@ -857,10 +862,10 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 // called when scroll view grinds to a halt
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    LXRFMethodDebug
     [self didEndScrolling];
     
     [self dispatchSelector:@selector(scrollViewDidEndDecelerating:) execute:^(id<UIScrollViewDelegate> delegate) {
+        LXRFMethodDebug
         [delegate scrollViewDidEndDecelerating:scrollView];
     }];
 }

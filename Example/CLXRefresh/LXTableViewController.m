@@ -66,7 +66,7 @@
     
     self.tableView.lx_refreshFooterView = self.footer;
     self.tableView.lx_refreshFooterView.isDebug = YES;
-    self.tableView.lx_refreshFooterView.shouldNoMoreDataAlwaysHover = NO;
+    self.tableView.lx_refreshFooterView.shouldNoMoreDataAlwaysHover = YES;
 
     self.tableView.tableFooterView = [UIView new];
 }
