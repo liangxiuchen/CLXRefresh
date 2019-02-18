@@ -384,23 +384,15 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     return _logicStatus == LXRefreshLogicStatusNoMoreData;
 }
 
-- (void)setIsAutoPosition:(BOOL)isAutoPosition {
-    if (CGSizeEqualToSize(self.bounds.size, CGSizeZero)) {
-        _isAutoPosition = NO;
-    } else {
-        _isAutoPosition = isAutoPosition;
-    }
-}
-
 - (BOOL)isFullScreen {
     return self.scrollView.contentSize.height >= (self.scrollView.bounds.size.height - self.systemInsets.top - self.userAdditionalInsets.top);
 }
 
 - (void)setUserAdditionalInsets:(UIEdgeInsets)userAdditionalInsets {
     _userAdditionalInsets = userAdditionalInsets;
-    if (self.isAutoPosition) {
+//    if (self.isAutoPosition) {
         [self updateStatusMetric];
-    }
+//    }
 }
 
 - (UIEdgeInsets)systemInsets {
@@ -433,44 +425,46 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)relayoutHeader {
-    if (self.isHeader && self.isAutoPosition) {
-        LXRFMethodDebug
-        CGRect frame = self.frame;
-        frame.origin.y =  -frame.size.height;
-        if (CGRectEqualToRect(frame, self.frame) == NO) {
-            self.frame = frame;
+    if (self.isHeader) {
+        if (self.isAutoPosition) {
+            CGRect frame = self.frame;
+            frame.origin.y =  -frame.size.height;
+            if (CGRectEqualToRect(frame, self.frame) == NO) {
+                LXRFMethodDebug
+                self.frame = frame;
+            }
         }
         [self updateStatusMetric];
-        return;
     }
 }
 
 - (void)relayoutFooter {
-    if (self.isFooter && self.isAutoPosition) {
-        LXRFMethodDebug
-        self.hidden = CGSizeEqualToSize(self.scrollView.contentSize, CGSizeZero);
-        CGRect frame = self.frame;
-        CGFloat base = self.scrollView.contentSize.height;
-        frame.origin.y = base;
-        if (CGRectEqualToRect(frame, self.frame) == NO) {
-            self.frame = frame;
+    if (self.isFooter) {
+        if (self.isAutoPosition) {
+            self.hidden = CGSizeEqualToSize(self.scrollView.contentSize, CGSizeZero);
+            CGRect frame = self.frame;
+            CGFloat base = self.scrollView.contentSize.height;
+            frame.origin.y = base;
+            if (CGRectEqualToRect(frame, self.frame) == NO) {
+                LXRFMethodDebug
+                self.frame = frame;
+            }
         }
         [self updateStatusMetric];
-        return;
     }
 }
 
 
 - (void)updateStatusMetric {
     if (self.isHeader) {
-        _statusMetric.startMetric = 0 - (self.systemInsets.top + self.userAdditionalInsets.top);
+        _statusMetric.startMetric = CGRectGetMaxY(self.frame) - (self.systemInsets.top);
         _statusMetric.refreshMetric = _statusMetric.startMetric - self.extendInsets.top;
     }
     if (self.isFooter) {
         if (self.isFullScreen) {
-            _statusMetric.startMetric = self.frame.origin.y + (self.systemInsets.bottom + self.userAdditionalInsets.bottom);
+            _statusMetric.startMetric = self.frame.origin.y + self.systemInsets.bottom;
         } else {
-            _statusMetric.startMetric = self.frame.origin.y + (self.systemInsets.bottom + self.userAdditionalInsets.bottom) - (self.systemInsets.top + self.userAdditionalInsets.top);
+            _statusMetric.startMetric = self.frame.origin.y + (self.systemInsets.bottom) - (self.systemInsets.top);
         }
         _statusMetric.refreshMetric = _statusMetric.startMetric + self.extendInsets.bottom;
     }

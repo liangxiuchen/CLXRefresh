@@ -43,6 +43,7 @@
 
 - (void)onViewStatusRefreshing:(LXRefreshViewStatus)oldStatus {
     [self startRefreshingGif];
+    self.alpha = 1.f;
 }
 
 - (void)onPullingToRefreshing:(CGFloat)percent {

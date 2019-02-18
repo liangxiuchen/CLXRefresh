@@ -60,7 +60,14 @@
     [self.header.tipLabel sizeToFit];
     CGFloat extendTop = self.header.bounds.size.height - self.header.tipLabel.bounds.size.height;
     self.header.extendInsets = (UIEdgeInsets){extendTop,0.f,0.f,0.f};
+#define AUTOPOSITION
+#ifndef AUTOPOSITION
+    self.header.userAdditionalInsets = (UIEdgeInsets){10,0.f,0.f,0.f};
+    self.tableView.contentInset = (UIEdgeInsets){10,0.f,0.f,0.f};
     
+    self.header.isAutoPosition = NO;
+    self.header.frame = (CGRect){0, -self.header.bounds.size.height - 10, self.header.bounds.size};
+#endif
     self.tableView.lx_refreshHeaderView = self.header;
     self.tableView.lx_refreshHeaderView.isDebug = YES;
     

@@ -44,6 +44,7 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 @property (nonatomic, readonly) BOOL isHeader;
 @property (nonatomic, readonly) BOOL isFooter;
 @property (nonatomic, readonly) BOOL isNoMoreData;
+@property (nonatomic, readonly) UIEdgeInsets systemInsets;
 @property (nonatomic, assign) BOOL isDebug;
 @property (nonatomic, assign) BOOL isAlwaysTriggerRefreshHandler;
 @property (nonatomic, assign) BOOL isAutoPosition;//default is YES you just specify view's bouds, horizontally center
@@ -51,7 +52,6 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 @property (nonatomic, assign) UIEdgeInsets userAdditionalInsets;
 @property (nonatomic, assign) UIEdgeInsets extendInsets;//default is view's height, extend space for header or footer hover
 @property (nonatomic, assign) LXRefreshViewMetric statusMetric;//default value header is {CGRectGetMaxY(self.frame), self.frame.origin.y}, footer is {self.frame.origin.y, CGRectGetMaxY(self.frame)}.
-@property (nonatomic, readonly) UIEdgeInsets systemInsets;
 @property (nonatomic, nullable, copy) LXRefreshHandler refreshHandler;
 
 - (instancetype)initWithFrame:(CGRect)frame RefreshHandler:(LXRefreshHandler)handler;
