@@ -7,11 +7,12 @@
 //
 
 #import "UIScrollView+LXRefresh.h"
-#import "LXRefreshView+Internal.h"
+#import "LXRefreshBaseView+Internal.h"
+#import "UIScrollView+LXInternal.h"
 #import <objc/runtime.h>
 
 static const void *const footerKey = &footerKey, *const headerKey = &headerKey;
-
+void swizzle(Class class, SEL target, SEL beSwizzled);
 @implementation UIScrollView (CLXRefresh)
 
 #pragma mark -
@@ -77,7 +78,6 @@ static const void *const footerKey = &footerKey, *const headerKey = &headerKey;
 - (void)addRefreshHeaderView:(LXRefreshBaseView * _Nonnull)lx_refreshHeaderView {
     [self addSubview:lx_refreshHeaderView];
     lx_refreshHeaderView.scrollView = self;
-    self.delegate = lx_refreshHeaderView;
     
     UIEdgeInsets insets = lx_refreshHeaderView.extendInsets;
     if (insets.top == 0.f) {
@@ -98,9 +98,6 @@ static const void *const footerKey = &footerKey, *const headerKey = &headerKey;
 - (void)addRefreshFooterView:(LXRefreshBaseView * _Nonnull)lx_refreshFooterView {
     [self addSubview:lx_refreshFooterView];
     lx_refreshFooterView.scrollView = self;
-    if (self.lx_refreshHeaderView == nil) {
-        self.delegate = lx_refreshFooterView;
-    }
     
     UIEdgeInsets insets = lx_refreshFooterView.extendInsets;
     if (insets.bottom == 0.f) {
@@ -158,40 +155,13 @@ void swizzle(Class class, SEL target, SEL beSwizzled) {
 }
 
 - (void)LX_setDelegate:(id<UIScrollViewDelegate>)delegate {
-    if (self.lx_refreshHeaderView) {
-        if (delegate == self.lx_refreshFooterView) {
-            return;
-        }
-        
-        if (self.delegate == self.lx_refreshFooterView) {
-            //exist delegate is footer
-            self.lx_refreshHeaderView.realDelegate = self.lx_refreshFooterView.realDelegate;
-            self.lx_refreshFooterView.realDelegate = nil;
-        } else if (self.delegate != self.lx_refreshHeaderView) {
-            //exist deletgate is real delegate
-            self.lx_refreshHeaderView.realDelegate = self.delegate;
-        }
-        
-        if (self.delegate != self.lx_refreshHeaderView) {
-            [self LX_setDelegate:self.lx_refreshHeaderView];
-        }
-        
-        if (delegate != self.lx_refreshHeaderView &&
-            delegate != self.lx_refreshHeaderView.realDelegate) {
-            self.lx_refreshHeaderView.realDelegate = delegate;
-        }
-    } else if (self.lx_refreshFooterView) {
-        if (self.delegate != self.lx_refreshFooterView) {
-            self.lx_refreshFooterView.realDelegate = self.delegate;
-            [self LX_setDelegate:self.lx_refreshFooterView];
-        }
-        if (delegate != self.lx_refreshFooterView &&
-            delegate != self.lx_refreshFooterView.realDelegate) {
-            self.lx_refreshFooterView.realDelegate = delegate;
-        }
-    } else {
-        [self LX_setDelegate:delegate];
+    if (delegate == nil) {
+        self.lx_delegate = nil;
+        return;
     }
+    LXScrollViewDelegateProxy *proxy = [LXScrollViewDelegateProxy delegateProxyWithHost:delegate ScrollView:self];
+    [self LX_setDelegate:proxy];
+    self.lx_delegate = proxy;
 }
 
 @end

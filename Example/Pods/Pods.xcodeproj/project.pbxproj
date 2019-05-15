@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0094B9C50E9A067CBD42C5CE0D03F783 /* UIScrollView+LXRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = 117B2F4A6CD56CF9E374C35AFFFB61B0 /* UIScrollView+LXRefresh.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		050D5EB3B78CC363B06FA0A937DAD397 /* LXScrollViewDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4C3AFAAAAFE0AF5732710C149E525F /* LXScrollViewDelegateProxy.m */; };
 		1203109BED79623E2C4B481AB4DDB074 /* Pods-CLXRefresh_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 573962E88CBFB420C8059F0AC8F56072 /* Pods-CLXRefresh_Example-dummy.m */; };
-		18C2F59C2D30183CB125D34DD2734791 /* UIScrollView+LXRefresh.h in Headers */ = {isa = PBXBuildFile; fileRef = BC52529530F16DB28974230544F2D4CE /* UIScrollView+LXRefresh.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		19D3F17E67CEADE43EEC1A7FCA7331C1 /* UIScrollView+LXRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 180D62C9210A8FCC1A7C3AC0804F1FF6 /* UIScrollView+LXRefresh.m */; };
-		3BCAE24130DC85582BFFF69C6E75C3D0 /* LXRefreshView+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = A241D72B5B900F9355D24ED1F34DC9D0 /* LXRefreshView+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6CEDE0D9DDC775F2E3AF14A37495B24D /* CLXRefresh-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD508D00C98B9ACCAEC34D185843902 /* CLXRefresh-dummy.m */; };
-		B9DD173CCF63816A7823FBC483B23784 /* LXRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA612E772F483D2801FA89BAC045828 /* LXRefreshBaseView.m */; };
+		6DB3CA2C1EFAFE2ABB5DA4B330483B7E /* LXRefreshBaseView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAA35BC4913736AA916C8DD1FECF85D /* LXRefreshBaseView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8C2FA87BCA2E55B34C24ABC933E27B6C /* CLXRefresh-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F49799DAB82A7657400EF3D829428 /* CLXRefresh-dummy.m */; };
+		92B697C0C8209F62EC140CB6B6BD1C3B /* LXScrollViewDelegateProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = D798CD386D655D48432549093FCD0DFF /* LXScrollViewDelegateProxy.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CC5BA0A635B382598F67530FA91D4119 /* UIScrollView+LXInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 943BEA9DDA34AF402F8C7FC52EF65973 /* UIScrollView+LXInternal.m */; };
 		CCDA208683F9CCFD34850CB573B93939 /* Pods-CLXRefresh_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9348B573B2F7D859AC4C1438A2D4D0AA /* Pods-CLXRefresh_Tests-dummy.m */; };
-		DDCCA32A87074BF65A4C1E1928EE799A /* LXRefreshBaseView.h in Headers */ = {isa = PBXBuildFile; fileRef = CD404C27AEB082BB600CACB861984D59 /* LXRefreshBaseView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D3BECF336B969AE79F19EFF81DF56BD5 /* UIScrollView+LXRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8A3A2545503BC6556CB0FA0C051CC /* UIScrollView+LXRefresh.m */; };
+		D98BA882EC034B7F0A5584ED070FD720 /* LXRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B8917D95E0A9149F7B0D7281271109 /* LXRefreshBaseView.m */; };
+		DB867F241F732F8CAD675527DD493FFA /* LXRefreshBaseView+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 793B23768374123CD99CA124B78C9997 /* LXRefreshBaseView+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E72E1102571C60771C0692A70868CCDB /* UIScrollView+LXInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 73A35BDAE834FD9684C7DDA3C1B2C901 /* UIScrollView+LXInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,7 +26,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 07B128163C23D24E269834DADA88BB4B;
+			remoteGlobalIDString = FD20AA8DA199823135B4897C75D86D3A;
 			remoteInfo = CLXRefresh;
 		};
 		9A8109EC0A82EF0FA165F1B0F3AEB663 /* PBXContainerItemProxy */ = {
@@ -35,38 +39,49 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		180D62C9210A8FCC1A7C3AC0804F1FF6 /* UIScrollView+LXRefresh.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+LXRefresh.m"; path = "CLXRefresh/Classes/UIScrollView+LXRefresh.m"; sourceTree = "<group>"; };
-		1D8F0D4196230D3395B06AB6748095F4 /* CLXRefresh-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CLXRefresh-prefix.pch"; sourceTree = "<group>"; };
-		1DA612E772F483D2801FA89BAC045828 /* LXRefreshBaseView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LXRefreshBaseView.m; path = CLXRefresh/Classes/LXRefreshBaseView.m; sourceTree = "<group>"; };
+		117B2F4A6CD56CF9E374C35AFFFB61B0 /* UIScrollView+LXRefresh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LXRefresh.h"; sourceTree = "<group>"; };
+		1AE8A3A2545503BC6556CB0FA0C051CC /* UIScrollView+LXRefresh.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+LXRefresh.m"; path = "CLXRefresh/Classes/UIScrollView+LXRefresh.m"; sourceTree = "<group>"; };
+		1E4C3AFAAAAFE0AF5732710C149E525F /* LXScrollViewDelegateProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LXScrollViewDelegateProxy.m; path = CLXRefresh/Classes/LXScrollViewDelegateProxy.m; sourceTree = "<group>"; };
 		22575A9C6073D8ACC198FB8BDAAD7C8F /* Pods-CLXRefresh_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CLXRefresh_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		3A9BC2FBF744FE801C1575905A949D03 /* CLXRefresh.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CLXRefresh.xcconfig; sourceTree = "<group>"; };
+		31686776FA7C18453A79A3C04DE2821C /* CLXRefresh.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CLXRefresh.xcconfig; sourceTree = "<group>"; };
 		45C5BB517B38826D660D22CB2480C205 /* Pods-CLXRefresh_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Example-resources.sh"; sourceTree = "<group>"; };
 		4759C1D6ADA5A22E320F19CD7B464E50 /* Pods-CLXRefresh_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		4D4CDF837514C6D971C58F8BC4DB3538 /* Pods-CLXRefresh_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		573962E88CBFB420C8059F0AC8F56072 /* Pods-CLXRefresh_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CLXRefresh_Example-dummy.m"; sourceTree = "<group>"; };
+		71E9472F50A1BB832E2D8E634DB47BFC /* CLXRefresh.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = CLXRefresh.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		72FD505AB3CAECE34DA4A25F132415CF /* Pods-CLXRefresh_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CLXRefresh_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		73A35BDAE834FD9684C7DDA3C1B2C901 /* UIScrollView+LXInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LXInternal.h"; sourceTree = "<group>"; };
 		760A98344ADB054A67C7EB21FF99C15F /* Pods-CLXRefresh_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CLXRefresh_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		793B23768374123CD99CA124B78C9997 /* LXRefreshBaseView+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LXRefreshBaseView+Internal.h"; sourceTree = "<group>"; };
 		8ADB9BA52A9667EAB8E9FEC83171CA60 /* libPods-CLXRefresh_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-CLXRefresh_Example.a"; path = "libPods-CLXRefresh_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9348B573B2F7D859AC4C1438A2D4D0AA /* Pods-CLXRefresh_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CLXRefresh_Tests-dummy.m"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9E46C7BB20D3EED956AA51D5AFFCAB11 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		A241D72B5B900F9355D24ED1F34DC9D0 /* LXRefreshView+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LXRefreshView+Internal.h"; sourceTree = "<group>"; };
+		943BEA9DDA34AF402F8C7FC52EF65973 /* UIScrollView+LXInternal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+LXInternal.m"; path = "CLXRefresh/Classes/UIScrollView+LXInternal.m"; sourceTree = "<group>"; };
+		9AAA35BC4913736AA916C8DD1FECF85D /* LXRefreshBaseView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LXRefreshBaseView.h; sourceTree = "<group>"; };
+		9B6F49799DAB82A7657400EF3D829428 /* CLXRefresh-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CLXRefresh-dummy.m"; sourceTree = "<group>"; };
+		9DD3F33316DB52F1CE0E366485DD27E1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		AB8D80B3A1F3053807B49EFDF6C4EFEA /* Pods-CLXRefresh_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Tests-resources.sh"; sourceTree = "<group>"; };
 		B4F5AC4C3097EF7C9CDA05CFFDFD3220 /* Pods-CLXRefresh_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		BBD508D00C98B9ACCAEC34D185843902 /* CLXRefresh-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CLXRefresh-dummy.m"; sourceTree = "<group>"; };
-		BC52529530F16DB28974230544F2D4CE /* UIScrollView+LXRefresh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+LXRefresh.h"; sourceTree = "<group>"; };
 		BC84A042130AF8B1591428EDE055BCB4 /* libCLXRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libCLXRefresh.a; path = libCLXRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5087BEF563C0022B1927CE9F607144C /* Pods-CLXRefresh_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		C7B8917D95E0A9149F7B0D7281271109 /* LXRefreshBaseView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LXRefreshBaseView.m; path = CLXRefresh/Classes/LXRefreshBaseView.m; sourceTree = "<group>"; };
 		CB068DF9AFB0901730A4B5D1D21D37E9 /* libPods-CLXRefresh_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-CLXRefresh_Tests.a"; path = "libPods-CLXRefresh_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC39164C9AF25035ED123A755712770B /* CLXRefresh.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = CLXRefresh.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		CD404C27AEB082BB600CACB861984D59 /* LXRefreshBaseView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LXRefreshBaseView.h; sourceTree = "<group>"; };
+		CEAE5470C5ECAFC1EE73F4590C9DA63D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		D6A36C234AF542A130F86A728142F838 /* Pods-CLXRefresh_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CLXRefresh_Example-frameworks.sh"; sourceTree = "<group>"; };
-		D761F45E7B4FA2C9419760BF5DE7A9B1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		D798CD386D655D48432549093FCD0DFF /* LXScrollViewDelegateProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LXScrollViewDelegateProxy.h; sourceTree = "<group>"; };
+		DD661EECC5DE0E2EFD1C58468417C486 /* CLXRefresh-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CLXRefresh-prefix.pch"; sourceTree = "<group>"; };
 		EE37EFCEC7D2079E1064657594252983 /* Pods-CLXRefresh_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CLXRefresh_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		F3CC8AE3B34E29BAD63D30B2F1346438 /* Pods-CLXRefresh_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CLXRefresh_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		193095A60B50468D9422C231196322F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1FB67B171BF6F2E79C62BE8F1EC2F2C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -75,13 +90,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		91ADBB4347EDC117BB932B9A9C0783FF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A479337CE41583754633585D55CFFA0C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -98,37 +106,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1A1629F63AE9032762C7DE5FED71AD09 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				245496290355199A3AB1046E65BA85E4 /* CLXRefresh */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		245496290355199A3AB1046E65BA85E4 /* CLXRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				1DA612E772F483D2801FA89BAC045828 /* LXRefreshBaseView.m */,
-				180D62C9210A8FCC1A7C3AC0804F1FF6 /* UIScrollView+LXRefresh.m */,
-				4B54B574910C5CF16F487428DC48AB39 /* Headers */,
-				AA747BCFDD811875FF18A6DB9A8C1590 /* Pod */,
-				B9EB91380A040AFF2F30B889BB8004B5 /* Support Files */,
-			);
-			name = CLXRefresh;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		33B0DA9D026448244E584BF22D3978C6 /* Public */ = {
-			isa = PBXGroup;
-			children = (
-				CD404C27AEB082BB600CACB861984D59 /* LXRefreshBaseView.h */,
-				BC52529530F16DB28974230544F2D4CE /* UIScrollView+LXRefresh.h */,
-			);
-			name = Public;
-			path = Public;
-			sourceTree = "<group>";
-		};
 		487167CA757E52904A27F018CC67EE28 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,16 +114,6 @@
 				CB068DF9AFB0901730A4B5D1D21D37E9 /* libPods-CLXRefresh_Tests.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		4B54B574910C5CF16F487428DC48AB39 /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				796E84A0E7C67D22FA6EA7A107B013E0 /* Private */,
-				33B0DA9D026448244E584BF22D3978C6 /* Public */,
-			);
-			name = Headers;
-			path = CLXRefresh/Classes/Headers;
 			sourceTree = "<group>";
 		};
 		4C72ACC1B69B918CBBDACC9C22D2B470 /* Targets Support Files */ = {
@@ -158,34 +125,50 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		796E84A0E7C67D22FA6EA7A107B013E0 /* Private */ = {
+		4E215979C1B266EF0BA438922354CA96 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				A241D72B5B900F9355D24ED1F34DC9D0 /* LXRefreshView+Internal.h */,
+				71E9472F50A1BB832E2D8E634DB47BFC /* CLXRefresh.podspec */,
+				CEAE5470C5ECAFC1EE73F4590C9DA63D /* LICENSE */,
+				9DD3F33316DB52F1CE0E366485DD27E1 /* README.md */,
 			);
-			name = Private;
-			path = Private;
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		67B6223CD8A5B8D8B1467A90EDDA99EB /* CLXRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				C7B8917D95E0A9149F7B0D7281271109 /* LXRefreshBaseView.m */,
+				1E4C3AFAAAAFE0AF5732710C149E525F /* LXScrollViewDelegateProxy.m */,
+				943BEA9DDA34AF402F8C7FC52EF65973 /* UIScrollView+LXInternal.m */,
+				1AE8A3A2545503BC6556CB0FA0C051CC /* UIScrollView+LXRefresh.m */,
+				95270DF053889B349250402E6C82893D /* Headers */,
+				4E215979C1B266EF0BA438922354CA96 /* Pod */,
+				BAFC043AEF52618CE086E2AF17CA769E /* Support Files */,
+			);
+			name = CLXRefresh;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				1A1629F63AE9032762C7DE5FED71AD09 /* Development Pods */,
+				E007D9628C8EB59718C9865CA169C7F6 /* Development Pods */,
 				0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */,
 				487167CA757E52904A27F018CC67EE28 /* Products */,
 				4C72ACC1B69B918CBBDACC9C22D2B470 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		AA747BCFDD811875FF18A6DB9A8C1590 /* Pod */ = {
+		95270DF053889B349250402E6C82893D /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				CC39164C9AF25035ED123A755712770B /* CLXRefresh.podspec */,
-				D761F45E7B4FA2C9419760BF5DE7A9B1 /* LICENSE */,
-				9E46C7BB20D3EED956AA51D5AFFCAB11 /* README.md */,
+				DCE94E9EDA9598133739B96B1B9E5DCC /* Private */,
+				DC72B95822F19113441FECA291603564 /* Public */,
 			);
-			name = Pod;
+			name = Headers;
+			path = CLXRefresh/Classes/Headers;
 			sourceTree = "<group>";
 		};
 		B20F11B6368F82D998923EB2A44E8895 /* Pods-CLXRefresh_Example */ = {
@@ -203,15 +186,44 @@
 			path = "Target Support Files/Pods-CLXRefresh_Example";
 			sourceTree = "<group>";
 		};
-		B9EB91380A040AFF2F30B889BB8004B5 /* Support Files */ = {
+		BAFC043AEF52618CE086E2AF17CA769E /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				3A9BC2FBF744FE801C1575905A949D03 /* CLXRefresh.xcconfig */,
-				BBD508D00C98B9ACCAEC34D185843902 /* CLXRefresh-dummy.m */,
-				1D8F0D4196230D3395B06AB6748095F4 /* CLXRefresh-prefix.pch */,
+				31686776FA7C18453A79A3C04DE2821C /* CLXRefresh.xcconfig */,
+				9B6F49799DAB82A7657400EF3D829428 /* CLXRefresh-dummy.m */,
+				DD661EECC5DE0E2EFD1C58468417C486 /* CLXRefresh-prefix.pch */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/CLXRefresh";
+			sourceTree = "<group>";
+		};
+		DC72B95822F19113441FECA291603564 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				9AAA35BC4913736AA916C8DD1FECF85D /* LXRefreshBaseView.h */,
+				117B2F4A6CD56CF9E374C35AFFFB61B0 /* UIScrollView+LXRefresh.h */,
+			);
+			name = Public;
+			path = Public;
+			sourceTree = "<group>";
+		};
+		DCE94E9EDA9598133739B96B1B9E5DCC /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				793B23768374123CD99CA124B78C9997 /* LXRefreshBaseView+Internal.h */,
+				D798CD386D655D48432549093FCD0DFF /* LXScrollViewDelegateProxy.h */,
+				73A35BDAE834FD9684C7DDA3C1B2C901 /* UIScrollView+LXInternal.h */,
+			);
+			name = Private;
+			path = Private;
+			sourceTree = "<group>";
+		};
+		E007D9628C8EB59718C9865CA169C7F6 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				67B6223CD8A5B8D8B1467A90EDDA99EB /* CLXRefresh */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		F699AA41012042CDDD458BE02EB7A6D7 /* Pods-CLXRefresh_Tests */ = {
@@ -232,13 +244,15 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		99118654BB90E49DA3F57A07D16A9718 /* Headers */ = {
+		16DB48C9AF0FD9BB86538796F4417800 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDCCA32A87074BF65A4C1E1928EE799A /* LXRefreshBaseView.h in Headers */,
-				3BCAE24130DC85582BFFF69C6E75C3D0 /* LXRefreshView+Internal.h in Headers */,
-				18C2F59C2D30183CB125D34DD2734791 /* UIScrollView+LXRefresh.h in Headers */,
+				DB867F241F732F8CAD675527DD493FFA /* LXRefreshBaseView+Internal.h in Headers */,
+				6DB3CA2C1EFAFE2ABB5DA4B330483B7E /* LXRefreshBaseView.h in Headers */,
+				92B697C0C8209F62EC140CB6B6BD1C3B /* LXScrollViewDelegateProxy.h in Headers */,
+				E72E1102571C60771C0692A70868CCDB /* UIScrollView+LXInternal.h in Headers */,
+				0094B9C50E9A067CBD42C5CE0D03F783 /* UIScrollView+LXRefresh.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,23 +276,6 @@
 			productReference = 8ADB9BA52A9667EAB8E9FEC83171CA60 /* libPods-CLXRefresh_Example.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		07B128163C23D24E269834DADA88BB4B /* CLXRefresh */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C7ECC960F4284725F5CA0532995D0843 /* Build configuration list for PBXNativeTarget "CLXRefresh" */;
-			buildPhases = (
-				8EE1D6572699C4AD024D19035D3491BD /* Sources */,
-				A479337CE41583754633585D55CFFA0C /* Frameworks */,
-				99118654BB90E49DA3F57A07D16A9718 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CLXRefresh;
-			productName = CLXRefresh;
-			productReference = BC84A042130AF8B1591428EDE055BCB4 /* libCLXRefresh.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		27F94C1E687B6EBAC20B3AB796ADC759 /* Pods-CLXRefresh_Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 34B5E020242D0EFF65CB5694B7F57590 /* Build configuration list for PBXNativeTarget "Pods-CLXRefresh_Tests" */;
@@ -294,6 +291,23 @@
 			name = "Pods-CLXRefresh_Tests";
 			productName = "Pods-CLXRefresh_Tests";
 			productReference = CB068DF9AFB0901730A4B5D1D21D37E9 /* libPods-CLXRefresh_Tests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		FD20AA8DA199823135B4897C75D86D3A /* CLXRefresh */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84B548BFF27E72DBEA733C30D3B253F0 /* Build configuration list for PBXNativeTarget "CLXRefresh" */;
+			buildPhases = (
+				AACCF698E0EA6BF40CD153927193E2EB /* Sources */,
+				193095A60B50468D9422C231196322F3 /* Frameworks */,
+				16DB48C9AF0FD9BB86538796F4417800 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CLXRefresh;
+			productName = CLXRefresh;
+			productReference = BC84A042130AF8B1591428EDE055BCB4 /* libCLXRefresh.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -317,7 +331,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				07B128163C23D24E269834DADA88BB4B /* CLXRefresh */,
+				FD20AA8DA199823135B4897C75D86D3A /* CLXRefresh */,
 				0538E238365850ABAC7B86181B381C12 /* Pods-CLXRefresh_Example */,
 				27F94C1E687B6EBAC20B3AB796ADC759 /* Pods-CLXRefresh_Tests */,
 			);
@@ -333,21 +347,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8EE1D6572699C4AD024D19035D3491BD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6CEDE0D9DDC775F2E3AF14A37495B24D /* CLXRefresh-dummy.m in Sources */,
-				B9DD173CCF63816A7823FBC483B23784 /* LXRefreshBaseView.m in Sources */,
-				19D3F17E67CEADE43EEC1A7FCA7331C1 /* UIScrollView+LXRefresh.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A5F8462260C223736C79E100664AA957 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1203109BED79623E2C4B481AB4DDB074 /* Pods-CLXRefresh_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AACCF698E0EA6BF40CD153927193E2EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C2FA87BCA2E55B34C24ABC933E27B6C /* CLXRefresh-dummy.m in Sources */,
+				D98BA882EC034B7F0A5584ED070FD720 /* LXRefreshBaseView.m in Sources */,
+				050D5EB3B78CC363B06FA0A937DAD397 /* LXScrollViewDelegateProxy.m in Sources */,
+				CC5BA0A635B382598F67530FA91D4119 /* UIScrollView+LXInternal.m in Sources */,
+				D3BECF336B969AE79F19EFF81DF56BD5 /* UIScrollView+LXRefresh.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,7 +379,7 @@
 		CDB599106E702E9B186254C99EA0C848 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CLXRefresh;
-			target = 07B128163C23D24E269834DADA88BB4B /* CLXRefresh */;
+			target = FD20AA8DA199823135B4897C75D86D3A /* CLXRefresh */;
 			targetProxy = 42A7CC7F9909DD9C609BF21AB62DEA7E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -454,9 +470,9 @@
 			};
 			name = Debug;
 		};
-		3712F91AB1A48AF01D85A1BF74F32320 /* Debug */ = {
+		280528713F3C8B7700061FF267531B2E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A9BC2FBF744FE801C1575905A949D03 /* CLXRefresh.xcconfig */;
+			baseConfigurationReference = 31686776FA7C18453A79A3C04DE2821C /* CLXRefresh.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -474,8 +490,9 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
 		3797E372E7DBF5AC016C94A3AC7B2ADE /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -494,6 +511,29 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7B29C06F0BBBF3F6F5BCD13D801C7515 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31686776FA7C18453A79A3C04DE2821C /* CLXRefresh.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/CLXRefresh/CLXRefresh-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = CLXRefresh;
+				PRODUCT_NAME = CLXRefresh;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -540,30 +580,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
-		};
-		E5CEEBE62D8C18706FDF37F4D2736660 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A9BC2FBF744FE801C1575905A949D03 /* CLXRefresh.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/CLXRefresh/CLXRefresh-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = CLXRefresh;
-				PRODUCT_NAME = CLXRefresh;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
 		};
 		F4568DEE257655D290C2B9CEAB37C934 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -653,11 +669,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7ECC960F4284725F5CA0532995D0843 /* Build configuration list for PBXNativeTarget "CLXRefresh" */ = {
+		84B548BFF27E72DBEA733C30D3B253F0 /* Build configuration list for PBXNativeTarget "CLXRefresh" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3712F91AB1A48AF01D85A1BF74F32320 /* Debug */,
-				E5CEEBE62D8C18706FDF37F4D2736660 /* Release */,
+				7B29C06F0BBBF3F6F5BCD13D801C7515 /* Debug */,
+				280528713F3C8B7700061FF267531B2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

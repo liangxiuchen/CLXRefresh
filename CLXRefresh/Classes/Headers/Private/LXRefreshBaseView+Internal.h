@@ -9,7 +9,7 @@
 #import "LXRefreshBaseView.h"
 //framework internal header, do not expose to user
 NS_ASSUME_NONNULL_BEGIN
-@interface LXRefreshBaseView()<UIScrollViewDelegate>
+@interface LXRefreshBaseView()<UITableViewDelegate>
 
 @property (nonatomic, assign) LXRefreshViewStatus viewStatus;
 @property (nonatomic, assign) LXRefreshLogicStatus logicStatus;
@@ -22,10 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isExtendedContentInsetsForFooterHover;
 @property (nonatomic, readonly, class) void *headerKVOContext;
 @property (nonatomic, readonly, class) void *footerKVOContext;
-@property (nonatomic, weak, nullable) id<UIScrollViewDelegate> realDelegate;
+@property (nonatomic, weak, nullable) NSObject<UIScrollViewDelegate> *realDelegate;
 
 - (void)super_onContentInsetsChanged:(UIEdgeInsets)insets;
 - (void)updateStatusMetric;//is used for auto position
+- (void)didEndScrolling;
 
 @end
 NS_ASSUME_NONNULL_END

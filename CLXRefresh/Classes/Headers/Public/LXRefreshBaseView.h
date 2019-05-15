@@ -41,6 +41,7 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 @property (nonatomic, readonly) LXRefreshViewStatus viewStatus;
 @property (nonatomic, readonly) LXRefreshLogicStatus logicStatus;
 @property (nonatomic, readonly) BOOL isRefreshing;//YES when business logic is refreshing or UI also in refreshing, otherwise NO
+@property (nonatomic, readonly) BOOL isIdle;
 @property (nonatomic, readonly) BOOL isHeader;
 @property (nonatomic, readonly) BOOL isFooter;
 @property (nonatomic, readonly) BOOL isNoMoreData;
