@@ -69,12 +69,14 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 - (BOOL)commonInit {
     _isDebug = NO;
     _isAutoPosition = YES;
+    _enable = YES;
     _pendingRefreshes = 0;
     _isAlwaysTriggerRefreshHandler = NO;
+    _footerRefreshTriggeredWithoutPull = NO;
+    _shouldDisableFooterWhenEmpty = YES;
     _extendInsets = (UIEdgeInsets){0};
     _viewStatus = LXRefreshStatusInit;
     _logicStatus = LXRefreshLogicStatusNormal;
-    _shouldNoMoreDataAlwaysHover = YES;
     
     BOOL conformed = [self conformsToProtocol:@protocol(LXRefreshBaseProtocol)];
     NSAssert(conformed, @"LXRefreshView's subclass must be conform one of LXRefreshBaseProtocol, LXRefreshHeaderProtocl, LXRefreshFooterProtocol, LXRefreshviewProtocol");
@@ -91,6 +93,18 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if (context != LXRefreshHeaderViewKVOContext && context != LXRefreshFooterViewKVOContext) {
+        return;
+    }
+    if (self.shouldDisableFooterWhenEmpty && self.isFooter) {
+        if ([keyPath isEqualToString:@"contentSize"]) {
+            NSValue *newValue = (NSValue *)change[NSKeyValueChangeNewKey];
+            if (![newValue isKindOfClass:NSValue.class]) {
+                return;
+            }
+            self.enable = !CGSizeEqualToSize(newValue.CGSizeValue, CGSizeZero);
+        }
+    }
+    if (self.enable == NO) {
         return;
     }
     [self onPanGestureStateChanged:change keyPath:keyPath kvoContext:context];
@@ -253,9 +267,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         }
     }
     self.viewStatus = LXRefreshStatusBecomingToRefreshing;
-    if ([self respondsToSelector:@selector(onBecomingToRefreshing:)]) {
+    if ([self respondsToSelector:@selector(onBecomingRefreshing:)]) {
         id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
-        [subclass onBecomingToRefreshing:percent];
+        [subclass onBecomingRefreshing:percent];
     }
 }
 
@@ -299,19 +313,15 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     self.viewStatus = LXRefreshStatusRefreshing;
     if (self.isAlwaysTriggerRefreshHandler) {
         self.pendingRefreshes += 1;
-        if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
-            self.logicStatus = LXRefreshLogicStatusRefreshing;
-        }
+        self.logicStatus = LXRefreshLogicStatusRefreshing;
         LXRFMethodDebug
         if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
             id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
             [subclass onViewStatusRefreshing:previous];
         }
-        self.refreshHandler(self);
+        self.refreshHandler ? self.refreshHandler(self) : (void)0;
     }  else if (self.pendingRefreshes > 0) {
-        if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
-            self.logicStatus = LXRefreshLogicStatusRefreshing;
-        }
+        self.logicStatus = LXRefreshLogicStatusRefreshing;
     } else {
         if (self.logicStatus == LXRefreshLogicStatusNormal) {
             LXRFMethodDebug
@@ -320,15 +330,13 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                 id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
                 [subclass onViewStatusRefreshing:previous];
             }
-            self.refreshHandler(self);
+            self.refreshHandler ? self.refreshHandler(self) : (void)0;
         } else if (self.logicStatus == LXRefreshLogicStatusRefreshing) {
             LXRFMethodDebug
             if ([self respondsToSelector:@selector(onViewStatusRefreshing:)]) {
                 id<LXRefreshBaseProtocol> subclass = (id<LXRefreshBaseProtocol>)self;
                 [subclass onViewStatusRefreshing:previous];
             }
-        } else if (self.logicStatus == LXRefreshLogicStatusNoMoreData) {
-            [self endRefreshing];
         } else if (self.logicStatus == LXRefreshLogicStatusRefreshFinished) {
             [self endRefreshing];
         }
@@ -357,16 +365,13 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
 }
 
-- (void)super_onNoMoreData {
-    LXRFMethodDebug
-    if ([self respondsToSelector:@selector(onNoMoreData)]) {
-        id<LXRefreshFooterProtocol> subclass = (id<LXRefreshFooterProtocol>)self;
-        [subclass onNoMoreData];
-    }
-}
-
 #pragma mark -
 #pragma mark - getter && setter methods
+
+- (void)setEnable:(BOOL)enable {
+    _enable = enable;
+    self.hidden = !enable;
+}
 
 - (BOOL)isHeader {
     return self.scrollView.lx_refreshHeaderView == self;
@@ -380,8 +385,8 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     return _viewStatus == LXRefreshStatusRefreshing || _logicStatus == LXRefreshLogicStatusRefreshing;
 }
 
-- (BOOL)isNoMoreData {
-    return _logicStatus == LXRefreshLogicStatusNoMoreData;
+- (BOOL)isIdle {
+    return _viewStatus == LXRefreshStatusIdle;
 }
 
 - (BOOL)isFullScreen {
@@ -470,7 +475,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
 }
 
-- (void)header_beginRefreshing {
+- (void)beginRefreshing {
     dispatch_block_t task = ^{
         if (self.isExtendedContentInsetsForHeaderHover == NO) {
             LXRFMethodDebug
@@ -503,19 +508,13 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             self.pendingRefreshes -= 1;
             self.pendingRefreshes = self.pendingRefreshes < 0 ? 0 : self.pendingRefreshes;
             if (self.pendingRefreshes == 0) {
-                if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
-                    self.logicStatus = LXRefreshLogicStatusRefreshFinished;
-                }
+                self.logicStatus = LXRefreshLogicStatusRefreshFinished;
                 [self endUIRefreshing];
             } else {
-                if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
-                    self.logicStatus = LXRefreshLogicStatusRefreshing;
-                }
+                self.logicStatus = LXRefreshLogicStatusRefreshing;
             }
         } else {
-            if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
-                self.logicStatus = LXRefreshLogicStatusRefreshFinished;
-            }
+            self.logicStatus = LXRefreshLogicStatusRefreshFinished;
             [self endUIRefreshing];
         }
     };
@@ -526,23 +525,6 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         LXRFMethodDebug
         dispatch_async(dispatch_get_main_queue(), task);
     }
-}
-
-- (void)footer_becomeNoMoreData {
-    dispatch_block_t task = ^{
-        self.logicStatus = LXRefreshLogicStatusNoMoreData;
-        if (self.shouldNoMoreDataAlwaysHover) {
-            [self super_onNoMoreData];
-        }
-    };
-    if (NSThread.isMainThread) {
-        LXRFMethodDebug
-        task();
-    } else {
-        LXRFMethodDebug
-        dispatch_async(dispatch_get_main_queue(), task);
-    }
-    
 }
 
 - (void)endUIRefreshing {
@@ -561,13 +543,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         if (self.isExtendedContentInsetsForFooterHover) {
             LXRFMethodDebug
         }
-        if ((self.logicStatus == LXRefreshLogicStatusNoMoreData && self.shouldNoMoreDataAlwaysHover) == NO) {
-            [self shrinkExtendedBottomInsetsWith:^(BOOL finished) {
-                [self super_onViewStatusIdle];
-            }];
-        } else {
-            [self super_onNoMoreData];
-        }
+        [self shrinkExtendedBottomInsetsWith:^(BOOL finished) {
+            [self super_onViewStatusIdle];
+        }];
     }
 }
 
@@ -623,6 +601,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     BOOL shouldExtend = NO;
     if (self.isFullScreen) {
         shouldExtend = (self.scrollView.contentOffset.y + self.scrollView.bounds.size.height) >= self.statusMetric.refreshMetric;
+        if (self.footerRefreshTriggeredWithoutPull) {
+            shouldExtend = YES;
+        }
     }
     if (!shouldExtend) {
         return;
@@ -652,15 +633,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         self.scrollView.contentInset = insets;
         CGPoint targetOffset = self.scrollView.contentOffset;
         self.scrollView.contentOffset = originalOffset;
-        //here shouldNoMoreDataAlwaysHover must be NO
-        if (self.logicStatus != LXRefreshLogicStatusNoMoreData) {
-            self.scrollView.contentOffset = originalOffset;
-            completion ? completion(YES) : (void)0;
-        } else {
-            [UIView animateWithDuration:CATransaction.animationDuration animations:^{
-                self.scrollView.contentOffset = targetOffset;
-            } completion:completion];
-        }
+        [UIView animateWithDuration:CATransaction.animationDuration animations:^{
+            self.scrollView.contentOffset = targetOffset;
+        } completion:completion];
     }
 }
 
@@ -753,6 +728,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 - (void)didEndScrolling {
     LXRFMethodDebug
+    if (self.enable == NO) {
+        return;
+    }
     if (self.isHeader) {
         CGFloat contentOffset = self.scrollView.contentOffset.y;
         if (contentOffset == self.statusMetric.refreshMetric) {
@@ -780,193 +758,6 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
 }
 
-#pragma mark -
-#pragma mark - UIScrollViewDelegate methods
-
-- (void)dispatchSelector:(SEL)sel execute:(void(^)(id<UIScrollViewDelegate> delegate))handler {
-    if (self.isHeader) {
-        if (self.scrollView.lx_refreshFooterView) {
-            //header-->footer-->realDetegate
-            id<UIScrollViewDelegate> footer = self.scrollView.lx_refreshFooterView;
-            if ([footer respondsToSelector:sel]) {
-                handler ? handler(footer) : (void)0;
-            }
-        } else {
-            //header-->realDelegate
-            id<UIScrollViewDelegate> delegate = self.scrollView.lx_refreshHeaderView.realDelegate;
-            if ([delegate respondsToSelector:sel]) {
-                handler ? handler(delegate) : (void)0;
-            }
-        }
-        
-    } else if (self.isFooter) {
-        id<UIScrollViewDelegate> delegate = nil;
-        if (self.scrollView.lx_refreshHeaderView) {
-            delegate = self.scrollView.lx_refreshHeaderView.realDelegate;
-        } else {
-            delegate = self.scrollView.lx_refreshFooterView.realDelegate;
-        }
-        if ([delegate respondsToSelector:sel]) {
-            handler ? handler(delegate) : (void)0;
-        }
-    }
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self dispatchSelector:@selector(scrollViewDidScroll:) execute:^(id<UIScrollViewDelegate> delegate) {
-        [delegate scrollViewDidScroll:scrollView];
-    }];
-}
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView NS_AVAILABLE_IOS(3_2){
-    [self dispatchSelector:@selector(scrollViewDidZoom:) execute:^(id<UIScrollViewDelegate> delegate) {
-        [delegate scrollViewDidZoom:scrollView];
-    }];
-}
-
-// called on start of dragging (may require some time and or distance to move)
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [self dispatchSelector:@selector(scrollViewWillBeginDragging:) execute:^(id<UIScrollViewDelegate> delegate) {
-        [delegate scrollViewWillBeginDragging:scrollView];
-    }];
-}
-// called on finger up if the user dragged. velocity is in points/millisecond. targetContentOffset may be changed to adjust where the scroll view comes to rest
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset NS_AVAILABLE_IOS(5_0) {
-    [self dispatchSelector:@selector(scrollViewWillEndDragging:withVelocity:targetContentOffset:) execute:^(id<UIScrollViewDelegate> delegate) {
-        [delegate scrollViewWillEndDragging:scrollView withVelocity:velocity targetContentOffset:targetContentOffset];
-    }];
-}
-// called on finger up if the user dragged. decelerate is true if it will continue moving afterwards
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    //hook code
-    if (decelerate == NO) {
-        [self didEndScrolling];
-    }
-    [self dispatchSelector:@selector(scrollViewDidEndDragging:willDecelerate:) execute:^(id<UIScrollViewDelegate> delegate) {
-        LXRFMethodDebug
-        [delegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
-    }];
-}
-// called on finger up as we are moving
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    [self dispatchSelector:@selector(scrollViewWillBeginDecelerating:) execute:^(id<UIScrollViewDelegate> delegate) {
-        [delegate scrollViewWillBeginDecelerating:scrollView];
-    }];
-}
-
-// called when scroll view grinds to a halt
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self didEndScrolling];
-    
-    [self dispatchSelector:@selector(scrollViewDidEndDecelerating:) execute:^(id<UIScrollViewDelegate> delegate) {
-        LXRFMethodDebug
-        [delegate scrollViewDidEndDecelerating:scrollView];
-    }];
-}
-
-// called when setContentOffset/scrollRectVisible:animated: finishes. not called if not animating
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    [self dispatchSelector:@selector(scrollViewDidEndScrollingAnimation:) execute:^(id<UIScrollViewDelegate> delegate) {
-        [delegate scrollViewDidEndScrollingAnimation:scrollView];
-    }];
-}
-
-// return a view that will be scaled. if delegate returns nil, nothing happens
-- (nullable UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    if (self.isHeader) {
-        if (self.scrollView.lx_refreshFooterView) {
-            id<UIScrollViewDelegate> footer = self.scrollView.lx_refreshFooterView;
-            if ([footer respondsToSelector:@selector(viewForZoomingInScrollView:)]) {
-                return [footer viewForZoomingInScrollView:scrollView];
-            }
-        } else {
-            id<UIScrollViewDelegate> delegate = self.scrollView.lx_refreshHeaderView.realDelegate;
-            if ([delegate respondsToSelector:@selector(viewForZoomingInScrollView:)]) {
-                return [delegate viewForZoomingInScrollView:scrollView];
-            }
-        }
-    } else if (self.isFooter) {
-        id<UIScrollViewDelegate> delegate = nil;
-        if (self.scrollView.lx_refreshHeaderView) {
-            delegate = self.scrollView.lx_refreshHeaderView.realDelegate;
-        } else {
-            delegate = self.scrollView.lx_refreshFooterView.realDelegate;
-        }
-        if ([delegate respondsToSelector:@selector(viewForZoomingInScrollView:)]) {
-            return [delegate viewForZoomingInScrollView:scrollView];
-        }
-    }
-    return nil;
-}
-
-// called before the scroll view begins zooming its content
-- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view NS_AVAILABLE_IOS(3_2) {
-    [self dispatchSelector:@selector(scrollViewWillBeginZooming:withView:) execute:^(id<UIScrollViewDelegate> delegate) {
-        [delegate scrollViewWillBeginZooming:scrollView withView:view];
-    }];
-}
-
-// scale between minimum and maximum. called after any 'bounce' animations
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view atScale:(CGFloat)scale {
-    [self dispatchSelector:@selector(scrollViewDidEndZooming:withView:atScale:) execute:^(id<UIScrollViewDelegate> delegate) {
-        [delegate scrollViewDidEndZooming:scrollView withView:view atScale:scale];
-    }];
-}
-
-
-// return a yes if you want to scroll to the top. if not defined, assumes YES
-- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
-    BOOL should = YES;
-    if (self.isHeader) {
-        if (self.scrollView.lx_refreshFooterView) {
-            id<UIScrollViewDelegate> footer = self.scrollView.lx_refreshFooterView;
-            if ([footer respondsToSelector:@selector(scrollViewShouldScrollToTop:)]) {
-                return [footer scrollViewShouldScrollToTop:scrollView];
-            }
-        } else {
-            id<UIScrollViewDelegate> delegate = self.scrollView.lx_refreshHeaderView.realDelegate;
-            if ([delegate respondsToSelector:@selector(scrollViewShouldScrollToTop:)]) {
-                should = [delegate scrollViewShouldScrollToTop:scrollView];
-                if (should) {
-                    [self scrollTo:self.statusMetric.startMetric animated:YES];
-                    should = NO;
-                }
-                return should;
-            } else if (should){
-                [self scrollTo:self.statusMetric.startMetric animated:YES];
-                should = NO;
-            }
-        }
-        
-    } else if (self.isFooter) {
-        id<UIScrollViewDelegate> delegate = nil;
-        if (self.scrollView.lx_refreshHeaderView) {
-            delegate = self.scrollView.lx_refreshHeaderView.realDelegate;
-        } else {
-            delegate = self.scrollView.lx_refreshFooterView.realDelegate;
-        }
-        if ([delegate respondsToSelector:@selector(scrollViewShouldScrollToTop:)]) {
-            [delegate scrollViewShouldScrollToTop:scrollView];
-        }
-    }
-    return should;
-}
-
-// called when scrolling animation finished. may be called immediately if already at top
-- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView; {
-    [self dispatchSelector:@selector(scrollViewDidScrollToTop:) execute:^(id<UIScrollViewDelegate> delegate) {
-        [delegate scrollViewDidScrollToTop:scrollView];
-    }];
-}
-
-/* Also see -[UIScrollView adjustedContentInsetDidChange] */
-- (void)scrollViewDidChangeAdjustedContentInset:(UIScrollView *)scrollView API_AVAILABLE(ios(11.0), tvos(11.0)) {
-    [self dispatchSelector:@selector(scrollViewDidChangeAdjustedContentInset:) execute:^(id<UIScrollViewDelegate> delegate) {
-        [delegate scrollViewDidChangeAdjustedContentInset:scrollView];
-    }];
-}
-
 @end
-
 #undef LXRFMethodDebug
 #undef kShrinkAnimationDuration

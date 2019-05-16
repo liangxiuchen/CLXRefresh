@@ -24,7 +24,6 @@ typedef NS_ENUM(NSUInteger, LXRefreshLogicStatus) {
     LXRefreshLogicStatusNormal,
     LXRefreshLogicStatusRefreshing,
     LXRefreshLogicStatusRefreshFinished,
-    LXRefreshLogicStatusNoMoreData
 };
 
 //this metric is used to detect when can refresh
@@ -44,31 +43,21 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 @property (nonatomic, readonly) BOOL isIdle;
 @property (nonatomic, readonly) BOOL isHeader;
 @property (nonatomic, readonly) BOOL isFooter;
-@property (nonatomic, readonly) BOOL isNoMoreData;
 @property (nonatomic, readonly) UIEdgeInsets systemInsets;
+@property (nonatomic, assign) BOOL enable;
 @property (nonatomic, assign) BOOL isDebug;
 @property (nonatomic, assign) BOOL isAlwaysTriggerRefreshHandler;
+@property (nonatomic, assign) BOOL shouldDisableFooterWhenEmpty;
+@property (nonatomic, assign) BOOL footerRefreshTriggeredWithoutPull;
 @property (nonatomic, assign) BOOL isAutoPosition;//default is YES you just specify view's bouds, horizontally center
-@property (nonatomic, assign) BOOL shouldNoMoreDataAlwaysHover;
 @property (nonatomic, assign) UIEdgeInsets userAdditionalInsets;
 @property (nonatomic, assign) UIEdgeInsets extendInsets;//default is view's height, extend space for header or footer hover
 @property (nonatomic, assign) LXRefreshViewMetric statusMetric;//default value header is {CGRectGetMaxY(self.frame), self.frame.origin.y}, footer is {self.frame.origin.y, CGRectGetMaxY(self.frame)}.
 @property (nonatomic, nullable, copy) LXRefreshHandler refreshHandler;
 
 - (instancetype)initWithFrame:(CGRect)frame RefreshHandler:(LXRefreshHandler)handler;
+- (void)beginRefreshing;
 - (void)endRefreshing;
-
-@end
-
-@interface LXRefreshBaseView(LXHeader)
-
-- (void)header_beginRefreshing;
-
-@end
-
-@interface LXRefreshBaseView(LXFooter)
-
-- (void)footer_becomeNoMoreData;
 
 @end
 
@@ -77,10 +66,7 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 
 @protocol LXRefreshBaseProtocol;
 @protocol LXRefreshFooterProtocol<LXRefreshBaseProtocol>
-
-@optional
-- (void)onNoMoreData;
-
+//expanded
 @end
 #pragma mark -
 @protocol LXRefreshHeaderProtocol<LXRefreshBaseProtocol>
@@ -116,7 +102,7 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 //dragging to refreshing, finger is always on screen
 - (void)onPullingToRefreshing:(CGFloat)percent;
 //released to refreshing
-- (void)onBecomingToRefreshing:(CGFloat)percent;
+- (void)onBecomingRefreshing:(CGFloat)percent;
 
 @end
 
