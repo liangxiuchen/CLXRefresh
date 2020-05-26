@@ -37,8 +37,7 @@
         }
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if (self.dataSource.count > 15) {
-                [footer footer_becomeNoMoreData];
-                [footer endRefreshing];
+                [footer finalizeRefreshing];
             } else {
                [self loadMoreData];
                 [footer endRefreshing];
@@ -58,8 +57,6 @@
     };
     
     [self.header.tipLabel sizeToFit];
-    CGFloat extendTop = self.header.bounds.size.height - self.header.tipLabel.bounds.size.height;
-    self.header.extendInsets = (UIEdgeInsets){extendTop,0.f,0.f,0.f};
 #define AUTOPOSITION
 #ifndef AUTOPOSITION
     self.header.userAdditionalInsets = (UIEdgeInsets){10,0.f,0.f,0.f};
@@ -73,7 +70,6 @@
     
     self.tableView.lx_refreshFooterView = self.footer;
     self.tableView.lx_refreshFooterView.isDebug = YES;
-    self.tableView.lx_refreshFooterView.shouldNoMoreDataAlwaysHover = YES;
 
     self.tableView.tableFooterView = [UIView new];
 }

@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXRefreshGifView : LXRefreshBaseView<LXRefreshViewProtocol>
+@interface LXRefreshGifView : LXRefreshBaseView<LXRefreshSubclassProtocol>
 
 @property (readonly, nonatomic, weak) UILabel *tipLabel;
 @property (readonly, nonatomic, weak) UIImageView *refreshGIF;

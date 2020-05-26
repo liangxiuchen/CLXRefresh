@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LXRefreshPlainView : LXRefreshBaseView<LXRefreshViewProtocol>
+@interface LXRefreshPlainView : LXRefreshBaseView<LXRefreshSubclassProtocol>
 
 @property (readonly, nonatomic, weak) UILabel *tipLabel;
 @property (readonly, nonatomic, weak) UIActivityIndicatorView *indicator;

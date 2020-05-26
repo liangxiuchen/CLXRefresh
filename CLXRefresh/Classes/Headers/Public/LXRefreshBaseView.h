@@ -12,19 +12,17 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, LXRefreshViewStatus) {
-    LXRefreshStatusInit,
-    LXRefreshStatusIdle,
-    LXRefreshStatusBecomingToIdle,//is scrolling to idle
-    LXRefreshStatusPullingToRefresh,
-    LXRefreshStatusBecomingToRefreshing,//finger is upped & will trigger refresh
-    LXRefreshStatusRefreshing //is refreshing, refreshHanlder called at this moment
+    LXRefreshViewStatusInit,
+    LXRefreshViewStatusIdle,
+    LXRefreshViewStatusPulling,
+    LXRefreshViewStatusReleaseToRefreshing,//finger is upped & will trigger refresh
+    LXRefreshViewStatusRefreshing //is refreshing, refreshHanlder called at this moment
 };
 
 typedef NS_ENUM(NSUInteger, LXRefreshLogicStatus) {
-    LXRefreshLogicStatusNormal,
-    LXRefreshLogicStatusRefreshing,
-    LXRefreshLogicStatusRefreshFinished,
-    LXRefreshLogicStatusNoMoreData
+    LXRefreshLogicStatusNormal, //one of async event is processed
+    LXRefreshLogicStatusRefreshing,//async event is processing
+    LXRefreshLogicStatusFinal //no async event to process
 };
 
 //this metric is used to detect when can refresh
@@ -40,82 +38,35 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 
 @property (nonatomic, readonly) LXRefreshViewStatus viewStatus;
 @property (nonatomic, readonly) LXRefreshLogicStatus logicStatus;
-@property (nonatomic, readonly) BOOL isRefreshing;//YES when business logic is refreshing or UI also in refreshing, otherwise NO
+@property (nonatomic, readonly) BOOL isRefreshing;//YES when business logic is refreshing or UI also in refreshing
+@property (nonatomic, readonly) BOOL isFinalized;
 @property (nonatomic, readonly) BOOL isHeader;
 @property (nonatomic, readonly) BOOL isFooter;
-@property (nonatomic, readonly) BOOL isNoMoreData;
-@property (nonatomic, readonly) UIEdgeInsets systemInsets;
 @property (nonatomic, assign) BOOL isDebug;
-@property (nonatomic, assign) BOOL isAlwaysTriggerRefreshHandler;
+@property (nonatomic, assign, getter= isSmoothRefresh) BOOL smoothRefresh;//like wechat load history style
 @property (nonatomic, assign) BOOL isAutoPosition;//default is YES you just specify view's bouds, horizontally center
-@property (nonatomic, assign) BOOL shouldNoMoreDataAlwaysHover;
-@property (nonatomic, assign) UIEdgeInsets userAdditionalInsets;
-@property (nonatomic, assign) UIEdgeInsets extendInsets;//default is view's height, extend space for header or footer hover
-@property (nonatomic, assign) LXRefreshViewMetric statusMetric;//default value header is {CGRectGetMaxY(self.frame), self.frame.origin.y}, footer is {self.frame.origin.y, CGRectGetMaxY(self.frame)}.
+@property (nonatomic, assign) LXRefreshViewMetric statusMetric;//if not auto position, you should provide it
 @property (nonatomic, nullable, copy) LXRefreshHandler refreshHandler;
 
-- (instancetype)initWithFrame:(CGRect)frame RefreshHandler:(LXRefreshHandler)handler;
 - (void)endRefreshing;
-
-@end
-
-@interface LXRefreshBaseView(LXHeader)
-
-- (void)header_beginRefreshing;
-
-@end
-
-@interface LXRefreshBaseView(LXFooter)
-
-- (void)footer_becomeNoMoreData;
+- (void)finalizeRefreshing;//not data to refresh,should end by this method
 
 @end
 
 #pragma mark -
 #pragma mark - subclass protocol
-
-@protocol LXRefreshBaseProtocol;
-@protocol LXRefreshFooterProtocol<LXRefreshBaseProtocol>
+@protocol LXRefreshSubclassProtocol <NSObject>
 
 @optional
-- (void)onNoMoreData;
+- (void)onIdle;
 
-@end
-#pragma mark -
-@protocol LXRefreshHeaderProtocol<LXRefreshBaseProtocol>
+- (void)onPullingWithPercent:(NSUInteger)percent;
 
-@optional
-//released to idle
-- (void)onBecomingToIdle:(CGFloat)percent;
+- (void)onReleaseToRefreshing;
 
-@end
-#pragma mark -
-@protocol LXRefreshViewProtocol<LXRefreshFooterProtocol, LXRefreshHeaderProtocol>
+- (void)onRefreshing;
 
-//convenience protocol for subclass to conformed. the subclass can be as footer or header
-
-@end
-#pragma mark -
-@protocol LXRefreshBaseProtocol <NSObject>
-
-@optional
-- (void)onViewStatusRefreshing:(LXRefreshViewStatus)oldStatus;
-
-- (void)onViewStatusIdle:(LXRefreshViewStatus)oldStatus;
-
-@optional
-- (void)onContentOffsetChanged:(CGPoint)newValue oldOffset:(CGPoint)oldValue;
-
-- (void)onIsTrackingChanged:(BOOL)newValue oldIsTracking:(BOOL)oldValue;
-
-@optional
-- (void)onContentInsetChanged:(UIEdgeInsets)insets;
-
-@optional
-//dragging to refreshing, finger is always on screen
-- (void)onPullingToRefreshing:(CGFloat)percent;
-//released to refreshing
-- (void)onBecomingToRefreshing:(CGFloat)percent;
+- (void)onFinalized;
 
 @end
 
