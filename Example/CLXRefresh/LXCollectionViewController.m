@@ -55,8 +55,6 @@ static NSString * const reuseIdentifier = @"Cell";
     };
     
     [self.header.tipLabel sizeToFit];
-    CGFloat extendTop = self.header.bounds.size.height - self.header.tipLabel.bounds.size.height;
-    self.header.extendInsets = (UIEdgeInsets){extendTop,0.f,0.f,0.f};
     
     self.collectionView.lx_refreshHeaderView = self.header;
     self.collectionView.lx_refreshHeaderView.isDebug = YES;

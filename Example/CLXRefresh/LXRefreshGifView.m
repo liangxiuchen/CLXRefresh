@@ -35,32 +35,24 @@
     
 }
 
-- (void)onViewStatusIdle:(LXRefreshViewStatus)oldStatus {
+- (void)onIdle {
     [self.refreshGIF stopAnimating];
     self.alpha = 0.f;
     self.refreshGIF.image = self.progressImages.firstObject;
 }
 
-- (void)onViewStatusRefreshing:(LXRefreshViewStatus)oldStatus {
+- (void)onRefreshing {
     [self startRefreshingGif];
     self.alpha = 1.f;
 }
 
-- (void)onPullingToRefreshing:(CGFloat)percent {
+- (void)onPullingWithPercent:(NSUInteger)percent {
     [self.refreshGIF stopAnimating];
-    NSInteger index = ceilf(59 * percent);
-    self.alpha = percent;
+    NSInteger index = ceilf(59 * (percent / 100.f));
+    self.alpha = percent / 100.f;
     if (index < self.progressImages.count) {
         self.refreshGIF.image = self.progressImages[index];
     }
-}
-
-- (void)onBecomingToRefreshing:(CGFloat)percent {
-    [self startRefreshingGif];
-}
-
-- (void)onBecomingToIdle:(CGFloat)percent {
-    self.alpha = 1 - percent;
 }
 
 - (void)startRefreshingGif {
