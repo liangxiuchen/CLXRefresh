@@ -417,6 +417,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     return _viewStatus == LXRefreshViewStatusRefreshing || _logicStatus == LXRefreshLogicStatusRefreshing;
 }
 
+
 - (BOOL)isFinalized {
     return self.logicStatus == LXRefreshLogicStatusFinal;
 }
@@ -472,11 +473,15 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (!self.isAutoPosition || !self.isHeader || self.scrollView.isTracking) {
         return;
     }
-    CGFloat insets_top = self.scrollView.contentInset.top;
+    CGFloat insets = 0.f;
+    insets = self.scrollView.contentInset.top;
     if (@available(iOS 11.0, *)) {
-        insets_top = self.scrollView.adjustedContentInset.top;
+        insets = self.scrollView.adjustedContentInset.top;
     }
-    _statusMetric.startMetric = CGRectGetMaxY(self.frame) - insets_top;
+    if (self.isExtendedContentInsetsForHeaderHover) {
+        insets -= ABS(_statusMetric.refreshMetric - _statusMetric.startMetric);
+    }
+    _statusMetric.startMetric = CGRectGetMaxY(self.frame) - insets;
     _statusMetric.refreshMetric = _statusMetric.startMetric - self.bounds.size.height;
 }
 
