@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, LXRefreshLogicStatus) {
     LXRefreshLogicStatusFinal //no async event to process
 };
 
-//this metric is used to detect when can refresh
+//this metric is used by component to detect when can refresh and add inset_top to ABS(refreshMetric - startMetric).
 typedef struct {
     CGFloat startMetric;//this metric in scrollView visible rect, means refresh view will appear
     CGFloat refreshMetric;//this metric in scrollView visible rect, means refresh view is full appear to refreshing
@@ -60,7 +60,7 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 @optional
 - (void)onIdle;
 
-- (void)onPullingWithPercent:(NSUInteger)percent;
+- (void)onPullingWithPercent:(NSUInteger)percent;//the value is 50 means 50%
 
 - (void)onReleaseToRefreshing;
 

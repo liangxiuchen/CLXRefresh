@@ -404,6 +404,17 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 #pragma mark -
+#pragma mark - public API
+- (void)endRefreshing {
+    self.logicStatus = LXRefreshLogicStatusNormal;
+    [self endUIRefreshing];
+}
+
+- (void)finalizeRefreshing {
+    [self super_onFinalized];
+}
+
+#pragma mark -
 #pragma mark - getter && setter methods
 - (BOOL)isHeader {
     return self.scrollView.lx_refreshHeaderView == self;
@@ -496,15 +507,6 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     _statusMetric.refreshMetric = _statusMetric.startMetric + self.bounds.size.height;
 }
 
-- (void)endRefreshing {
-    self.logicStatus = LXRefreshLogicStatusNormal;
-    [self endUIRefreshing];
-}
-
-- (void)finalizeRefreshing {
-    [self super_onFinalized];
-}
-
 - (void)endUIRefreshing {
     if (self.isHeader) {
         if (self.isExtendedContentInsetsForHeaderHover) {
@@ -586,8 +588,6 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 @end
-
-
 
 #undef LXRFMethodDebug
 #undef kShrinkAnimationDuration

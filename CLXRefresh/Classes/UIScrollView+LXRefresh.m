@@ -46,14 +46,6 @@ static const void *const footerKey = &footerKey, *const headerKey = &headerKey;
 
 #pragma mark -
 #pragma mark - utility
-
-- (void)addKVO:(LXRefreshBaseView * _Nonnull)observer withContext:(void *)context {
-    //will be removed at ZMRefreshView's dealloc method
-    [self addObserver:observer forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionOld context:context];
-    [self addObserver:observer forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial context:context];
-    [self.panGestureRecognizer addObserver:observer forKeyPath:@"state" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial context:context];
-}
-
 - (void)removePreviousRefreshHeaderView {
     LXRefreshBaseView *old = (LXRefreshBaseView *)[self lx_refreshHeaderView];
     if (![old isKindOfClass:LXRefreshBaseView.class]) {
