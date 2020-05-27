@@ -24,11 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initDataSource];
-    if (@available (iOS 11, *)) {
-        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
-    } else {
-        self.automaticallyAdjustsScrollViewInsets = YES;
-    }
     __weak __typeof(self) wself = self;
     self.footer.refreshHandler = ^(LXRefreshBaseView * _Nonnull footer) {
         __strong __typeof(self) self = wself;
