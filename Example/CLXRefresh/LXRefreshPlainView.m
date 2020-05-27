@@ -52,6 +52,10 @@
 - (void)onFinalized {
     self.tipLabel.text = @"this is the limited line";
     self.indicator.hidden = YES;
+    [self.tipLabel sizeToFit];
+    CGRect bounds = self.bounds;
+    bounds.size.width = self.tipLabel.bounds.size.width;
+    self.bounds = bounds;
 }
 
 
