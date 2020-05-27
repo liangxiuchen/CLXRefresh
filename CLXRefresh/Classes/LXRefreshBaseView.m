@@ -331,7 +331,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     } else {
         if (self.viewStatus == LXRefreshViewStatusReleaseToRefreshing) {
             [self super_onRefreshing];
-            [self extendInsetsForHeaderHover];//insets changed will trigger contenoffset observer
+            [self extendInsetsForFooterHover];//insets changed will trigger contenoffset observer
         }
     }
 }
