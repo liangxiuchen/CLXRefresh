@@ -66,7 +66,6 @@ static const void *const footerKey = &footerKey, *const headerKey = &headerKey;
     }
 }
 
-
 - (void)addRefreshHeaderView:(LXRefreshBaseView * _Nonnull)lx_refreshHeaderView {
     [self addSubview:lx_refreshHeaderView];
 }

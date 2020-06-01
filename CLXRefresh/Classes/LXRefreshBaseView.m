@@ -508,6 +508,20 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)endUIRefreshing {
+    if (self.scrollView.isTracking) {
+        [self super_onIdle];
+        
+        CGPoint velocity = [self.scrollView.panGestureRecognizer velocityInView:self.scrollView];
+        if (velocity.y > 0) {
+            [self updateStatusForHeaderPullDown];
+            [self updateStatusForFooterPullDown];
+        }
+        if (velocity.y < 0) {
+            [self updateStatusForHeaderPullUp];
+            [self updateStatusForFooterPullUp];
+        }
+        return;
+    }
     if (self.isHeader) {
         if (self.isExtendedContentInsetsForHeaderHover) {
             LXRFMethodDebug
