@@ -49,7 +49,7 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 @property (nonatomic, nullable, copy) LXRefreshHandler refreshHandler;
 
 - (void)endRefreshing;
-- (void)finalizeRefreshing;//not data to refresh,should end by this method
+- (void)finalizeRefreshing;//no data to refresh,should end by this method
 
 @end
 

@@ -157,7 +157,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 #pragma mark -
 #pragma mark - status changed methods
 - (void)updateStatusForHeaderPullDown {
-    if (!self.isHeader) {
+    if (!self.isHeader || self.logicStatus == LXRefreshLogicStatusFinal) {
         return;
     }
     CGFloat offset_y = self.scrollView.contentOffset.y;
@@ -197,7 +197,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)updateStatusForHeaderPullUp {
-    if (!self.isHeader) {
+    if (!self.isHeader || self.logicStatus == LXRefreshLogicStatusFinal) {
         return;
     }
     CGFloat offset_y = self.scrollView.contentOffset.y;
@@ -221,7 +221,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)updateStatusForFooterPullUp {
-    if (!self.isFooter) {
+    if (!self.isFooter || self.logicStatus == LXRefreshLogicStatusFinal) {
         return;
     }
     CGFloat offset_y = self.scrollView.contentOffset.y;
@@ -261,7 +261,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)updateStatusForFooterPullDown {
-    if (!self.isFooter) {
+    if (!self.isFooter || self.logicStatus == LXRefreshLogicStatusFinal) {
         return;
     }
     CGFloat offset_y = self.scrollView.contentOffset.y;
@@ -285,7 +285,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)updateToRefreshingForHeader {
-    if (!self.isHeader) {
+    if (!self.isHeader || self.logicStatus == LXRefreshLogicStatusFinal) {
         return;
     }
     if (self.isSmoothRefresh) {
@@ -311,7 +311,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)updateToRefreshingForFooter {
-    if (!self.isFooter) {
+    if (!self.isFooter || self.logicStatus == LXRefreshLogicStatusFinal) {
         return;
     }
     if (self.isSmoothRefresh) {
@@ -406,7 +406,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 #pragma mark -
 #pragma mark - public API
 - (void)endRefreshing {
-    self.logicStatus = LXRefreshLogicStatusNormal;
+    if (self.logicStatus != LXRefreshLogicStatusFinal) {
+        self.logicStatus = LXRefreshLogicStatusNormal;
+    }
     [self endUIRefreshing];
 }
 
@@ -508,7 +510,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)endUIRefreshing {
-    if (self.scrollView.isTracking) {
+    if (self.scrollView.isTracking && self.logicStatus != LXRefreshLogicStatusFinal) {
         [self super_onIdle];
         
         CGPoint velocity = [self.scrollView.panGestureRecognizer velocityInView:self.scrollView];
