@@ -91,7 +91,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     _viewStatus = LXRefreshViewStatusInit;
     _logicStatus = LXRefreshLogicStatusNormal;
     BOOL conformed = [self conformsToProtocol:@protocol(LXRefreshSubclassProtocol)];
-    NSAssert(conformed, @"LXRefreshView's subclass must be conform one of LXRefreshBaseProtocol, LXRefreshHeaderProtocl, LXRefreshFooterProtocol, LXRefreshviewProtocol");
+    NSAssert(conformed, @"LXRefreshView's subclass must be conform to LXRefreshSubclassProtocol");
     if (conformed == NO) {
         return NO;
     }
