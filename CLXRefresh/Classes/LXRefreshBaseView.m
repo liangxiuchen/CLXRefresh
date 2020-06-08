@@ -50,12 +50,14 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     //when scrollView dealloc the weak property self.scrollView = nil, so here use superview
     [self.superview removeObserver:self forKeyPath:@"contentOffset"];
     [self.superview removeObserver:self forKeyPath:@"contentSize"];
+    [self.superview removeObserver:self forKeyPath:@"state"];
     [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)addObservers {
     [self.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionOld context:[self kvoContext]];
     [self.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial context:[self kvoContext]];
+    [self.scrollView.panGestureRecognizer addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial context:[self kvoContext]];
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(onDeviceOrientationDidChanged) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
@@ -106,6 +108,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (context != LXRefreshHeaderViewKVOContext && context != LXRefreshFooterViewKVOContext) {
         return;
     }
+    [self onPanGestureStateChanged:change keyPath:keyPath kvoContext:context];
     [self onContentOffsetChanged:change keyPath:keyPath kvoContext:context];
     [self onContentSizeChanged:change keyPath:keyPath context:context];
 }
@@ -154,6 +157,39 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         [self updateFooterStatusMetric];
     }
 }
+
+- (void)onPanGestureStateChanged:(NSDictionary<NSKeyValueChangeKey,id> * _Nullable)change keyPath:(NSString * _Nullable)keyPath kvoContext:(void *)context {
+    if (context != LXRefreshHeaderViewKVOContext && context != LXRefreshFooterViewKVOContext) {
+        return;
+    }
+    if (![keyPath isEqualToString:@"state"]) {
+        return;
+    }
+    NSNumber *newValue = (NSNumber *)change[NSKeyValueChangeNewKey];
+    NSNumber *oldValue = (NSNumber *)change[NSKeyValueChangeOldKey];
+    if (![newValue isKindOfClass:NSNumber.class]) {
+        newValue = nil;
+    }
+    if (![oldValue isKindOfClass:NSNumber.class]) {
+        oldValue = nil;
+    }
+    
+    UIGestureRecognizerState newState = (UIGestureRecognizerState)(newValue != nil ? newValue.integerValue : UIGestureRecognizerStatePossible);
+    UIGestureRecognizerState oldState = (UIGestureRecognizerState) (oldValue != nil ? (UIGestureRecognizerState)oldValue.integerValue : UIGestureRecognizerStatePossible);
+    BOOL isTracking_new = (newState == UIGestureRecognizerStateBegan || newState == UIGestureRecognizerStateChanged);
+    BOOL isTracking_old = (oldState == UIGestureRecognizerStateBegan || oldState == UIGestureRecognizerStateChanged);
+    
+    BOOL isFingerUp = isTracking_old == YES && isTracking_new == NO;
+    if (isFingerUp) {
+        //here escape a runloop for detect scrollView is decelerating or not after finger up
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!self.scrollView.isDecelerating) {
+                [self endUIRefreshing];
+            }
+        });
+    }
+}
+
 #pragma mark -
 #pragma mark - status changed methods
 - (void)updateStatusForHeaderPullDown {
@@ -183,6 +219,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                 [self super_onPullToRefreshWithPercent:0];
             }
         }
+        if (self.viewStatus == LXRefreshViewStatusRefreshing) {
+            self.viewStatus = LXRefreshViewStatusPulling;
+        }
         if (self.viewStatus == LXRefreshViewStatusPulling) {
             if (offset_y <= self.statusMetric.refreshMetric) {
                 [self super_onPullToRefreshWithPercent:100];
@@ -200,7 +239,26 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (!self.isHeader || self.logicStatus == LXRefreshLogicStatusFinal) {
         return;
     }
+    if (self.viewStatus == LXRefreshViewStatusRefreshing) {
+        self.viewStatus = LXRefreshViewStatusPulling;
+    }
+    ///fix contentInset effect scrollview's scrollsToTop & collectionView's pinned header
     CGFloat offset_y = self.scrollView.contentOffset.y;
+    CGFloat delta = self.statusMetric.startMetric - offset_y;
+    if (delta > 0.f && offset_y > self.statusMetric.refreshMetric) {
+        UIEdgeInsets insets = self.scrollView.contentInset;
+        insets.top -= self.extendedDeltaForHeaderHover;//reset
+        self.extendedDeltaForHeaderHover = delta;
+        insets.top = self.extendedDeltaForHeaderHover;//set new
+        self.scrollView.contentInset = insets;
+    }
+    if (offset_y >= self.statusMetric.startMetric && self.extendedDeltaForHeaderHover > 0.f) {
+        UIEdgeInsets insets = self.scrollView.contentInset;
+        insets.top -= self.extendedDeltaForHeaderHover;
+        self.extendedDeltaForHeaderHover = 0.f;
+        self.scrollView.contentInset = insets;
+    }
+    
     if (self.viewStatus == LXRefreshViewStatusPulling) {
         if (offset_y > self.statusMetric.startMetric) {
             [self super_onPullToRefreshWithPercent:0];
@@ -212,7 +270,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         }
     }
     if (self.viewStatus == LXRefreshViewStatusReleaseToRefreshing) {
-        if (offset_y > self.statusMetric.refreshMetric) {
+        if (offset_y >= self.statusMetric.refreshMetric) {
             CGFloat delta = self.statusMetric.startMetric - offset_y > 0 ? self.statusMetric.startMetric - offset_y : 0;
             NSInteger percent = delta / ABS(self.statusMetric.refreshMetric - self.statusMetric.startMetric) * 100;
             [self super_onPullToRefreshWithPercent:percent];
@@ -306,6 +364,10 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         if (self.viewStatus == LXRefreshViewStatusReleaseToRefreshing) {
             [self super_onRefreshing];
             [self extendInsetsForHeaderHover];//insets changed will trigger contenoffset observer
+        } else if (self.viewStatus != LXRefreshViewStatusRefreshing) {
+            [self shrinkExtendedTopInsetsWith:^(BOOL finished) {
+                [self super_onIdle];
+            }];
         }
     }
 }
@@ -379,15 +441,13 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
     LXRFMethodDebug
     self.viewStatus = LXRefreshViewStatusRefreshing;
-    if (self.logicStatus == LXRefreshLogicStatusRefreshing) {
-        return;
-    } else if (self.logicStatus == LXRefreshLogicStatusNormal) {
-        self.logicStatus = LXRefreshLogicStatusRefreshing;
-        if ([self respondsToSelector:@selector(onRefreshing)]) {
-            id<LXRefreshSubclassProtocol> subclass = (id<LXRefreshSubclassProtocol>)self;
-            [subclass onRefreshing];
-        }
+    if ([self respondsToSelector:@selector(onRefreshing)]) {
+        id<LXRefreshSubclassProtocol> subclass = (id<LXRefreshSubclassProtocol>)self;
+        [subclass onRefreshing];
+    }
+    if (self.logicStatus == LXRefreshLogicStatusNormal) {
         self.refreshHandler ? self.refreshHandler(self) : (void)0;
+        self.logicStatus = LXRefreshLogicStatusRefreshing;
     }
 }
 
@@ -409,7 +469,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (self.logicStatus != LXRefreshLogicStatusFinal) {
         self.logicStatus = LXRefreshLogicStatusNormal;
     }
-    [self endUIRefreshing];
+    dispatch_async(dispatch_get_main_queue(), ^{
+       [self endUIRefreshing];
+    });
 }
 
 - (void)finalizeRefreshing {
@@ -490,8 +552,8 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (@available(iOS 11.0, *)) {
         insets_top = self.scrollView.adjustedContentInset.top;
     }
-    if (self.isExtendedContentInsetsForHeaderHover) {
-        insets_top -= ABS(_statusMetric.refreshMetric - _statusMetric.startMetric);
+    if (self.extendedDeltaForHeaderHover > 0.f) {
+        insets_top -= self.extendedDeltaForHeaderHover;
     }
     _statusMetric.startMetric = CGRectGetMaxY(self.frame) - insets_top;
     _statusMetric.refreshMetric = _statusMetric.startMetric - self.bounds.size.height;
@@ -510,31 +572,15 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)endUIRefreshing {
+    LXRFMethodDebug
     if (self.scrollView.isTracking && self.logicStatus != LXRefreshLogicStatusFinal) {
-        [self super_onIdle];
-        
-        CGPoint velocity = [self.scrollView.panGestureRecognizer velocityInView:self.scrollView];
-        if (velocity.y > 0) {
-            [self updateStatusForHeaderPullDown];
-            [self updateStatusForFooterPullDown];
-        }
-        if (velocity.y < 0) {
-            [self updateStatusForHeaderPullUp];
-            [self updateStatusForFooterPullUp];
-        }
         return;
     }
     if (self.isHeader) {
-        if (self.isExtendedContentInsetsForHeaderHover) {
-            LXRFMethodDebug
-        }
         [self shrinkExtendedTopInsetsWith:^(BOOL finished) {
             [self super_onIdle];
         }];
     } else if (self.isFooter) {
-        if (self.isExtendedContentInsetsForFooterHover) {
-            LXRFMethodDebug
-        }
         [self shrinkExtendedBottomInsetsWith:^(BOOL finished) {
             [self super_onIdle];
         }];
@@ -542,14 +588,16 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)extendInsetsForHeaderHover {
-    if (!self.isHeader || self.isExtendedContentInsetsForHeaderHover) {
+    if (!self.isHeader) {
         return;
     }
-    if (self.isExtendedContentInsetsForHeaderHover == NO) {
+    CGFloat extendedMetric = ABS(self.statusMetric.refreshMetric - self.statusMetric.startMetric);
+    if (self.extendedDeltaForHeaderHover < extendedMetric) {
         LXRFMethodDebug
-        self.isExtendedContentInsetsForHeaderHover = YES; //ensure called before self.scrollView.contentInset = insets;
         UIEdgeInsets insets = self.scrollView.contentInset;
-        insets.top += ABS(self.statusMetric.refreshMetric - self.statusMetric.startMetric);
+        insets.top -= self.extendedDeltaForHeaderHover;//reset
+        self.extendedDeltaForHeaderHover = extendedMetric;
+        insets.top += self.extendedDeltaForHeaderHover;
         CGPoint offset = self.scrollView.contentOffset;
         self.scrollView.contentInset = insets;
         self.scrollView.contentOffset = offset;
@@ -557,30 +605,30 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)shrinkExtendedTopInsetsWith:(void(^)(BOOL finished))completion {
-    if (!self.isSmoothRefresh && self.isExtendedContentInsetsForHeaderHover) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            LXRFMethodDebug
-            self.isExtendedContentInsetsForHeaderHover = NO;
-            UIEdgeInsets insets = self.scrollView.contentInset;
-            insets.top -= ABS(self.statusMetric.refreshMetric - self.statusMetric.startMetric);
-            [UIView animateWithDuration:CATransaction.animationDuration animations:^{
-                self.scrollView.contentInset = insets;
-            } completion:completion];
-        });
+    if (!self.isSmoothRefresh && self.extendedDeltaForHeaderHover) {
+        LXRFMethodDebug
+        UIEdgeInsets insets = self.scrollView.contentInset;
+        insets.top -= self.extendedDeltaForHeaderHover;
+        self.extendedDeltaForHeaderHover = 0.f;
+        [UIView animateWithDuration:CATransaction.animationDuration animations:^{
+            self.scrollView.contentInset = insets;
+        } completion:completion];
     } else {
         completion ? completion(NO) : (void)0;
     }
 }
 
 - (void)extendInsetsForFooterHover {
-    if (!self.isFooter || self.isExtendedContentInsetsForFooterHover) {
+    if (!self.isFooter) {
         return;
     }
-    if (self.isExtendedContentInsetsForFooterHover == NO) {
+    CGFloat extendedMetric = ABS(self.statusMetric.refreshMetric - self.statusMetric.startMetric);
+    if (self.extendedDeltaForFooterHover < extendedMetric) {
         LXRFMethodDebug
-        self.isExtendedContentInsetsForFooterHover = YES;//ensure call before self.scrollView.contentInset = insets;
         UIEdgeInsets insets = self.scrollView.contentInset;
-        insets.bottom += ABS(self.statusMetric.refreshMetric - self.statusMetric.startMetric);
+        insets.bottom -= self.extendedDeltaForFooterHover;
+        self.extendedDeltaForFooterHover = extendedMetric;
+        insets.bottom += self.extendedDeltaForFooterHover;
         CGPoint offset = self.scrollView.contentOffset;
         self.scrollView.contentInset = insets;
         self.scrollView.contentOffset = offset;
@@ -588,12 +636,12 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)shrinkExtendedBottomInsetsWith:(void(^)(BOOL finished))completion {
-    if (!self.isSmoothRefresh && self.isExtendedContentInsetsForFooterHover) {
+    if (!self.isSmoothRefresh && self.extendedDeltaForFooterHover) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LXRFMethodDebug
-            self.isExtendedContentInsetsForFooterHover = NO;
             UIEdgeInsets insets = self.scrollView.contentInset;
-            insets.bottom -= ABS(self.statusMetric.refreshMetric - self.statusMetric.startMetric);
+            insets.bottom -= self.extendedDeltaForFooterHover;
+            self.extendedDeltaForFooterHover = 0.f;
             [UIView animateWithDuration:CATransaction.animationDuration animations:^{
                 self.scrollView.contentInset = insets;
             } completion:completion];

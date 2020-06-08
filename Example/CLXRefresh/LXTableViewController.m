@@ -45,7 +45,7 @@
         if (self == nil) {
             return;
         }
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [header endRefreshing];
             [self.tableView reloadData];
         });
@@ -69,7 +69,7 @@
 }
 
 - (void)loadMoreData {
-    for (NSInteger i = 0; i < 3; i++) {
+    for (NSInteger i = 0; i < 13; i++) {
         [self.dataSource addObject:[NSObject new]];
     }
 }

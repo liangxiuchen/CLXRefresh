@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) LXRefreshViewStatus viewStatus;
 @property (nonatomic, assign) LXRefreshLogicStatus logicStatus;
 @property (nonatomic, weak) UIScrollView *scrollView;
-@property (nonatomic, assign) BOOL isExtendedContentInsetsForHeaderHover;
-@property (nonatomic, assign) BOOL isExtendedContentInsetsForFooterHover;
+@property (nonatomic, assign) CGFloat extendedDeltaForHeaderHover;
+@property (nonatomic, assign) CGFloat extendedDeltaForFooterHover;
 
 - (void)updateStatusMetric;//is used for auto position
 @end
