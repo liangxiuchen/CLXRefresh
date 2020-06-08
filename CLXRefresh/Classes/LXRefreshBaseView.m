@@ -48,9 +48,10 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 - (void)removeObservers {
     //when scrollView dealloc the weak property self.scrollView = nil, so here use superview
-    [self.superview removeObserver:self forKeyPath:@"contentOffset"];
-    [self.superview removeObserver:self forKeyPath:@"contentSize"];
-    [self.superview removeObserver:self forKeyPath:@"state"];
+    UIScrollView *scrollView = (UIScrollView *)self.superview;
+    [scrollView removeObserver:self forKeyPath:@"contentOffset"];
+    [scrollView removeObserver:self forKeyPath:@"contentSize"];
+    [scrollView.panGestureRecognizer removeObserver:self forKeyPath:@"state"];
     [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
