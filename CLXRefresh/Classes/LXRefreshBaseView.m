@@ -181,7 +181,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     BOOL isTracking_old = (oldState == UIGestureRecognizerStateBegan || oldState == UIGestureRecognizerStateChanged);
     
     BOOL isFingerUp = isTracking_old == YES && isTracking_new == NO;
-    if (isFingerUp) {
+    if (isFingerUp && !self.isSmoothRefresh) {
         //here escape a runloop for detect scrollView is decelerating or not after finger up
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!self.scrollView.isDecelerating) {
@@ -240,26 +240,28 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (!self.isHeader || self.logicStatus == LXRefreshLogicStatusFinal) {
         return;
     }
-    if (self.viewStatus == LXRefreshViewStatusRefreshing) {
-        self.viewStatus = LXRefreshViewStatusPulling;
+    if (!self.smoothRefresh) {
+        if (self.viewStatus == LXRefreshViewStatusRefreshing) {
+            self.viewStatus = LXRefreshViewStatusPulling;
+        }
+        ///fix contentInset effect scrollview's scrollsToTop & collectionView's pinned header
+        CGFloat offset_y = self.scrollView.contentOffset.y;
+        CGFloat delta = self.statusMetric.startMetric - offset_y;
+        if (delta > 0.f && offset_y > self.statusMetric.refreshMetric) {
+            UIEdgeInsets insets = self.scrollView.contentInset;
+            insets.top -= self.extendedDeltaForHeaderHover;//reset
+            self.extendedDeltaForHeaderHover = delta;
+            insets.top = self.extendedDeltaForHeaderHover;//set new
+            self.scrollView.contentInset = insets;
+        }
+        if (offset_y >= self.statusMetric.startMetric && self.extendedDeltaForHeaderHover > 0.f) {
+            UIEdgeInsets insets = self.scrollView.contentInset;
+            insets.top -= self.extendedDeltaForHeaderHover;
+            self.extendedDeltaForHeaderHover = 0.f;
+            self.scrollView.contentInset = insets;
+        }
     }
-    ///fix contentInset effect scrollview's scrollsToTop & collectionView's pinned header
     CGFloat offset_y = self.scrollView.contentOffset.y;
-    CGFloat delta = self.statusMetric.startMetric - offset_y;
-    if (delta > 0.f && offset_y > self.statusMetric.refreshMetric) {
-        UIEdgeInsets insets = self.scrollView.contentInset;
-        insets.top -= self.extendedDeltaForHeaderHover;//reset
-        self.extendedDeltaForHeaderHover = delta;
-        insets.top = self.extendedDeltaForHeaderHover;//set new
-        self.scrollView.contentInset = insets;
-    }
-    if (offset_y >= self.statusMetric.startMetric && self.extendedDeltaForHeaderHover > 0.f) {
-        UIEdgeInsets insets = self.scrollView.contentInset;
-        insets.top -= self.extendedDeltaForHeaderHover;
-        self.extendedDeltaForHeaderHover = 0.f;
-        self.scrollView.contentInset = insets;
-    }
-    
     if (self.viewStatus == LXRefreshViewStatusPulling) {
         if (offset_y > self.statusMetric.startMetric) {
             [self super_onPullToRefreshWithPercent:0];
@@ -574,7 +576,9 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 - (void)endUIRefreshing {
     LXRFMethodDebug
-    if (self.scrollView.isTracking && self.logicStatus != LXRefreshLogicStatusFinal) {
+    if (self.scrollView.isTracking
+        && self.logicStatus != LXRefreshLogicStatusFinal
+        && !self.isSmoothRefresh) {
         return;
     }
     if (self.isHeader) {
