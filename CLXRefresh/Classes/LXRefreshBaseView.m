@@ -229,8 +229,23 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             }
         }
         if (self.viewStatus == LXRefreshViewStatusRefreshing) {
-            self.viewStatus = LXRefreshViewStatusPulling;
+            self.viewStatus = LXRefreshViewStatusReleaseToRefreshing;
         }
+        
+        ///fix contentInset effect scrollview's scrollsToTop & collectionView's pinned header
+        CGFloat extendTop = ABS(self.statusMetric.refreshMetric - self.statusMetric.startMetric);
+        if (self.extendedDeltaForHeaderHover > 0.f && self.extendedDeltaForHeaderHover <= extendTop) {
+            CGFloat offset_y = self.scrollView.contentOffset.y;
+            CGFloat delta = MIN(self.statusMetric.startMetric - offset_y, extendTop);
+            if (delta > 0.f && self.extendedDeltaForHeaderHover != delta) {
+                UIEdgeInsets insets = self.scrollView.contentInset;
+                insets.top -= self.extendedDeltaForHeaderHover;//reset
+                self.extendedDeltaForHeaderHover = delta;
+                insets.top = self.extendedDeltaForHeaderHover;//set new
+                self.scrollView.contentInset = insets;
+            }
+        }
+        
         if (self.viewStatus == LXRefreshViewStatusPulling) {
             if (offset_y <= self.statusMetric.refreshMetric) {
                 [self super_onPullToRefreshWithPercent:100];
@@ -250,23 +265,26 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     }
     if (!self.smoothRefresh) {
         if (self.viewStatus == LXRefreshViewStatusRefreshing) {
-            self.viewStatus = LXRefreshViewStatusPulling;
+            self.viewStatus = LXRefreshViewStatusReleaseToRefreshing;
         }
         ///fix contentInset effect scrollview's scrollsToTop & collectionView's pinned header
-        CGFloat offset_y = self.scrollView.contentOffset.y;
-        CGFloat delta = self.statusMetric.startMetric - offset_y;
-        if (delta > 0.f && offset_y > self.statusMetric.refreshMetric) {
-            UIEdgeInsets insets = self.scrollView.contentInset;
-            insets.top -= self.extendedDeltaForHeaderHover;//reset
-            self.extendedDeltaForHeaderHover = delta;
-            insets.top = self.extendedDeltaForHeaderHover;//set new
-            self.scrollView.contentInset = insets;
-        }
-        if (offset_y >= self.statusMetric.startMetric && self.extendedDeltaForHeaderHover > 0.f) {
-            UIEdgeInsets insets = self.scrollView.contentInset;
-            insets.top -= self.extendedDeltaForHeaderHover;
-            self.extendedDeltaForHeaderHover = 0.f;
-            self.scrollView.contentInset = insets;
+        if (self.extendedDeltaForHeaderHover) {
+            CGFloat offset_y = self.scrollView.contentOffset.y;
+            if (offset_y > self.statusMetric.refreshMetric) {
+                CGFloat delta = self.statusMetric.startMetric - offset_y;
+                if (delta > 0.f) {
+                    UIEdgeInsets insets = self.scrollView.contentInset;
+                    insets.top -= self.extendedDeltaForHeaderHover;//reset
+                    self.extendedDeltaForHeaderHover = delta;
+                    insets.top = self.extendedDeltaForHeaderHover;//set new
+                    self.scrollView.contentInset = insets;
+                } else if (self.extendedDeltaForHeaderHover > 0.f) {
+                    UIEdgeInsets insets = self.scrollView.contentInset;
+                    insets.top -= self.extendedDeltaForHeaderHover;
+                    self.extendedDeltaForHeaderHover = 0.f;
+                    self.scrollView.contentInset = insets;
+                }
+            }
         }
     }
     CGFloat offset_y = self.scrollView.contentOffset.y;
