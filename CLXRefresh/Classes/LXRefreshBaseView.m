@@ -152,6 +152,14 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (![newValue isKindOfClass:NSValue.class]) {
         return;
     }
+    
+    NSValue *oldValue = (NSValue *)change[NSKeyValueChangeOldKey];
+    if (![oldValue isKindOfClass:NSValue.class]) {
+        return;
+    }
+    if ([oldValue isEqualToValue:newValue]) {
+        return;
+    }
     __unused CGSize contentSize = newValue.CGSizeValue;
     if (self.viewStatus != LXRefreshViewStatusInit) {
         [self autoPositionFooter];
@@ -449,8 +457,8 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         [subclass onRefreshing];
     }
     if (self.logicStatus == LXRefreshLogicStatusNormal) {
-        self.refreshHandler ? self.refreshHandler(self) : (void)0;
         self.logicStatus = LXRefreshLogicStatusRefreshing;
+        self.refreshHandler ? self.refreshHandler(self) : (void)0;
     }
 }
 
@@ -515,6 +523,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (!self.isHeader) {
         return;
     }
+    [self sizeToFit];
     CGRect frame = self.bounds;
     frame.origin.y =  -frame.size.height;
     frame.origin.x = (self.scrollView.bounds.size.width - frame.size.width) / 2.f;
@@ -531,7 +540,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (!self.isFooter) {
         return;
     }
-    self.hidden = CGSizeEqualToSize(self.scrollView.contentSize, CGSizeZero);
+    [self sizeToFit];
     CGRect frame = self.bounds;
     CGFloat base = self.scrollView.contentSize.height;
     frame.origin.y = base;
@@ -641,7 +650,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)shrinkExtendedBottomInsetsWith:(void(^)(BOOL finished))completion {
-    if (!self.isSmoothRefresh && self.extendedDeltaForFooterHover) {
+    if ((!self.isSmoothRefresh || self.logicStatus == LXRefreshLogicStatusFinal) && self.extendedDeltaForFooterHover) {
         dispatch_async(dispatch_get_main_queue(), ^{
             LXRFMethodDebug
             UIEdgeInsets insets = self.scrollView.contentInset;
