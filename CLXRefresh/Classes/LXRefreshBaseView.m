@@ -390,10 +390,11 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             }
         }
     } else {
+        CGFloat offset_y = self.scrollView.contentOffset.y;
         if (self.viewStatus == LXRefreshViewStatusReleaseToRefreshing) {
             [self super_onRefreshing];
             [self extendInsetsForHeaderHover];//insets changed will trigger contenoffset observer
-        } else if (self.viewStatus != LXRefreshViewStatusRefreshing) {
+        } else if (offset_y > self.statusMetric.refreshMetric) {
             [self shrinkExtendedTopInsetsWith:^(BOOL finished) {
                 [self super_onIdle];
             }];
