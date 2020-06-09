@@ -228,10 +228,19 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                 [self super_onPullToRefreshWithPercent:0];
             }
         }
-        if (self.viewStatus == LXRefreshViewStatusRefreshing) {
-            self.viewStatus = LXRefreshViewStatusReleaseToRefreshing;
+        if (self.viewStatus == LXRefreshViewStatusPulling || self.viewStatus == LXRefreshViewStatusRefreshing) {
+            if (self.viewStatus == LXRefreshViewStatusRefreshing) {
+                self.viewStatus = LXRefreshViewStatusReleaseToRefreshing;
+            }
+            if (offset_y <= self.statusMetric.refreshMetric) {
+                [self super_onPullToRefreshWithPercent:100];
+                [self super_onReleaseToRefresh];
+            } else {
+                CGFloat delta = self.statusMetric.startMetric - offset_y > 0 ? self.statusMetric.startMetric - offset_y : 0;
+                NSInteger percent = delta / ABS(self.statusMetric.refreshMetric - self.statusMetric.startMetric) * 100;
+                [self super_onPullToRefreshWithPercent:percent];
+            }
         }
-        
         ///fix contentInset effect scrollview's scrollsToTop & collectionView's pinned header
         CGFloat extendTop = ABS(self.statusMetric.refreshMetric - self.statusMetric.startMetric);
         if (self.extendedDeltaForHeaderHover > 0.f && self.extendedDeltaForHeaderHover <= extendTop) {
@@ -243,17 +252,6 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                 self.extendedDeltaForHeaderHover = delta;
                 insets.top = self.extendedDeltaForHeaderHover;//set new
                 self.scrollView.contentInset = insets;
-            }
-        }
-        
-        if (self.viewStatus == LXRefreshViewStatusPulling) {
-            if (offset_y <= self.statusMetric.refreshMetric) {
-                [self super_onPullToRefreshWithPercent:100];
-                [self super_onReleaseToRefresh];
-            } else {
-                CGFloat delta = self.statusMetric.startMetric - offset_y > 0 ? self.statusMetric.startMetric - offset_y : 0;
-                NSInteger percent = delta / ABS(self.statusMetric.refreshMetric - self.statusMetric.startMetric) * 100;
-                [self super_onPullToRefreshWithPercent:percent];
             }
         }
     }
