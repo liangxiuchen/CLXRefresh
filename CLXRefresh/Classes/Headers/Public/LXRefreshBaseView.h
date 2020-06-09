@@ -48,6 +48,7 @@ typedef void (^LXRefreshHandler)(LXRefreshBaseView *);
 @property (nonatomic, assign) LXRefreshViewMetric statusMetric;//if not auto position, you should provide it
 @property (nonatomic, nullable, copy) LXRefreshHandler refreshHandler;
 
+- (void)refresh;//pls ensure the method called after scrollView layout finished.
 - (void)endRefreshing;
 - (void)finalizeRefreshing;//no data to refresh,should end by this method
 

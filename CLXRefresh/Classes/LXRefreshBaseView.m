@@ -476,6 +476,19 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 
 #pragma mark -
 #pragma mark - public API
+- (void)refresh {
+    if (self.viewStatus == LXRefreshViewStatusInit) {
+        [self super_onIdle];
+    }
+    [self super_onPullToRefreshWithPercent:100];
+    [self super_onReleaseToRefresh];
+    [self super_onRefreshing];
+    [self extendInsetsForHeaderHover];
+    CGPoint offset = self.scrollView.contentOffset;
+    offset.y -= self.extendedDeltaForHeaderHover;
+    [self.scrollView setContentOffset:offset animated:YES];
+}
+
 - (void)endRefreshing {
     if (self.logicStatus != LXRefreshLogicStatusFinal) {
         self.logicStatus = LXRefreshLogicStatusNormal;
@@ -606,7 +619,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         return;
     }
     CGFloat extendedMetric = ABS(self.statusMetric.refreshMetric - self.statusMetric.startMetric);
-    if (self.extendedDeltaForHeaderHover < extendedMetric) {
+    if (self.extendedDeltaForHeaderHover != extendedMetric) {
         LXRFMethodDebug
         UIEdgeInsets insets = self.scrollView.contentInset;
         insets.top -= self.extendedDeltaForHeaderHover;//reset
@@ -637,7 +650,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         return;
     }
     CGFloat extendedMetric = ABS(self.statusMetric.refreshMetric - self.statusMetric.startMetric);
-    if (self.extendedDeltaForFooterHover < extendedMetric) {
+    if (self.extendedDeltaForFooterHover != extendedMetric) {
         LXRFMethodDebug
         UIEdgeInsets insets = self.scrollView.contentInset;
         insets.bottom -= self.extendedDeltaForFooterHover;
