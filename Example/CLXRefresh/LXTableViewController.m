@@ -60,9 +60,11 @@
     self.tableView.lx_refreshFooterView.isDebug = YES;
 
     self.tableView.tableFooterView = [UIView new];
-    LXCollectionViewController* vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LXCollectionView"];
-    UISearchController * searchController = [[UISearchController alloc] initWithSearchResultsController: vc];
-    self.navigationItem.searchController = searchController;
+    if (@available(iOS 11.0, *)) {
+        LXCollectionViewController* vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LXCollectionView"];
+        UISearchController * searchController = [[UISearchController alloc] initWithSearchResultsController: vc];
+        self.navigationItem.searchController = searchController;
+    }
 }
 
 - (void)initDataSource {
