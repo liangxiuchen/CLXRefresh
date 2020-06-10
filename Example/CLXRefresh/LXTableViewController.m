@@ -9,6 +9,7 @@
 #import "LXTableViewController.h"
 #import "LXRefreshPlainView.h"
 #import "LXRefreshGifView.h"
+#import "LXCollectionViewController.h"
 #import <CLXRefresh/UIScrollView+LXRefresh.h>
 
 @interface LXTableViewController ()<UITableViewDelegate>
@@ -59,6 +60,9 @@
     self.tableView.lx_refreshFooterView.isDebug = YES;
 
     self.tableView.tableFooterView = [UIView new];
+    LXCollectionViewController* vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LXCollectionView"];
+    UISearchController * searchController = [[UISearchController alloc] initWithSearchResultsController: vc];
+    self.navigationItem.searchController = searchController;
 }
 
 - (void)initDataSource {
@@ -77,7 +81,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSource.count;

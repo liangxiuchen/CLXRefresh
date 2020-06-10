@@ -220,6 +220,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             }
         }
     } else {
+        [self updateHeaderStatusMetric];
         if (self.viewStatus == LXRefreshViewStatusInit) {
             [self super_onIdle];
         }
@@ -389,13 +390,14 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
         }
     } else {
         CGFloat offset_y = self.scrollView.contentOffset.y;
-        if (self.viewStatus == LXRefreshViewStatusReleaseToRefreshing) {
-            [self super_onRefreshing];
-            [self extendInsetsForHeaderHover];//insets changed will trigger contenoffset observer
-        } else if (offset_y > self.statusMetric.refreshMetric) {
+        if (offset_y > self.statusMetric.refreshMetric
+            && self.viewStatus != LXRefreshViewStatusIdle) {
             [self shrinkExtendedTopInsetsWith:^(BOOL finished) {
                 [self super_onIdle];
             }];
+        } else if (self.viewStatus == LXRefreshViewStatusReleaseToRefreshing) {
+            [self super_onRefreshing];
+            [self extendInsetsForHeaderHover];//insets changed will trigger contenoffset observer
         }
     }
 }
@@ -587,7 +589,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)updateHeaderStatusMetric {
-    if (!self.isAutoPosition || !self.isHeader || self.scrollView.isTracking) {
+    if (!self.isAutoPosition || !self.isHeader) {
         return;
     }
     CGFloat insets_top = self.scrollView.contentInset.top;
