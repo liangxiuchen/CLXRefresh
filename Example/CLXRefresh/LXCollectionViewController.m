@@ -63,7 +63,6 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.lx_refreshFooterView.isDebug = NO;
 }
 
-
 - (void)initDataSource {
     self.dataSource = [NSMutableArray array];
     for (NSInteger i = 0; i < 65; i++) {

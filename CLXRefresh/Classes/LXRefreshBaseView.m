@@ -391,7 +391,8 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     } else {
         CGFloat offset_y = self.scrollView.contentOffset.y;
         if (offset_y > self.statusMetric.refreshMetric
-            && self.viewStatus != LXRefreshViewStatusIdle) {
+            && self.viewStatus != LXRefreshViewStatusIdle
+            && self.scrollView.isDecelerating) {
             [self shrinkExtendedTopInsetsWith:^(BOOL finished) {
                 [self super_onIdle];
             }];
@@ -502,10 +503,14 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     [self super_onPullToRefreshWithPercent:100];
     [self super_onReleaseToRefresh];
     [self super_onRefreshing];
-    [self extendInsetsForHeaderHover];
-    CGPoint offset = self.scrollView.contentOffset;
-    offset.y -= self.extendedDeltaForHeaderHover;
-    [self.scrollView setContentOffset:offset animated:YES];
+    [UIView animateWithDuration:CATransaction.animationDuration animations:^{
+        CGFloat extendedMetric = ABS(self.statusMetric.refreshMetric - self.statusMetric.startMetric);
+        UIEdgeInsets insets = self.scrollView.contentInset;
+        insets.top -= self.extendedDeltaForHeaderHover;//reset
+        self.extendedDeltaForHeaderHover = extendedMetric;
+        insets.top += self.extendedDeltaForHeaderHover;
+        self.scrollView.contentInset = insets;
+    }];
 }
 
 - (void)endRefreshing {
