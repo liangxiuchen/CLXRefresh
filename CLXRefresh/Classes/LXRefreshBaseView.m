@@ -254,7 +254,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                 UIEdgeInsets insets = self.scrollView.contentInset;
                 insets.top -= self.extendedDeltaForHeaderHover;//reset
                 self.extendedDeltaForHeaderHover = delta;
-                insets.top = self.extendedDeltaForHeaderHover;//set new
+                insets.top += self.extendedDeltaForHeaderHover;//set new
                 self.scrollView.contentInset = insets;
             }
         }
