@@ -47,7 +47,7 @@ static NSString * const reuseIdentifier = @"Cell";
         if (self == nil) {
             return;
         }
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self loadMoreData];
             [self.collectionView reloadData];
             [footer endRefreshing];
