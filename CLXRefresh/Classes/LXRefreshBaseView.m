@@ -81,8 +81,8 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 }
 
 - (void)layoutSubviews {
-    [super layoutSubviews];
     [self autoPosition];
+    [super layoutSubviews];
 }
 
 - (void)onDeviceOrientationDidChanged {

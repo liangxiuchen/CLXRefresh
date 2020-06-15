@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) IBOutlet LXRefreshGifView *header;
 @property (strong, nonatomic) IBOutlet LXRefreshPlainView *footer;
-@property (strong, nonatomic) NSMutableArray *dataSource;
+@property (strong, nonatomic) NSMutableArray<NSMutableArray *> *dataSource;
 
 @end
 
@@ -24,6 +24,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    ((UICollectionViewFlowLayout *)self.collectionViewLayout).sectionHeadersPinToVisibleBounds = YES;
     [self initDataSource];
     if (@available (iOS 11, *)) {
         self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentAutomatic;
@@ -65,15 +66,19 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)initDataSource {
     self.dataSource = [NSMutableArray array];
+    NSMutableArray *array = [NSMutableArray array];
     for (NSInteger i = 0; i < 65; i++) {
-        [self.dataSource addObject:[NSObject new]];
+        [array addObject:[NSObject new]];
     }
+    [self.dataSource addObject:array];
 }
 
 - (void)loadMoreData {
-    for (NSInteger i = 0; i < 20; i++) {
-        [self.dataSource addObject:[NSObject new]];
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSInteger i = 0; i < 65; i++) {
+        [array addObject:[NSObject new]];
     }
+    [self.dataSource addObject:array];
 }
 /*
 #pragma mark - Navigation
@@ -88,12 +93,12 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+    return self.dataSource.count;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.dataSource.count;
+    return self.dataSource[section].count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -103,6 +108,16 @@ static NSString * const reuseIdentifier = @"Cell";
     cell.backgroundColor = colors[count];
     // Configure the cell
     return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return CGSizeMake(self.collectionView.bounds.size.width, 30.0f);
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass(UICollectionReusableView.class) forIndexPath:indexPath];
+    view.backgroundColor = UIColor.redColor;
+    return view;
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -135,5 +150,7 @@ static NSString * const reuseIdentifier = @"Cell";
 	
 }
 */
+
+
 
 @end
