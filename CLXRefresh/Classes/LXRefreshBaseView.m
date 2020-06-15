@@ -159,10 +159,11 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     if (![oldValue isKindOfClass:NSValue.class]) {
         return;
     }
-    if ([oldValue isEqualToValue:newValue]) {
+    CGSize newContentSize = newValue.CGSizeValue;
+    CGSize oldContentSize = oldValue.CGSizeValue;
+    if (CGSizeEqualToSize(newContentSize, oldContentSize)) {
         return;
     }
-    __unused CGSize contentSize = newValue.CGSizeValue;
     if (self.viewStatus != LXRefreshViewStatusInit) {
         [self autoPositionFooter];
         [self updateFooterStatusMetric];
@@ -277,7 +278,7 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
                     UIEdgeInsets insets = self.scrollView.contentInset;
                     insets.top -= self.extendedDeltaForHeaderHover;//reset
                     self.extendedDeltaForHeaderHover = delta;
-                    insets.top = self.extendedDeltaForHeaderHover;//set new
+                    insets.top += self.extendedDeltaForHeaderHover;//set new
                     self.scrollView.contentInset = insets;
                 } else if (self.extendedDeltaForHeaderHover > 0.f) {
                     UIEdgeInsets insets = self.scrollView.contentInset;
