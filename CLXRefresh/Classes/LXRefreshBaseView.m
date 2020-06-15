@@ -20,7 +20,7 @@
     }\
 } while(0);
 
-#define kShrinkAnimationDuration 0.2f
+#define kShrinkAnimationDuration (CATransaction.animationDuration)
 
 static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
             *LXRefreshFooterViewKVOContext = &LXRefreshFooterViewKVOContext;
@@ -51,13 +51,15 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
     UIScrollView *scrollView = (UIScrollView *)self.superview;
     [scrollView removeObserver:self forKeyPath:@"contentOffset"];
     [scrollView removeObserver:self forKeyPath:@"contentSize"];
-    [scrollView.panGestureRecognizer removeObserver:self forKeyPath:@"state"];
+    [self.panGesture removeObserver:self forKeyPath:@"state"];
+    self.panGesture = nil;
     [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)addObservers {
     [self.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionOld context:[self kvoContext]];
     [self.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial context:[self kvoContext]];
+    self.panGesture = self.scrollView.panGestureRecognizer;
     [self.scrollView.panGestureRecognizer addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial context:[self kvoContext]];
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(onDeviceOrientationDidChanged) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
@@ -658,11 +660,16 @@ static void *LXRefreshHeaderViewKVOContext = &LXRefreshHeaderViewKVOContext,
 - (void)shrinkExtendedTopInsetsWith:(void(^)(BOOL finished))completion {
     if (!self.isSmoothRefresh && self.extendedDeltaForHeaderHover) {
         LXRFMethodDebug
-        UIEdgeInsets insets = self.scrollView.contentInset;
-        insets.top -= self.extendedDeltaForHeaderHover;
+        CGFloat extendDelta = self.extendedDeltaForHeaderHover;
         self.extendedDeltaForHeaderHover = 0.f;
-        [UIView animateWithDuration:CATransaction.animationDuration animations:^{
-            self.scrollView.contentInset = insets;
+        UIEdgeInsets insets = self.scrollView.contentInset;
+        insets.top -= extendDelta;
+        CGPoint offset = self.scrollView.contentOffset;
+        self.scrollView.contentInset = insets;
+        self.scrollView.contentOffset = offset;
+        offset.y += extendDelta;
+        [UIView animateWithDuration:kShrinkAnimationDuration animations:^{
+            self.scrollView.contentOffset = offset;
         } completion:completion];
     } else {
         completion ? completion(NO) : (void)0;

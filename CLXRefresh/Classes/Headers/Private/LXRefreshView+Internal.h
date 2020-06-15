@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, assign) CGFloat extendedDeltaForHeaderHover;
 @property (nonatomic, assign) CGFloat extendedDeltaForFooterHover;
+@property (nonatomic, strong, nullable) UIPanGestureRecognizer *panGesture;
 
 - (void)updateStatusMetric;//is used for auto position
 @end

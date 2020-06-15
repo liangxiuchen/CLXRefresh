@@ -71,7 +71,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (void)loadMoreData {
-    for (NSInteger i = 0; i < 10; i++) {
+    for (NSInteger i = 0; i < 20; i++) {
         [self.dataSource addObject:[NSObject new]];
     }
 }
@@ -98,7 +98,9 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
+    NSArray *colors = @[UIColor.redColor, UIColor.greenColor, UIColor.grayColor, UIColor.blueColor];
+    NSUInteger count = (indexPath.row + indexPath.section) % colors.count;
+    cell.backgroundColor = colors[count];
     // Configure the cell
     return cell;
 }
